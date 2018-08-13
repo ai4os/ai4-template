@@ -26,7 +26,7 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/drivendata/cookiecutter-data-science
+    cookiecutter https://github.com/vykozlov/cookiecutter-data-science
 
 
 [![asciicast](https://asciinema.org/a/9bgl5qh17wlop4xyxu9n9wr02.png)](https://asciinema.org/a/9bgl5qh17wlop4xyxu9n9wr02)
@@ -63,8 +63,8 @@ The directory structure of your new project looks like this:
 ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
 │                         generated with `pip freeze > requirements.txt`
 │
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+├── {{ cookiecutter.repo_name }}  <- Source code for use in this project.
+│   ├── __init__.py    <- Makes {{ cookiecutter.repo_name }} a Python module
 │   │
 │   ├── data           <- Scripts to download or generate data
 │   │   └── make_dataset.py
