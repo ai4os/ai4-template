@@ -5,7 +5,7 @@
     "description": "A short description of the project.",
     "app_version": "Current version of the application",
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
-    "dockerhub_user": "Username at hub.docker.com"
+    "dockerhub_user": "Username at hub.docker.com",
     "s3_bucket": "[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')",
     "aws_profile": "default",
     "python_interpreter": ["python3", "python"]
