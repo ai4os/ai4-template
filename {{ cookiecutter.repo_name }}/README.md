@@ -7,7 +7,6 @@ Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -16,6 +15,8 @@ Project Organization
     │   └── raw            <- The original, immutable data dump.
     │
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+    │
+    ├── docker             <- Directory for Dockerfile(s)
     │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
@@ -35,7 +36,7 @@ Project Organization
     ├── {{cookiecutter.project_name}}    <- Source code for use in this project.
     │   ├── __init__.py    <- Makes {{cookiecutter.project_name}} a Python module
     │   │
-    │   ├── data           <- Scripts to download or generate data
+    │   ├── dataset        <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
@@ -45,6 +46,8 @@ Project Organization
     │   │   │                 predictions
     │   │   ├── predict_model.py
     │   │   └── train_model.py
+    │   │
+    │   └── tests          <- Scripts to perfrom code testing + pylint script
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
