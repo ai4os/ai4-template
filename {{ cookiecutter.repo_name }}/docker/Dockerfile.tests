@@ -1,7 +1,7 @@
 FROM _(CHANGE!)_put_base_docker_image_here_ # e.g. tensorflow/tensorflow:1.7.0
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
-# '{{ cookiecutter.description }}'
+# {{ cookiecutter.description }}
 
 RUN apt-get update && \ 
     apt-get clean && \
@@ -16,7 +16,7 @@ RUN apt-get update && \
 WORKDIR /home
 
 # Script to run pylint
-COPY '{{ cookiecutter.repo_name }}'/tests/run_pylint.sh /home/'{{ cookiecutter.repo_name }}'
+COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home/{{ cookiecutter.repo_name }}
 
 # Install pylint and python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
