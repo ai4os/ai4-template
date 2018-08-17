@@ -16,7 +16,7 @@ RUN apt-get update && \
 WORKDIR /home
 
 # Script to run pylint
-COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home/{{ cookiecutter.repo_name }}
+COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home
 
 # Install pylint and python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
