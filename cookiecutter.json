@@ -2,7 +2,7 @@
     "github_user": "User account at github.com, e.g. 'indigo-dc' in https://github.com/indigo-dc",
     "project_name": "project_name",
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-    "github_branch": "Branch at github.com to use, e.g. 'package'",
+    "github_branch": "Branch at github.com to use, e.g. 'master','package'...",
     "author_name": "Your name (or your organization/company/team)",
     "description": "A short description of the project.",
     "app_version": "Current version of the application",
