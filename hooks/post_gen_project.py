@@ -5,7 +5,7 @@ import os
 import sys
 
 src = '../{{ cookiecutter.repo_name }}/DC-OC-{{ cookiecutter.repo_name }}'
-dest = '../DC-OC-{{ cookiecutter.repo_name }}'
+dest = '../DEEP-OC-{{ cookiecutter.repo_name }}'
 
 try:
     shutil.move(src, dest)
