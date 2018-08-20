@@ -4,7 +4,7 @@ import shutil
 import os
 import sys
 
-deep_oc = 'DEEPP-OC-{{ cookiecutter.repo_name }}'
+deep_oc = 'DEEP-OC-{{ cookiecutter.repo_name }}'
 dest = '../' + deep_oc
 src = '../{{ cookiecutter.repo_name }}/'+ deep_oc
 
