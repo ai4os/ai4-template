@@ -1,14 +1,12 @@
 {
     "github_user": "User account at github.com, e.g. 'indigo-dc' in https://github.com/indigo-dc",
     "project_name": "project_name",
-    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}. Will be used for github and docker repos",
+    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "github_branch": "Branch at github.com to use, e.g. 'package'",
     "author_name": "Your name (or your organization/company/team)",
     "description": "A short description of the project.",
     "app_version": "Current version of the application",
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
     "dockerhub_user": "User account at hub.docker.com, e.g. 'vykozlov' in https://hub.docker.com/u/vykozlov",
-    "s3_bucket": "[OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')",
-    "aws_profile": "default",
     "python_interpreter": ["python3", "python"]
 }
