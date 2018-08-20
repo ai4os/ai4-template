@@ -15,10 +15,8 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /home
 
-# Script to run pylint
-COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home
 
-# Install pylint and python packages listed in requirements.txt
+# Install python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
 RUN python -m pip --no-cache-dir install -r /home/requirements.txt && \
     rm -rf /root/.cache/pip/* && \
