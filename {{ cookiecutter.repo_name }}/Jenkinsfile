@@ -38,7 +38,7 @@ node {
       stage('Deploy Application') {
       }
 
-      stage('Post Deploymnet') {
+      stage('Post Deployment') {
           // delete docker image from Jenkins site
           sh("docker rmi ${imageTag}")
       }
