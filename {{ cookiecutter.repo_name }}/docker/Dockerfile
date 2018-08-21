@@ -11,10 +11,8 @@ RUN apt-get update && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
-
 # Set the working directory
 WORKDIR /home
-
 
 # Install python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
