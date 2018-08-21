@@ -1,4 +1,5 @@
-FROM _(CHANGE!)_put_base_docker_image_here_ # e.g. tensorflow/tensorflow:1.7.0
+# Base image, e.g. tensorflow/tensorflow:1.7.0
+FROM _(CHANGE!)_put_base_docker_image_here_
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 # {{ cookiecutter.description }}
@@ -14,8 +15,10 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /home
 
+# Copy the current directory contents into the container at /home
+ADD . /home
+
 # Install python packages listed in requirements.txt
-COPY requirements.txt /home/requirements.txt
 RUN python -m pip --no-cache-dir install -r /home/requirements.txt \
 ### (OPTIONAL!) If you want to use Jupyter, uncomment:
 #        jupyter \
@@ -36,5 +39,3 @@ RUN python -m pip --no-cache-dir install -r /home/requirements.txt \
 #EXPOSE 8888
 ###
 
-# Copy the current directory contents into the container at /home
-ADD . /home

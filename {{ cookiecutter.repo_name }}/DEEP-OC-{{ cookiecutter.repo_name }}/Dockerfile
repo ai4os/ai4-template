@@ -1,4 +1,5 @@
-FROM _(CHANGE!)_put_base_docker_image_here_ # e.g. tensorflow/tensorflow:1.7.0
+# Base image, e.g. tensorflow/tensorflow:1.7.0
+FROM _(CHANGE!)_put_base_docker_image_here_
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'

@@ -1,4 +1,5 @@
-FROM _(CHANGE!)_put_base_docker_image_here_ # e.g. tensorflow/tensorflow:1.7.0
+# Base image, e.g. tensorflow/tensorflow:1.7.0
+FROM _(CHANGE!)_put_base_docker_image_here_
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 # {{ cookiecutter.description }}
@@ -18,12 +19,12 @@ WORKDIR /home
 # Script to run pylint
 COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home
 
+# Copy the current directory contents into the container at /home
+ADD . /home
+
 # Install pylint and python packages listed in requirements.txt
-COPY requirements.txt /home/requirements.txt
 RUN python -m pip --no-cache-dir install pylint \
     -r /home/requirements.txt && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
-# Copy the current directory contents into the container at /home
-ADD . /home
