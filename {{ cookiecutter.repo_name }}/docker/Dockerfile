@@ -18,9 +18,27 @@ WORKDIR /home
 
 # Install python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
-RUN python -m pip --no-cache-dir install -r /home/requirements.txt && \
+RUN python -m pip --no-cache-dir install -r /home/requirements.txt \
+{% if cookiecutter.jupyter_use == 'yes' %
+        jupyter \
+        jupyterlab \
+{% endif %}
+        && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
+
+{% if cookiecutter.jupyter_use == 'yes' %}
+## Jupyter notebooks 
+# Set up our notebook config.
+COPY docker/jupyter/jupyter_notebook_config.py /root/.jupyter/
+COPY docker/jupyter/run_jupyter.sh /
+# For Jupyter terminal
+ENV SHELL /bin/bash
+
+# REMINDER: Tensorflow Docker Images already EXPOSE ports 6006 and 8888
+EXPOSE 8888
+##
+{% endif %}
 
 # Copy the current directory contents into the container at /home
 ADD . /home

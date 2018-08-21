@@ -24,7 +24,7 @@ RUN apt-get update && \
 WORKDIR /srv
 
 # Install user app:
-RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} -b {{ cookiecutter.github_branch }} && \
+RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
     pip install -e . && \
     python -m pip --no-cache-dir install -r ./requirements.txt && \
