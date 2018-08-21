@@ -7,5 +7,5 @@
     "app_version": "Current version of the application",
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
     "dockerhub_user": "User account at hub.docker.com, e.g. 'vykozlov' in https://hub.docker.com/u/vykozlov",
-    "python_interpreter": ["python3", "python"],
+    "python_interpreter": ["python3", "python"]
 }
