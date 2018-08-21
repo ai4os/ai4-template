@@ -19,7 +19,7 @@ WORKDIR /home
 # Install python packages listed in requirements.txt
 COPY requirements.txt /home/requirements.txt
 RUN python -m pip --no-cache-dir install -r /home/requirements.txt \
-{% if cookiecutter.jupyter_use == 'yes' %
+{% if cookiecutter.jupyter_use == 'yes' %}
         jupyter \
         jupyterlab \
 {% endif %}
