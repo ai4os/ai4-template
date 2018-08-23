@@ -1,22 +1,22 @@
 # Base image, e.g. tensorflow/tensorflow:1.7.0
-FROM _(CHANGE!)_put_base_docker_image_here_
+FROM {{ cookiecutter.docker_baseimage }}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'
-# {{ cookiecutter.description }}
+# {{ cookiecutter.description.replace('\'', '') }}
+
 
 # Install ubuntu updates and python related stuff
-RUN apt-get update && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    wget \
-    python-setuptools \
-    python-pip \
-    python-wheel && \ 
+         git \
+         curl \
+         wget \
+         python-setuptools \
+         python-pip \
+         python-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    python -m ipykernel.kernelspec && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
@@ -28,7 +28,6 @@ WORKDIR /srv
 RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
     pip install -e . && \
-    python -m pip --no-cache-dir install -r ./requirements.txt && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
     cd ..

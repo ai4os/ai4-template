@@ -3,9 +3,11 @@
     "project_name": "project_name",
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "author_name": "Your name (or your organization/company/team)",
+    "author_email": "Your email",
     "description": "A short description of the project.",
     "app_version": "Current version of the application",
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
+    "python_interpreter": ["python3", "python"],
     "dockerhub_user": "User account at hub.docker.com, e.g. 'vykozlov' in https://hub.docker.com/u/vykozlov",
-    "python_interpreter": ["python3", "python"]
+    "docker_baseimage": "Base docker image for Dockerfile, e.g. tensorflow/tensorflow:1.7.0"
 }
