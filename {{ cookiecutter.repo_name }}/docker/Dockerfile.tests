@@ -1,8 +1,8 @@
 # Base image, e.g. tensorflow/tensorflow:1.7.0
-FROM _(CHANGE!)_put_base_docker_image_here_
+FROM {{ cookiecutter.docker_baseimage }}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
-# {{ cookiecutter.description }}
+# {{ cookiecutter.description.replace('\'', '') }}
 
 RUN apt-get update && \ 
     apt-get clean && \
