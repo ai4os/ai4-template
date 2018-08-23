@@ -5,9 +5,9 @@ Quick instructions.
 
 1. Build the container, e.g.:
 
-    docker build -t {{ cookiecutter.dockerhub_user }}/{{ cookiecutter.repo_name }} .
+    docker build -t {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }} .
 
 2. Run the container:
 
-    docker run -ti -p 5000:5000 {{ cookiecutter.dockerhub_user }}/{{ cookiecutter.repo_name }}
+    docker run -ti -p 5000:5000 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
 
