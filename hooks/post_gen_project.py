@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import shutil
-import subprocess
+import subprocess as subp
 import sys
 
 repo_name = '{{ cookiecutter.repo_name }}'
@@ -14,11 +14,11 @@ def git_ini(repo):
     githubrepo = ("http://github.com/" + '{{ cookiecutter.github_user }}'
                    + "/" +  '{{ cookiecutter.repo_name }}.git')
     try:
-        subprocess.call(["cd", "../" + repo], shell=True)
-        subprocess.call(["git", "init"], shell=True)
-        subprocess.call(["git", "add", "."], shell=True)
-        subprocess.call(["git", "commit", "-m", "initial commit"], shell=True) 
-        subprocess.call(["git", "remote", "add", "origin", githubrepo], shell=True)
+        subp.call(["cd", "../" + repo])
+        subp.call(["git", "init"])
+        subp.call(["git", "add", "."])
+        subp.call(["git", "commit", "-m", "initial commit"]) 
+        subp.call(["git", "remote", "add", "origin", githubrepo])
     except OSError as e:
         sys.stdout.write('Creating git repository failed for ' + repo + " !")
         sys.stdout.write('Error! {} '.format(e))
