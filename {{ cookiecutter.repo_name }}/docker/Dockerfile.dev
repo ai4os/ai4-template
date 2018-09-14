@@ -1,10 +1,23 @@
+##################
+# Run from ~/{{ cookiecutter.repo_name }} as
+# $> docker build -t dockerimage -f docker/Dockerfile.dev .
+# Then use as
+# $> docker run -ti -v ~/{{ cookiecutter.repo_name }}:/home dockerimage /bin/bash
+##################
 # Base image, e.g. tensorflow/tensorflow:1.7.0
 FROM {{ cookiecutter.docker_baseimage }}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 # {{ cookiecutter.description.replace('\'', '') }}
 
-RUN apt-get update && \ 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --no-install-recommends \
+         git \
+         curl \
+         wget \
+         python-setuptools \
+         python-pip \
+         python-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
@@ -13,11 +26,8 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /home
 
-# Copy the current directory contents into the container at /home
-ADD . /home
-
 # Install python packages listed in requirements.txt
-RUN python -m pip --no-cache-dir install -r /home/requirements.txt \
+RUN pip --no-cache-dir install -r /home/requirements.txt \
 ### (OPTIONAL!) If you want to use Jupyter, uncomment:
 #        jupyter \
 #        jupyterlab && \
