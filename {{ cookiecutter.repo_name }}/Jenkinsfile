@@ -1,7 +1,7 @@
 node {
-  def githubcredentials = '_(CHANGE!)_ ' // github credentials as stored in Jenkins
+  def githubcredentials = '_(CHANGE!)_' // github credentials as stored in Jenkins
   def dockerhubuser = '{{ cookiecutter.dockerhub_user }}'
-  def dockerhubcredentials = '_(CHANGE!)_ ' // dockerhub credentials as stored in Jenkins
+  def dockerhubcredentials = '_(CHANGE!)_' // dockerhub credentials as stored in Jenkins
   def appName = '{{ cookiecutter.repo_name }}'
   def mainVer = '{{ cookiecutter.app_version }}'
   def imageTagBase = "${appName}:${env.BRANCH_NAME}-${mainVer}.${env.BUILD_NUMBER}"
