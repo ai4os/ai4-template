@@ -2,4 +2,4 @@
 from os import path
 
 # identify basedir for the package
-basedir = path.dirname(path.normpath(path.dirname(__file__)))
+BASE_DIR = path.dirname(path.normpath(path.dirname(__file__)))
