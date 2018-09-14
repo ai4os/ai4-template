@@ -13,12 +13,15 @@ src = os.path.join("../", repo_name, deep_oc)
 def git_ini(repo):
     githubrepo = ("http://github.com/" + '{{ cookiecutter.github_user }}'
                    + "/" +  '{{ cookiecutter.repo_name }}.git')
-                   
-    subprocess.run(["cd", "../" + repo])
-    subprocess.run(["git", "init"])
-    subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", "initial commit"])      
-    subprocess.run(["git", "remote", "add", "origin", githubrepo])        
+    try:
+        subprocess.call(["cd", "../" + repo], shell=True)
+        subprocess.call(["git", "init"], shell=True)
+        subprocess.call(["git", "add", "."], shell=True)
+        subprocess.call(["git", "commit", "-m", "initial commit"], shell=True) 
+        subprocess.call(["git", "remote", "add", "origin", githubrepo], shell=True)
+    except OSError as e:
+        sys.stdout.write('Creating git repository failed for ' + repo + " !")
+        sys.stdout.write('Error! {} '.format(e))
 
     
     
