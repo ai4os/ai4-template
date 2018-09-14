@@ -14,7 +14,7 @@ def git_ini(repo):
     githubrepo = ("http://github.com/" + '{{ cookiecutter.github_user }}'
                    + "/" +  '{{ cookiecutter.repo_name }}.git')
     try:
-        subp.call(["cd", "../" + repo])
+        os.chdir("../" + repo)
         subp.call(["git", "init"])
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"]) 
