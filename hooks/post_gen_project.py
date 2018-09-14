@@ -11,8 +11,8 @@ deep_oc_dir = '../' + deep_oc
 src = os.path.join("../", repo_name, deep_oc)
 
 def git_ini(repo):
-    githubrepo = ("http://github.com/" + '{{ cookiecutter.github_user }}'
-                   + "/" +  '{{ cookiecutter.repo_name }}.git')
+    githubrepo = ("git@github.com:" + '{{ cookiecutter.github_user }}'
+                   + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
         subp.call(["git", "init"])
