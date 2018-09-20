@@ -21,6 +21,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     rm -rf /tmp/*
 
 
+# Set LANG environment
+ENV LANG C.UTF-8
+
 # Set the working directory
 WORKDIR /srv
 

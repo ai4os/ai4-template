@@ -30,9 +30,9 @@ Project Organization
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so {{cookiecutter.project_name}} can be imported
-    ├── {{cookiecutter.project_name}}    <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes {{cookiecutter.project_name}} a Python module
+    ├── setup.py           <- makes project pip installable (pip install -e .) so {{cookiecutter.repo_name}} can be imported
+    ├── {{cookiecutter.repo_name}}    <- Source code for use in this project.
+    │   ├── __init__.py    <- Makes {{cookiecutter.repo_name}} a Python module
     │   │
     │   ├── dataset        <- Scripts to download or generate data
     │   │   └── make_dataset.py

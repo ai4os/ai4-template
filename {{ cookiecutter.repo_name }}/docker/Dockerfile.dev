@@ -23,11 +23,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
+# Set LANG environment
+ENV LANG C.UTF-8
+
 # Set the working directory
 WORKDIR /home
 
 # Install python packages listed in requirements.txt
-RUN pip --no-cache-dir install -r /home/requirements.txt \
+COPY requirements.txt /root
+RUN pip --no-cache-dir install -r /root/requirements.txt \
 ### (OPTIONAL!) If you want to use Jupyter, uncomment:
 #        jupyter \
 #        jupyterlab && \

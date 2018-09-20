@@ -1,7 +1,5 @@
 # external requirements
 Sphinx
-coverage
-awscli
 python-dotenv>=0.5.1
 {% if cookiecutter.python_interpreter != 'python3' %}
 

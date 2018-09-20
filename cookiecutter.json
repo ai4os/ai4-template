@@ -7,7 +7,6 @@
     "description": "A short description of the project.",
     "app_version": "Current version of the application",
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
-    "python_interpreter": ["python3", "python"],
     "dockerhub_user": "User account at hub.docker.com, e.g. 'vykozlov' in https://hub.docker.com/u/vykozlov",
     "docker_baseimage": "Base docker image for Dockerfile, e.g. tensorflow/tensorflow:1.7.0"
 }
