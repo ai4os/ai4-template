@@ -3,11 +3,12 @@
 @Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
 
 pipeline {
+    agent {
+        label 'docker-build'
+    }
+
     stages {
         stage('DockerHub delivery') {
-            agent {
-                label 'docker-build'
-            }
             steps{
                 checkout scm
                 script {
