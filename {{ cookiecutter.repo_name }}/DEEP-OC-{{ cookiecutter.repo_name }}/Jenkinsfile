@@ -7,12 +7,16 @@ pipeline {
         label 'docker-build'
     }
 
+    environment {
+        dockerhub_repo = "deephdc/test-DEEP-OC-{{ cookiecutter.repo_name }}"
+    }
+
     stages {
         stage('DockerHub delivery') {
             steps{
                 checkout scm
                 script {
-                    image_id = DockerBuild(dockerhub_repo, env.BRANCH_NAME)
+                    image_id = DockerBuild("${env.dockerhub_repo}, env.BRANCH_NAME)
                 }
             }
             post {
