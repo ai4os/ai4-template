@@ -3,11 +3,6 @@
 Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
 
 pipeline {
-    parameters {
-        string(name: 'appName',
-               defaultValue: "{{ cookiecutter.repo_name }}",
-               description: 'Application name from DEEP-OC repository')
-    }
     stages {
         stage('Fetch the repository') {
             steps {
@@ -37,9 +32,9 @@ pipeline {
             }
         }
 
-        stage("Re-build DEEP-OC-${params.appName} Docker image") {
+        stage("Re-build DEEP-OC-{{ cookiecutter.repo_name }} Docker image") {
             steps {
-                job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-${params.appName}"
+                job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}"
                 JenkinsBuildJob($job_location)
             }
         }
