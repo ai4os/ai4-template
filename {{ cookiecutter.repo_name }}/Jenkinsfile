@@ -3,6 +3,9 @@
 @Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
 
 pipeline {
+    environment {
+        job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}"
+    }
     stages {
         stage('Fetch the repository') {
             steps {
@@ -34,8 +37,7 @@ pipeline {
 
         stage("Re-build DEEP-OC-{{ cookiecutter.repo_name }} Docker image") {
             steps {
-                job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}"
-                JenkinsBuildJob($job_location)
+                JenkinsBuildJob("${env.job_location}")
             }
         }
     }
