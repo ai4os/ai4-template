@@ -14,17 +14,16 @@ RUN apt-get update && \
 ENV LANG C.UTF-8
 
 # Set the working directory
-WORKDIR /home
+WORKDIR /app
 
 # Script to run pylint
-COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /home
+COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /app
 
-# Copy the current directory contents into the container at /home
-ADD . /home
+# Copy the current directory contents into the container at /app
+ADD . /app
 
-# Install pylint and python packages listed in requirements.txt
-RUN python -m pip --no-cache-dir install pylint \
-    -r /home/requirements.txt && \
+# Install pylint and python packages listed in test-requirements.txt
+RUN pip --no-cache-dir install -r /app/requirements.txt && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 

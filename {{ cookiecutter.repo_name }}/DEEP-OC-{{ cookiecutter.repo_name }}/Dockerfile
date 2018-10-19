@@ -12,9 +12,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          git \
          curl \
          wget \
-         python-setuptools \
-         python-pip \
-         python-wheel && \ 
+         {{ cookiecutter.python_interpreter }}-setuptools \
+         {{ cookiecutter.python_interpreter }}-pip \
+         {{ cookiecutter.python_interpreter }}-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \

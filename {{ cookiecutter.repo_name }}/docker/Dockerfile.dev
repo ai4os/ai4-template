@@ -2,7 +2,7 @@
 # Run from ~/{{ cookiecutter.repo_name }} as
 # $> docker build -t dockerimage -f docker/Dockerfile.dev .
 # Then use as
-# $> docker run -ti -v ~/{{ cookiecutter.repo_name }}:/home dockerimage /bin/bash
+# $> docker run -ti -v ~/{{ cookiecutter.repo_name }}:/app dockerimage /bin/bash
 ##################
 # Base image, e.g. tensorflow/tensorflow:1.7.0
 FROM {{ cookiecutter.docker_baseimage }}
@@ -15,9 +15,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          git \
          curl \
          wget \
-         python-setuptools \
-         python-pip \
-         python-wheel && \ 
+         {{ cookiecutter.python_interpreter }}-setuptools \
+         {{ cookiecutter.python_interpreter }}-pip \
+         {{ cookiecutter.python_interpreter }}-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
@@ -27,7 +27,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 ENV LANG C.UTF-8
 
 # Set the working directory
-WORKDIR /home
+WORKDIR /app
 
 # Install python packages listed in requirements.txt
 COPY requirements.txt /root
