@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # import project config.py
 """
+   Module to prepare the dataset
 """
 import logging
 from pathlib import Path
@@ -10,7 +11,7 @@ import {{ cookiecutter.repo_name }}.config as cfg
 
 def main(input_filepath, output_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
+        cleaned data ready to be analyzed.
     """
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')

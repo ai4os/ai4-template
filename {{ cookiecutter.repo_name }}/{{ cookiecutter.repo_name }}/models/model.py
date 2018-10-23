@@ -3,10 +3,13 @@
 Model description
 """
 import pkg_resources
-# import project config.py
+# import project's config.py
 import {{ cookiecutter.repo_name }}.config as cfg
 
 def get_metadata():
+    """
+    Function to read metadata
+    """
 
     module = __name__.split('.', 1)
 
@@ -21,11 +24,11 @@ def get_metadata():
         'License': None,
     }
 
-    for l in pkg.get_metadata_lines("PKG-INFO"):
+    for line in pkg.get_metadata_lines("PKG-INFO"):
         for par in meta:
-            if l.startswith(par):
-                _, v = l.split(": ", 1)
-                meta[par] = v
+            if line.startswith(par):
+                _, value = line.split(": ", 1)
+                meta[par] = value
 
     return meta
 
@@ -48,10 +51,9 @@ def predict_data(*args):
 def predict_url(*args):
     """
     Function to make prediction on a URL
-    """    
+    """
     message = 'Not implemented in the model (predict_url)'
     return message
-
 
 def train(*args):
     """
@@ -59,3 +61,20 @@ def train(*args):
     """
     message = 'Not implemented in the model (train)'
     return message
+
+# during development it might be practical 
+# to check your code from the command line
+def main():
+    """
+       Runs above-described functions depending on input parameters
+       (see below an example)
+    """
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Model parameters')
+    parser.add_argument('--method', type=str, default="get_metadata",
+                        help='Method to use: get_metadata (default), \
+                        predict_file, predict_data, predict_url, train')    
+    args = parser.parse_args()    
+    
+    main()    
