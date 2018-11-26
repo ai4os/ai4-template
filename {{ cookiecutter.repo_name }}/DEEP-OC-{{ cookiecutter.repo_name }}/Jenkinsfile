@@ -13,10 +13,16 @@ pipeline {
 
     stages {
         stage('DockerHub delivery') {
+            when {
+                anyOf {
+                    branch 'master'
+                    buildingTag()
+                }
+            }
             steps{
                 checkout scm
                 script {
-                    image_id = DockerBuild("${env.dockerhub_repo}, env.BRANCH_NAME)
+                    image_id = DockerBuild(dockerhub_repo, env.BRANCH_NAME)
                 }
             }
             post {
