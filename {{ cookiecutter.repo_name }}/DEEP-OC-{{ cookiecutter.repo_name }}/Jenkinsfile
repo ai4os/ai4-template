@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        dockerhub_repo = "deephdc/DEEP-OC-{{ cookiecutter.repo_name }}"
+        dockerhub_repo = "deephdc/deep-oc-{{ cookiecutter.repo_name }}"
     }
 
     stages {

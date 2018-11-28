@@ -2,6 +2,7 @@
 """
 Model description
 """
+import argparse
 import pkg_resources
 # import project's config.py
 import {{ cookiecutter.repo_name }}.config as cfg

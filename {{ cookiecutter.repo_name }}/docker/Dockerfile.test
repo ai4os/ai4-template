@@ -22,8 +22,9 @@ COPY {{ cookiecutter.repo_name }}/tests/run_pylint.sh /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
-# Install pylint and python packages listed in test-requirements.txt
+# Install pylint and python packages listed in requirements.txt and test-requirements.txt
 RUN pip --no-cache-dir install -r /app/requirements.txt && \
+    pip --no-cache-dir install -r /app/test-requirements.txt && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
