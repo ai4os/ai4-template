@@ -4,7 +4,7 @@ DEEP-OC-{{ cookiecutter.repo_name }}
 ![DEEP-Hybrid-DataCloud logo](https://deep-hybrid-datacloud.eu/wp-content/uploads/2018/01/logo.png)
 
 This is a container that will simply run the DEEP as a Service API component,
-with {{ cookiecutter.repo_name }} [{{ cookiecutter.repo_name }}](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}).
+with {{ cookiecutter.repo_name }} (src: [{{ cookiecutter.repo_name }}](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }})).
 
     
 # Running the container
