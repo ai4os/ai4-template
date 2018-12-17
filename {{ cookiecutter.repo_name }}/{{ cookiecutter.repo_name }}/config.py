@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" 
+"""
    Module to define CONSTANTS used across the project
 """
 

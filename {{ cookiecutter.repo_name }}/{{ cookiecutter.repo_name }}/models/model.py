@@ -7,6 +7,7 @@ import pkg_resources
 # import project's config.py
 import {{ cookiecutter.repo_name }}.config as cfg
 
+
 def get_metadata():
     """
     Function to read metadata
@@ -33,6 +34,7 @@ def get_metadata():
 
     return meta
 
+
 def predict_file(*args):
     """
     Function to make prediction on a local file
@@ -56,6 +58,7 @@ def predict_url(*args):
     message = 'Not implemented in the model (predict_url)'
     return message
 
+
 def train(*args):
     """
     Train network
@@ -77,5 +80,5 @@ if __name__ == '__main__':
                         help='Method to use: get_metadata (default), \
                         predict_file, predict_data, predict_url, train')    
     args = parser.parse_args()    
-    
-    main()    
+
+    main()
