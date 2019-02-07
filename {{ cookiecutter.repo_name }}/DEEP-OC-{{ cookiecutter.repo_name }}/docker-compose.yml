@@ -1,0 +1,29 @@
+version: '2.3'
+
+services:
+    {{ cookiecutter.repo_name }}:
+      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}
+      # if 'docker-compose run' is used
+      # do not forget '--service-ports'!
+      ports:
+        - 5000:5000
+        - 6006:6006
+      entrypoint: ["deepaas-run", "--listen-ip=0.0.0.0"]
+
+
+    {{ cookiecutter.repo_name }}-gpu:
+      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}
+      runtime: nvidia
+      ports:
+        - 5000:5000
+        - 6006:6006
+      entrypoint: ["deepaas-run", "--listen-ip=0.0.0.0"]
+
+
+    {{ cookiecutter.repo_name }}-rclone:
+      extends:
+        service: {{ cookiecutter.repo_name }}
+      volumes:
+        - $HOME/.config/rclone:/srv/rclone
+      environment:
+        - RCLONE_CONFIG=/srv/rclone/rclone.conf
