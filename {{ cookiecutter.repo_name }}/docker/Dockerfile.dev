@@ -2,7 +2,7 @@
 # Run from ~/{{ cookiecutter.repo_name }} as
 # $> docker build -t dockerimage -f docker/Dockerfile.dev .
 # Then use as
-# $> docker run -ti -v ~/{{ cookiecutter.repo_name }}:/app dockerimage /bin/bash
+# $> docker run -ti -v ~/{{ cookiecutter.repo_name }}:/srv/app dockerimage /bin/bash
 ##################
 # Base image, e.g. tensorflow/tensorflow:1.7.0
 FROM {{ cookiecutter.docker_baseimage }}
@@ -27,28 +27,61 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 ENV LANG C.UTF-8
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /srv
 
-# Install python packages listed in requirements.txt
-COPY requirements-dev.txt /root
-RUN pip --no-cache-dir install -r /root/requirements-dev.txt \
-### (OPTIONAL!) If you want to use Jupyter, uncomment:
-#        jupyter \
-#        jupyterlab && \
-#   python -m ipykernel.kernelspec \
-###
-    && \
+# install rclone
+RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
+    dpkg -i rclone-current-linux-amd64.deb && \
+    apt install -f && \
+    touch /srv/.rclone.conf && \
+    rm rclone-current-linux-amd64.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
-### (OPTIONAL!) If you want to use Jupyter, uncomment: 
+
+# Install FLAAT (FLAsk support for handling Access Tokens)
+RUN pip install --no-cache-dir flaat && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
+
+# Disable FLAAT authentication by default
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
+
+# Install DEEPaaS from PyPi:
+RUN pip install --no-cache-dir deepaas && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
+
+
+# Install python packages listed in requirements-dev.txt
+COPY requirements-dev.txt /srv
+RUN pip --no-cache-dir install -r /srv/requirements-dev.txt && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
+
+
+### (OPTIONAL!) If you want to use Jupyter, uncomment:
+#RUN pip --no-cache-dir install jupyter jupyterlab && \
+#    {{ cookiecutter.python_interpreter }} -m ipykernel.kernelspec && \
+#    rm -rf /root/.cache/pip/* && \
+#    rm -rf /tmp/*
+#
 ## Set up our notebook config.
 #COPY docker/jupyter/jupyter_notebook_config.py /root/.jupyter/
 #COPY docker/jupyter/run_jupyter.sh /
 ## For Jupyter terminal
 #ENV SHELL /bin/bash
-#
-## REMINDER: Tensorflow Docker Images already EXPOSE ports 6006 and 8888
 #EXPOSE 8888
 ###
 
+# Open DEEPaaS port
+EXPOSE 5000
+
+# Open Jupyter port
+# REMINDER: Tensorflow Docker Images already EXPOSE ports 6006 and 8888
+EXPOSE 6006
+
+CMD /bin/bash

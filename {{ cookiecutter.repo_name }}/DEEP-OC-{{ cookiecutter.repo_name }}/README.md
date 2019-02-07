@@ -1,7 +1,7 @@
 DEEP-OC-{{ cookiecutter.repo_name }}
 ============================================
 
-![DEEP-Hybrid-DataCloud logo](https://deep-hybrid-datacloud.eu/wp-content/uploads/2018/01/logo.png)
+![DEEP-Hybrid-DataCloud logo](https://docs.deep-hybrid-datacloud.eu/en/latest/_static/logo.png)
 
 This is a container that will simply run the DEEP as a Service API component,
 with {{ cookiecutter.repo_name }} (src: [{{ cookiecutter.repo_name }}](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }})).
@@ -20,6 +20,15 @@ $ docker run -ti -p 5000:5000 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cooki
 
 This command will pull the Docker container from the Docker Hub
 [{{ cookiecutter.dockerhub_user }}](https://hub.docker.com/u/{{ cookiecutter.dockerhub_user }}/) organization.
+
+## Running via docker-compose
+
+docker-compose.yml allows you to run the application with various configurations via docker-compose.
+
+**N.B!** docker-compose.yml is of version '2.3', one needs docker 17.06.0+ and docker-compose ver.1.16.0+, see https://docs.docker.com/compose/install/
+
+If you want to use Nvidia GPU, you need nvidia-docker and docker-compose ver1.19.0+ , see [nvidia/FAQ](https://github.com/NVIDIA/nvidia-docker/wiki/Frequently-Asked-Questions#do-you-support-docker-compose)
+
 
 ## Building the container
 

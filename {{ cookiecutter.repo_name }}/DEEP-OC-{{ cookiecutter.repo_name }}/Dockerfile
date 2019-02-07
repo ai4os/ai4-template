@@ -27,6 +27,25 @@ ENV LANG C.UTF-8
 # Set the working directory
 WORKDIR /srv
 
+# install rclone
+RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
+    dpkg -i rclone-current-linux-amd64.deb && \
+    apt install -f && \
+    touch /srv/.rclone.conf && \
+    rm rclone-current-linux-amd64.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
+
+# Install FLAAT (FLAsk support for handling Access Tokens)
+RUN pip install --no-cache-dir flaat && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
+
+# Disable FLAAT authentication by default
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
 # Install user app:
 RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
@@ -35,24 +54,17 @@ RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.
     rm -rf /tmp/* && \
     cd ..
 
-# Install DEEPaaS:
-RUN git clone https://github.com/indigo-dc/deepaas && \
-    cd deepaas && \
-    pip install --no-cache-dir -U . && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/* && \
-    cd ..
 
-#####
-# Your code may download necessary data automatically or 
-# you force the download during docker build. Example below is for latter case:
-#ENV Resnet50Data DogResnet50Data.npz
-#ENV S3STORAGE https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/
-#RUN curl -o ./dogs_breed_det/models/bottleneck_features/${Resnet50Data} \
-#    ${S3STORAGE}${Resnet50Data}
+# Install DEEPaaS from PyPi:
+RUN pip install --no-cache-dir deepaas && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
 
 
 # Open DEEPaaS port
 EXPOSE 5000
 
-CMD deepaas-run
+# Open Monitoring port
+EXPOSE 6006
+
+CMD ["deepaas-run","--listen-ip=0.0.0.0"]
