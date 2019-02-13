@@ -33,27 +33,25 @@ WORKDIR /srv
 RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     dpkg -i rclone-current-linux-amd64.deb && \
     apt install -f && \
-    touch /srv/.rclone.conf && \
+    mkdir /srv/.rclone/ && touch /srv/.rclone/rclone.conf && \
     rm rclone-current-linux-amd64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
+ENV RCLONE_CONFIG /srv/.rclone/rclone.conf
 
+# Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir flaat && \
+RUN pip install --no-cache-dir \
+        deepaas \
+        flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
-
-
-# Install DEEPaaS from PyPi:
-RUN pip install --no-cache-dir deepaas && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
 
 
 # Install python packages listed in requirements-dev.txt
@@ -64,13 +62,14 @@ RUN pip --no-cache-dir install -r /srv/requirements-dev.txt && \
 
 
 ### (OPTIONAL!) If you want to use Jupyter, uncomment:
-#RUN pip --no-cache-dir install jupyter jupyterlab && \
+#RUN pip --no-cache-dir install jupyterlab && \
 #    {{ cookiecutter.python_interpreter }} -m ipykernel.kernelspec && \
 #    rm -rf /root/.cache/pip/* && \
 #    rm -rf /tmp/*
 #
 ## Set up our notebook config.
-#COPY docker/jupyter/jupyter_notebook_config.py /root/.jupyter/
+#ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
+#COPY docker/jupyter/jupyter_notebook_config.py /srv/.jupyter/
 #COPY docker/jupyter/run_jupyter.sh /
 ## For Jupyter terminal
 #ENV SHELL /bin/bash

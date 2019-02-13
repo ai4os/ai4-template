@@ -31,20 +31,24 @@ WORKDIR /srv
 RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     dpkg -i rclone-current-linux-amd64.deb && \
     apt install -f && \
-    touch /srv/.rclone.conf && \
+    mkdir /srv/.rclone/ && touch /srv/.rclone/rclone.conf && \
     rm rclone-current-linux-amd64.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
+# Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir flaat && \
+RUN pip install --no-cache-dir \
+        deepaas \
+        flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
 
 # Install user app:
 RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
@@ -53,12 +57,6 @@ RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
     cd ..
-
-
-# Install DEEPaaS from PyPi:
-RUN pip install --no-cache-dir deepaas && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
 
 
 # Open DEEPaaS port
