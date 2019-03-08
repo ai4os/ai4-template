@@ -27,7 +27,7 @@ ENV LANG C.UTF-8
 # Set the working directory
 WORKDIR /srv
 
-# install rclone
+# Install rclone
 RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     dpkg -i rclone-current-linux-amd64.deb && \
     apt install -f && \
@@ -41,7 +41,7 @@ RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        deepaas \
+        'deepaas>=0.3.0' \
         flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
@@ -65,4 +65,4 @@ EXPOSE 5000
 # Open Monitoring port
 EXPOSE 6006
 
-CMD ["deepaas-run","--listen-ip=0.0.0.0"]
+CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
