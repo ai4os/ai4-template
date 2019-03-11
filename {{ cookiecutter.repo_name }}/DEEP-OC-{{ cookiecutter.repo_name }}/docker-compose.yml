@@ -1,10 +1,11 @@
 version: '2.3'
 
+# if 'docker-compose run' is used
+# do not forget '--service-ports'!
+
 services:
     {{ cookiecutter.repo_name }}:
       image: deephdc/deep-oc-{{ cookiecutter.repo_name }}
-      # if 'docker-compose run' is used
-      # do not forget '--service-ports'!
       ports:
         - 5000:5000
         - 6006:6006
@@ -24,6 +25,6 @@ services:
       extends:
         service: {{ cookiecutter.repo_name }}
       volumes:
-        - $HOME/.config/rclone:/srv/rclone
+        - $HOME/.config/rclone:/srv/.rclone
       environment:
-        - RCLONE_CONFIG=/srv/rclone/rclone.conf
+        - RCLONE_CONFIG=/srv/.rclone/rclone.conf
