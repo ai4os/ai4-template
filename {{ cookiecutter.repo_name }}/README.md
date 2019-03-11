@@ -13,7 +13,7 @@ Project Organization
     │
     ├── docs                   <- A default Sphinx project; see sphinx-doc.org for details
     │
-    ├── docker                 <- Directory for Dockerfile(s)
+    ├── docker                 <- Directory for Dockerfile(s) for development
     │
     ├── models                 <- Trained and serialized models, model predictions, or model summaries
     │
@@ -43,7 +43,7 @@ Project Organization
     │   │
     │   ├── models             <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   └── model.py
+    │   │   └── deepaas_api.py
     │   │
     │   └── tests              <- Scripts to perfrom code testing + pylint script
     │   │

@@ -26,7 +26,7 @@ def git_ini(repo):
     """ Function
         Initializes Git repository
     """
-    githubrepo = ("https://github.com:" + '{{ cookiecutter.github_user }}'
+    githubrepo = ("https://github.com/" + '{{ cookiecutter.github_user }}'
                   + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)

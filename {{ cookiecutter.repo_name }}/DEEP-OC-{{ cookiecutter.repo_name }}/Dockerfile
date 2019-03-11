@@ -2,7 +2,7 @@
 # tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
 # branch - user repository branch to clone (default: master, other option: test)
 
-ARG tag=latest
+ARG tag={{ cookiecutter.baseimage_cpu_tag }}
 
 # Base image, e.g. tensorflow/tensorflow:1.12.0-py3
 FROM {{ cookiecutter.docker_baseimage }}:${tag}
@@ -29,7 +29,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
     if [ "{{ cookiecutter.python_interpreter }}" = "python3" ] ; then \
-       ln -s /usr/bin/pip3 /usr/bin/pip && \
+       if [ ! -e /usr/bin/pip ]; then \
+          ln -s /usr/bin/pip3 /usr/bin/pip; \
+       fi; \
        if [ ! -e /usr/bin/python ]; then \
           ln -s /usr/bin/python3 /usr/bin/python; \
        fi; \
