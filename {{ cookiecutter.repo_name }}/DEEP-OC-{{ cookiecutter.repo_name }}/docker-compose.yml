@@ -13,7 +13,7 @@ services:
 
 
     {{ cookiecutter.repo_name }}-gpu:
-      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}
+      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}:gpu
       runtime: nvidia
       ports:
         - 5000:5000
