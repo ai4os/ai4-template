@@ -71,8 +71,8 @@ The directory structure of your new project looks like this:
 │   │   └── build_features.py
 │   │
 │   ├── models             <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   └── model.py
+│   │   │                     predictions
+│   │   └── deepaas_api.py
 │   │
 │   └── tests              <- Scripts to perfrom code testing + pylint script
 │   │
