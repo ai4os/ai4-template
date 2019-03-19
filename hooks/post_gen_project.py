@@ -1,8 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""" Post-hook script
+#
+# Copyright (c) 2017 - 2019 Karlsruhe Institute of Technology - Steinbuch Centre for Computing
+# This code is distributed under the MIT License
+# Please, see the LICENSE file
+
+""" 
+    Post-hook script
     Moves DEEP-OC-{{ cookiecutter.repo_name }} directory one level up.
     Initialized Git repositories
+    Creates 'test' branch
+    Switches back to 'master'
 """
 import os
 import shutil
@@ -18,7 +26,7 @@ def git_ini(repo):
     """ Function
         Initializes Git repository
     """
-    githubrepo = ("git@github.com:" + '{{ cookiecutter.github_user }}'
+    githubrepo = ("https://github.com/" + '{{ cookiecutter.github_user }}'
                   + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
@@ -26,6 +34,8 @@ def git_ini(repo):
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", githubrepo])
+        subp.call(["git", "checkout", "-b", "test"])
+        subp.call(["git", "checkout", "master"])
     except OSError as os_error:
         sys.stdout.write('Creating git repository failed for ' + repo + " !")
         sys.stdout.write('Error! {} '.format(os_error))

@@ -2,6 +2,7 @@
 """
 Model description
 """
+
 import argparse
 import pkg_resources
 # import project's config.py
@@ -73,24 +74,30 @@ def train(train_args):
         Can be loaded with json.loads() or with yaml.safe_load()    
     """
 
-    message = 'Not implemented in the model (train). Train parameters: ' + train_args
-    return message
+    run_results = { "status": "Not implemented in the model (train)",
+                    "train_args": [],
+                    "training": [],
+                  }
 
- 
+    run_results["train_args"].append(train_args)
+
+    print(run_results)
+    return run_results
+
+
 def get_train_args():
     """
     Returns a dict of dicts to feed the deepaas API parser
     """
     train_args = cfg.train_args
-    
+
     # convert default values and possible 'choices' into strings
     for key, val in train_args.items():
         val['default'] = str(val['default']) #yaml.safe_dump(val['default']) #json.dumps(val['default'])
         if 'choices' in val:
             val['choices'] = [str(item) for item in val['choices']]
-        print(val['default'], type(val['default']))
-    
-    return train_args    
+
+    return train_args
 
 
 # during development it might be practical 
@@ -101,9 +108,17 @@ def main():
        (see below an example)
     """
 
+    if args.method == 'get_metadata':
+        get_metadata()       
+    elif args.method == 'train':
+        train(args)
+    else:
+        get_metadata()
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Model parameters')
-    
+
     # get arguments configured for get_train_args()
     train_args = get_train_args()
     for key, val in train_args.items():
@@ -111,10 +126,10 @@ if __name__ == '__main__':
                             default=val['default'],
                             type=type(val['default']),
                             help=val['help'])
-                            
+
     parser.add_argument('--method', type=str, default="get_metadata",
                         help='Method to use: get_metadata (default), \
-                        predict_file, predict_data, predict_url, train')    
-    args = parser.parse_args()    
+                        predict_file, predict_data, predict_url, train')
+    args = parser.parse_args()
 
     main()

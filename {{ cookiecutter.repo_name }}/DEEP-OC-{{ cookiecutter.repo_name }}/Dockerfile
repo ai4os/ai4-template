@@ -1,12 +1,21 @@
-# Base image, e.g. tensorflow/tensorflow:1.7.0
-FROM {{ cookiecutter.docker_baseimage }}
+# Dockerfile may have two Arguments: tag, branch
+# tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
+# branch - user repository branch to clone (default: master, other option: test)
+
+ARG tag={{ cookiecutter.baseimage_cpu_tag }}
+
+# Base image, e.g. tensorflow/tensorflow:1.12.0-py3
+FROM {{ cookiecutter.docker_baseimage }}:${tag}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'
 # {{ cookiecutter.description.replace('\'', '') }}
 
+# What user branch to clone (!)
+ARG branch=master
 
 # Install ubuntu updates and python related stuff
+# link python3 to python, pip3 to pip, if needed
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
          git \
@@ -18,7 +27,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* && \
+    if [ "{{ cookiecutter.python_interpreter }}" = "python3" ] ; then \
+       if [ ! -e /usr/bin/pip ]; then \
+          ln -s /usr/bin/pip3 /usr/bin/pip; \
+       fi; \
+       if [ ! -e /usr/bin/python ]; then \
+          ln -s /usr/bin/python3 /usr/bin/python; \
+       fi; \
+    fi && \
+    python --version && \
+    pip --version
 
 
 # Set LANG environment
@@ -51,7 +70,7 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 
 # Install user app:
-RUN git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
+RUN git clone -b $branch https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
     pip install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip/* && \
@@ -65,4 +84,5 @@ EXPOSE 5000
 # Open Monitoring port
 EXPOSE 6006
 
+# Account for OpenWisk functionality (deepaas >=0.3.0)
 CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]

@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 
-@Library(['github.com/indigo-dc/jenkins-pipeline-library']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@1.2.3']) _
 
 def job_result_url = ''
 
@@ -13,7 +13,7 @@ pipeline {
         author_name = "{{ cookiecutter.author_name }}"
         author_email = "{{ cookiecutter.author_email }}"
         app_name = "{{ cookiecutter.repo_name }}"
-        job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master"
+        job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/${env.BRANCH_NAME}"
     }
 
     stages {
@@ -58,7 +58,14 @@ pipeline {
             }
         }
 
-        stage("Re-build DEEP-OC-{{ cookiecutter.repo_name }} Docker image") {
+        stage("Re-build Docker images") {
+            when {
+                anyOf {
+                   branch 'master'
+                   branch 'test'
+                   buildingTag()
+               }
+            }
             steps {
                 script {
                     def job_result = JenkinsBuildJob("${env.job_location}")
@@ -66,6 +73,7 @@ pipeline {
                 }
             }
         }
+
     }
 
     post {
@@ -86,13 +94,14 @@ ${build_status}: Job '${env.JOB_NAME}\
 
                 def body = """
 Dear ${author_name},\n\n
-A new build of '${app_name} DEEP application is available in Jenkins at:\n\n
+A new build of '${app_name} (${env.BRANCH_NAME})' DEEP application is available in Jenkins at:\n\n
 *  ${env.BUILD_URL}\n\n
 terminated with '${build_status}' status.\n\n
 Check console output at:\n\n
 *  ${env.BUILD_URL}/console\n\n
 and resultant Docker image rebuilding job at (may be empty in case of FAILURE):\n\n
 *  ${job_result_url}\n\n
+
 DEEP Jenkins CI service"""
 
                 EmailSend(subject, body, "${author_email}")

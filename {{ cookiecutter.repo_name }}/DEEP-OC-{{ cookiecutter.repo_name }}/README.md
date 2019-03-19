@@ -18,11 +18,11 @@ To run the Docker container directly from Docker Hub and start using the API
 simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 -p 6006:6006 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }} deepaas-run --listen-ip=0.0.0.0
+$ docker run -ti -p 5000:5000 -p 6006:6006 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
 ```
 
 This command will pull the Docker container from the Docker Hub
-[{{ cookiecutter.dockerhub_user }}](https://hub.docker.com/u/{{ cookiecutter.dockerhub_user }}/) organization.
+[{{ cookiecutter.dockerhub_user }}](https://hub.docker.com/u/{{ cookiecutter.dockerhub_user }}/) repository and start the default command (deepaas-run --listen-ip=0.0.0.0).
 
 ### Running via docker-compose
 
@@ -56,7 +56,7 @@ Building the container:
 3. Run the container:
 
     ```bash
-    $ docker run -ti -p 5000:5000 -p 6000:6006 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }} deepaas-run --listen-ip=0.0.0.0
+    $ docker run -ti -p 5000:5000 -p 6006:6006 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
     ```
 
 These three steps will download the repository from GitHub and will build the

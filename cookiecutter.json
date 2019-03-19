@@ -9,5 +9,7 @@
     "open_source_license": ["MIT", "BSD-3-Clause", "No license file"],
     "python_interpreter": ["python3", "python"],
     "dockerhub_user": "User account at hub.docker.com, e.g. 'deephdc' in https://hub.docker.com/u/deephdc",
-    "docker_baseimage": "Base docker image for Dockerfile, e.g. tensorflow/tensorflow:1.7.0. Has to match python version!"
+    "docker_baseimage": "Base Docker image for Dockerfile, e.g. tensorflow/tensorflow",
+    "baseimage_cpu_tag": "CPU tag for the Base Docker image, e.g. 1.12.0-py3. Has to match python version!",
+    "baseimage_gpu_tag": "GPU tag for the Base Docker image, e.g. 1.12.0-gpu-py3. Has to match python version!"
 }
