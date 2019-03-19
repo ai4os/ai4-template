@@ -46,7 +46,8 @@ def git_ini(repo):
                 readme_content.append(line)
                 
         with open("README.md", "w") as f_new:
-            f_new.write(readme_content)
+            for line in f_new:
+                f_new.write(line)
 
         # switch back to master
         subp.call(["git", "checkout", "master"])
