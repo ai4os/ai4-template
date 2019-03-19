@@ -46,7 +46,7 @@ def git_ini(repo):
                 readme_content.append(line)
                 
         with open("README.md", "w") as f_new:
-            for line in f_new:
+            for line in readme_content:
                 f_new.write(line)
 
         # switch back to master
