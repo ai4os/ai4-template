@@ -1,6 +1,8 @@
 {{cookiecutter.project_name}}
 ==============================
 
+[![Build Status](https://jenkins.indigo-datacloud.eu:8080/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu:8080/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.repo_name }}/job/master)
+
 {{cookiecutter.description}}
 
 Project Organization
@@ -42,7 +44,7 @@ Project Organization
     │   │   └── build_features.py
     │   │
     │   ├── models             <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
+    │   │   │                     predictions
     │   │   └── deepaas_api.py
     │   │
     │   └── tests              <- Scripts to perfrom code testing + pylint script
