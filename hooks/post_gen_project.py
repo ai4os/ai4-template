@@ -49,6 +49,8 @@ def git_ini(repo):
             for line in readme_content:
                 f_new.write(line)
 
+        subp.call(["git", "commit", "-a", "-m", "update README.md for the BuildStatus"])
+
         # switch back to master
         subp.call(["git", "checkout", "master"])
     except OSError as os_error:
