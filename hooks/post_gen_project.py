@@ -34,7 +34,21 @@ def git_ini(repo):
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", githubrepo])
+
+        # create test branch automatically
         subp.call(["git", "checkout", "-b", "test"])
+        # adjust [Build Status] for the test branch
+        readme_content=[]
+        with open("README.md") as f_old:
+            for line in f_old:
+                if "[![Build Status]" in line:
+                    line = line.replace("/master)", "/test)")
+                readme_content.append(line)
+                
+        with open("README.md", "w") as f_new:
+            f_new.write(readme_content)
+
+        # switch back to master
         subp.call(["git", "checkout", "master"])
     except OSError as os_error:
         sys.stdout.write('Creating git repository failed for ' + repo + " !")

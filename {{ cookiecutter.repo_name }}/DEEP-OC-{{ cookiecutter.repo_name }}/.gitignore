@@ -43,5 +43,5 @@ Thumbs.db
 .*.swp
 
 # DEEP submission via orchent
-sub_orchent.sh
-submit_orchent.sh
+submit_*.sh
+sub_*.sh
