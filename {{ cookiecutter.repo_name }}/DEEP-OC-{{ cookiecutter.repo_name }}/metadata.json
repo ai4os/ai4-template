@@ -1,0 +1,37 @@
+{
+    "title": "DEEP OC {{ cookiecutter.repo_name }}",
+    "summary": "{{ cookiecutter.description.replace('\'', '') }}",
+    "description": [
+		"This is {{ cookiecutter.repo_name }} application using DEEPaaS API",
+           "",
+           "**References**\n",
+           ""
+	],
+    "keywords": [
+        "docker"
+    ],
+    "license": "{{ cookiecutter.open_source_license }}",
+    "date_creation": "YYYY-MM-DD",
+    "sources": {
+		"dockerfile_repo": "https://github.com/{{ cookiecutter.github_user }}/DEEP-OC-{{ cookiecutter.repo_name }}",
+		"docker_registry_repo": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}",
+		"code": "http://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}"
+	},
+    "continuous_integration": {
+        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master",
+        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master"
+    },
+    "tosca": [
+        {
+            "title": "Mesos (CPU)",
+            "url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-mesos-webdav.yml",
+            "inputs": [
+                "rclone_conf",
+                "rclone_url",
+                "rclone_vendor",
+                "rclone_user",
+                "rclone_pass"
+            ]
+        }
+    ]
+}

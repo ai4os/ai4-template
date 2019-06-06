@@ -60,7 +60,7 @@ RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        'deepaas>=0.3.0' \
+        'deepaas>=0.4.0' \
         flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
@@ -84,5 +84,5 @@ EXPOSE 5000
 # Open Monitoring port
 EXPOSE 6006
 
-# Account for OpenWisk functionality (deepaas >=0.3.0)
-CMD ["sh", "-c", "deepaas-run --openwhisk-detect --listen-ip 0.0.0.0"]
+# Account for OpenWisk functionality (deepaas >=0.4.0) + proper docker stop
+CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
