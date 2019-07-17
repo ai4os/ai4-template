@@ -1,5 +1,6 @@
 # Dockerfile may have two Arguments: tag, branch
 # tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
+# pyVer - python versions as 'python' or 'python3' (default: {{ cookiecutter.python_interpreter }})
 # branch - user repository branch to clone (default: master, other option: test)
 
 ARG tag={{ cookiecutter.baseimage_cpu_tag }}
@@ -11,6 +12,9 @@ LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'
 # {{ cookiecutter.description.replace('\'', '') }}
 
+# python version
+ARG pyVer={{ cookiecutter.python_interpreter }}
+
 # What user branch to clone (!)
 ARG branch=master
 
@@ -21,14 +25,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
          git \
          curl \
          wget \
-         {{ cookiecutter.python_interpreter }}-setuptools \
-         {{ cookiecutter.python_interpreter }}-pip \
-         {{ cookiecutter.python_interpreter }}-wheel && \ 
+         $pyVer-setuptools \
+         $pyVer-pip \
+         $pyVer-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
-    if [ "{{ cookiecutter.python_interpreter }}" = "python3" ] ; then \
+    if [ "$pyVer" = "python3" ] ; then \
        if [ ! -e /usr/bin/pip ]; then \
           ln -s /usr/bin/pip3 /usr/bin/pip; \
        fi; \
