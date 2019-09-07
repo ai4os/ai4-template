@@ -29,7 +29,7 @@ def get_metadata():
 
     for line in pkg.get_metadata_lines("PKG-INFO"):
         for par in meta:
-            if line.startswith(par):
+            if line.startswith(par+":"):
                 _, value = line.split(": ", 1)
                 meta[par] = value
 
@@ -99,6 +99,18 @@ def get_train_args():
 
     return train_args
 
+# !!! deepaas>=0.5.0 calls get_test_args() to get args for 'predict'
+def get_test_args():
+    predict_args = cfg.predict_args
+
+    # convert default values and possible 'choices' into strings
+    for key, val in predict_args.items():
+        val['default'] = str(val['default'])  # yaml.safe_dump(val['default']) #json.dumps(val['default'])
+        if 'choices' in val:
+            val['choices'] = [str(item) for item in val['choices']]
+        print(val['default'], type(val['default']))
+
+    return predict_args
 
 # during development it might be practical 
 # to check your code from the command line

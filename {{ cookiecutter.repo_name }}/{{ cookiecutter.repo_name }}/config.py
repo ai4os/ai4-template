@@ -9,7 +9,7 @@ from os import path
 BASE_DIR = path.dirname(path.normpath(path.dirname(__file__)))
 
 
-# Training arguments as a dict of dicts 
+# Training and predict(deepaas>=0.5.0) arguments as a dict of dicts 
 # with the following structure to feed the deepaas API parser:
 # (see also get_train_args() )
 # { 'arg1' : {'default': 1,       # default value
@@ -29,4 +29,11 @@ train_args = { 'arg1': {'default': 1,
                         'help': '',
                         'required': False
                         },
+}
+
+# !!! deepaas>=0.5.0 calls get_test_args() to get args for 'predict'
+predict_args = { 'arg2': {'default': 1,
+                          'help': '',
+                          'required': False
+                         },
 }
