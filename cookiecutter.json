@@ -1,5 +1,6 @@
 {
-    "github_user": "User account at github.com, e.g. 'indigo-dc' in https://github.com/indigo-dc",
+    "help_git_base_url": "Remote git base space, e.g. https://github.com/deephdc or https://git.scc.kit.edu/deep . Enter to continue...",
+    "git_base_url": "https://github.com/deephdc",
     "project_name": "project_name",
     "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
     "author_name": "Your name (or your organization/company/team)",

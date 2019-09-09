@@ -7,7 +7,7 @@
 [![Build Status](https://jenkins.indigo-datacloud.eu:8080/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu:8080/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master)
 
 This is a container that will simply run the DEEP as a Service API component,
-with {{ cookiecutter.repo_name }} (src: [{{ cookiecutter.repo_name }}](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }})).
+with {{ cookiecutter.repo_name }} (src: [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }})).
 
     
 ## Running the container
@@ -43,7 +43,7 @@ Building the container:
 1. Get the `DEEP-OC-{{ cookiecutter.repo_name }}` repository (this repo):
 
     ```bash
-    $ git clone https://github.com/{{ cookiecutter.github_user }}/DEEP-OC-{{ cookiecutter.repo_name }}
+    $ git clone {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}
     ```
 
 2. Build the container:

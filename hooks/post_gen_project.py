@@ -26,14 +26,14 @@ def git_ini(repo):
     """ Function
         Initializes Git repository
     """
-    githubrepo = ("https://github.com/" + '{{ cookiecutter.github_user }}'
-                  + "/" +  repo + '.git')
+    gitrepo = ("'{{ cookiecutter.git_base_url }}'".rstrip('/')
+                + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
         subp.call(["git", "init"])
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
-        subp.call(["git", "remote", "add", "origin", githubrepo])
+        subp.call(["git", "remote", "add", "origin", gitrepo])
 
         # create test branch automatically
         subp.call(["git", "checkout", "-b", "test"])
