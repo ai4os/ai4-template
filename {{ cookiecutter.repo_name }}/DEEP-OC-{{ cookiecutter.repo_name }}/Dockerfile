@@ -76,7 +76,7 @@ ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 RUN git clone https://github.com/deephdc/deep-debug_log
 
 # Install user app:
-RUN git clone -b $branch https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }} && \
+RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
     pip install --no-cache-dir -e . && \
     rm -rf /root/.cache/pip/* && \
