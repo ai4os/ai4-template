@@ -37,7 +37,7 @@ fi
 #   DEFINE PARAMETERS OF YOUR DEPLOYMENT HERE
 #
 orchent depcreate $topology_file '{ "docker_image": "deephdc/deep-oc-{{ cookiecutter.repo_name }}:cpu",
-                                    "mem_size": "4096 MB",
+                                    "mem_size": "8192 MB",
                                     "num_cpus": "1",
                                     "num_gpus": "0",
                                     "run_command": "deepaas-run --listen-ip=0.0.0.0",
