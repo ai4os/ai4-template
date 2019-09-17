@@ -76,11 +76,11 @@ RUN pip install --no-cache-dir \
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
 # Install DEEP debug_log scripts:
-RUN git clone https://github.com/deephdc/deep-debug_log
+RUN git clone https://github.com/deephdc/deep-debug_log /srv/.debug_log
 
 # Install JupyterLab
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
-RUN if [[ "x$jlab" ]]; then \
+RUN if [ "x$jlab" ]; then \
        pip install --no-cache-dir jupyterlab ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 COPY jupyter/jupyter_notebook_config.py /srv/.jupyter/
