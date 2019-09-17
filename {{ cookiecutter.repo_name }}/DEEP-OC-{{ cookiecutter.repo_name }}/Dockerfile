@@ -1,7 +1,12 @@
-# Dockerfile may have two Arguments: tag, branch
+# Dockerfile may have following Arguments:
 # tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
 # pyVer - python versions as 'python' or 'python3' (default: {{ cookiecutter.python_interpreter }})
 # branch - user repository branch to clone (default: master, other option: test)
+#
+# To build the image:
+# $ docker build -t <dockerhub_user>/<dockerhub_repo> --build-arg arg=value .
+# or using default args:
+# $ docker build -t <dockerhub_user>/<dockerhub_repo> .
 
 ARG tag={{ cookiecutter.baseimage_cpu_tag }}
 

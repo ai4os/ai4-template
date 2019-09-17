@@ -5,7 +5,7 @@ version: '2.3'
 
 services:
     {{ cookiecutter.repo_name }}:
-      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}
+      image: {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
       ports:
         - 5000:5000
         - 6006:6006
@@ -13,7 +13,7 @@ services:
 
 
     {{ cookiecutter.repo_name }}-gpu:
-      image: deephdc/deep-oc-{{ cookiecutter.repo_name }}:gpu
+      image: {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:gpu
       runtime: nvidia
       ports:
         - 5000:5000
