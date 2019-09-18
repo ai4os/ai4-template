@@ -30,16 +30,16 @@ fi
 # "num_gpus": "0",
 # ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0",
-# "run_command": "/srv/.deep-debug_log/debug_log.sh --deepaas_port=5000 --remote_dir=rshare:/Logs/",
-# "run_command": "/run_jupyter.sh --allow-root",
+# "run_command": "/srv/.debug_log/debug_log.sh --deepaas_port=5000 --remote_dir=rshare:/Logs/",
+# "run_command": "/srv/.jupyter/run_jupyter.sh --allow-root",
 ###
 # For GPU:
 # "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:gpu",
 # "num_gpus": "1",
 # ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0 --listen-port=$PORT0",
-# "run_command": "/srv/.deep-debug_log/debug_log.sh --deepaas_port=$PORT0 --remote_dir=rshare:/Logs/",
-# "run_command": "jupyterPORT=$PORT2 /run_jupyter.sh --allow-root",
+# "run_command": "/srv/.debug_log/debug_log.sh --deepaas_port=$PORT0 --remote_dir=rshare:/Logs/",
+# "run_command": "jupyterPORT=$PORT2 /srv/.jupyter/run_jupyter.sh --allow-root",
 ###
 # For Jupyter add jupyter_password!:
 # "jupyter_password": "my_s3cret",
