@@ -26,7 +26,11 @@ This command will pull the Docker container from the Docker Hub
 
 ### Running via docker-compose
 
-docker-compose.yml allows you to run the application with various configurations via docker-compose.
+docker-compose.yml allows you to run the application with various configurations via docker-compose, for example:
+
+```bash
+$ docker-compose up {{ cookiecutter.repo_name }}
+```
 
 **N.B!** docker-compose.yml is of version '2.3', one needs docker 17.06.0+ and docker-compose ver.1.16.0+, see https://docs.docker.com/compose/install/
 

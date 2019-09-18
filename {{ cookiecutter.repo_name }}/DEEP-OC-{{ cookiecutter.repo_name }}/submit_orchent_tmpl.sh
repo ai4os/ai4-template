@@ -25,24 +25,32 @@ if [ ! -f $topology_file ]; then
 fi
 
 ### EXAMPLES FOR SOME PARAMETERS
-# CPU run_command vers:
-# "run_command": "/run_jupyter.sh --allow-root",
+# For CPU:
+# "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:latest",
+# "num_gpus": "0",
+# ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0",
 # "run_command": "/srv/.deep-debug_log/debug_log.sh --deepaas_port=5000 --remote_dir=rshare:/Logs/",
-# GPU run_command vers:
-# "run_command": "jupyterPORT=$PORT2 /run_jupyter.sh --allow-root",
+# "run_command": "/run_jupyter.sh --allow-root",
+###
+# For GPU:
+# "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:gpu",
+# "num_gpus": "1",
+# ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0 --listen-port=$PORT0",
 # "run_command": "/srv/.deep-debug_log/debug_log.sh --deepaas_port=$PORT0 --remote_dir=rshare:/Logs/",
+# "run_command": "jupyterPORT=$PORT2 /run_jupyter.sh --allow-root",
 ###
-# Jupyter possible config:
+# For Jupyter add jupyter_password!:
 # "jupyter_password": "my_s3cret",
+# You may load jupyter's config from an external URL:
 # "jupyter_config_url": "rshare:/Datasets/jupyter"
 ###
 
 ### MAIN CALL FOR THE DEPLOYMENT
 #   DEFINE PARAMETERS OF YOUR DEPLOYMENT HERE
 #
-orchent depcreate $topology_file '{ "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:cpu",
+orchent depcreate $topology_file '{ "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:latest",
                                     "mem_size": "8192 MB",
                                     "num_cpus": "1",
                                     "num_gpus": "0",
