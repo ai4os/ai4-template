@@ -1,4 +1,3 @@
-{% raw %}
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
@@ -16,6 +15,7 @@
 # Also checks if various fields are present in the response.
 ###
 
+{% raw %}
 ### Main configuration
 # Default Docker image, can be re-defiend
 DOCKER_IMAGE=deephdc/deep-oc-generic
