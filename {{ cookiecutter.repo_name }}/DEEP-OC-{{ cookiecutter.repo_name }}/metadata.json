@@ -11,7 +11,7 @@
         "docker"
     ],
     "license": "{{ cookiecutter.open_source_license }}",
-    "date_creation": "{% now 'utc', '%Y-%M-%D' %}",
+    "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
     "sources": {
 		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}",
 		"docker_registry_repo": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}",
