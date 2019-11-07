@@ -26,13 +26,18 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/deephdc/cookiecutter-data-science
+    cookiecutter https://github.com/indigo-dc/cookiecutter-data-science
 
 
-### The resulting directory structure
+### The resulting directories
 ------------
+Once you answer all the questions, two directories will be created:
+ - DEEP-OC-<your_project>
+ - <your_project>
+each directory is a git repository and has two branches `master` and `test`.
 
-The directory structure of your new project looks like this: 
+The directory structure of <your_project> looks like this: 
+------------
 
 ```
 ├── LICENSE
@@ -80,7 +85,28 @@ The directory structure of your new project looks like this:
 └── tox.ini                <- tox file with settings for running tox; see tox.testrun.org
 ```
 
+The directory structure of DEEP-OC-<your_project> looks like this: 
+------------
+```
+├─ Dockerfile             Describes main steps on integrationg DEEPaaS API and
+│                         <your_project> application in one Docker image
+│
+├─ Jenkinsfile            Describes basic Jenkins CI/CD pipeline
+│
+├─ LICENSE                License file
+│
+├─ README.md              README for developers and users.
+│
+├─ check_docker_start.sh  Bash script used during Jenkins CI/CD for a final Docker image functionality
+│
+├─ docker-compose.yml     Allows running the application with various configurations via docker-compose
+│
+├─ metadata.json          Defines information propagated to the [DEEP Open Catalog](https://marketplace.deep-hybrid-datacloud.eu)
 
+### Documentation
+------------
+
+    More extended documentation can be found [here](http://docs.deep-hybrid-datacloud.eu/en/latest/user/overview/cookiecutter-template.html)
 ### Installing development requirements
 ------------
 
