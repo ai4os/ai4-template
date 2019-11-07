@@ -61,11 +61,13 @@ def predict_url(*args):
 
 
 ###
-# Uncomment the following two lines
-# if you allow only authorized people to do training
+# Comment the following three lines if you open training for everybody, 
+# i.e. do *not* need any authorization at all
 ###
-#import flaat
-#@flaat.login_required()
+from flaat import Flaat
+flaat = Flaat()
+
+@flaat.login_required()
 def train(train_args):
     """
     Train network

@@ -17,8 +17,8 @@ class TestModelMethods(unittest.TestCase):
         """
         Test that get_metadata() returns right values (subset)
         """
-        self.assertEqual(self.meta['Name'].replace('-','').replace('_',''),
-                        '{{ cookiecutter.repo_name }}'.replace('-','').replace('_',''))
+        self.assertEqual(self.meta['Name'].replace('-','_'),
+                        '{{ cookiecutter.repo_name }}'.replace('-','_'))
         self.assertEqual(self.meta['Author'], '{{ cookiecutter.author_name }}')
         self.assertEqual(self.meta['Author-email'], '{{ cookiecutter.author_email }}')
 

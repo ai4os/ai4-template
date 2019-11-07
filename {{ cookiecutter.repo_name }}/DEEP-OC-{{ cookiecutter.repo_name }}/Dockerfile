@@ -1,12 +1,17 @@
 # Dockerfile may have following Arguments:
 # tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
 # pyVer - python versions as 'python' or 'python3' (default: {{ cookiecutter.python_interpreter }})
-# branch - user repository branch to clone (default: master, other option: test)
+# branch - user repository branch to clone (default: master, another option: test)
+# jlab - if to insall JupyterLab (true) or not (false, default)
 #
 # To build the image:
 # $ docker build -t <dockerhub_user>/<dockerhub_repo> --build-arg arg=value .
 # or using default args:
 # $ docker build -t <dockerhub_user>/<dockerhub_repo> .
+#
+# Be Aware! For the Jenkins CI/CD pipeline, 
+# input args are defined inside the Jenkinsfile, not here!
+#
 
 ARG tag={{ cookiecutter.baseimage_cpu_tag }}
 
@@ -24,7 +29,7 @@ ARG pyVer={{ cookiecutter.python_interpreter }}
 ARG branch=master
 
 # If to install JupyterLab
-ARG jlab=true
+ARG jlab=false
 
 # Install ubuntu updates and python related stuff
 # link python3 to python, pip3 to pip, if needed
@@ -87,11 +92,13 @@ RUN git clone https://github.com/deephdc/deep-debug_log /srv/.debug_log
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
 # Necessary for the Jupyter Lab terminal
 ENV SHELL /bin/bash
-RUN if [ "x$jlab" ]; then \
+RUN if [ "$jlab" = true ]; then \
+       apt update && \
+       apt install -y nodejs npm && \
+       apt-get clean && \
        pip install --no-cache-dir jupyterlab ; \
        git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
-
 
 # Install user app:
 RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }} && \

@@ -40,6 +40,8 @@ pipeline {
                                             tag: ['latest', 'cpu'], 
                                             build_args: ["tag=${env.base_cpu_tag}",
                                                          "branch=master"])
+                       // Check that the image starts and get_metadata responses correctly
+                       sh "bash ./check_docker_start.sh ${env.dockerhub_repo}"
 
                        // GPU
                        id_gpu = DockerBuild(id,
@@ -54,6 +56,8 @@ pipeline {
                                             tag: ['test', 'cpu-test'], 
                                             build_args: ["tag=${env.base_cpu_tag}",
                                                          "branch=test"])
+                       // Check that the image starts and get_metadata responses correctly
+                       sh "bash ./check_docker_start.sh ${env.dockerhub_repo}:test"
 
                        // GPU
                        id_gpu = DockerBuild(id,

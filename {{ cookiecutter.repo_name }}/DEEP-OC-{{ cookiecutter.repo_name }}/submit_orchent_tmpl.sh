@@ -5,6 +5,7 @@
 # Please, see the LICENSE file
 # 
 # Bash script example for submitting jobs to DEEP Testbeds
+# with the orchent tool (https://github.com/indigo-dc/orchent)
 
 topology_file="deep-oc-mesos-webdav.yml"
 
