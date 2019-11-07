@@ -1,3 +1,4 @@
+{% raw %}
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 #
@@ -148,3 +149,4 @@ remove_container
 echo "[SUCCESS] Finished. Exit with the code 0 (success)"
 exit 0
 
+{% endraw %}
