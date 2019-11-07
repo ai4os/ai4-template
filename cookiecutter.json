@@ -7,7 +7,7 @@
     "author_email": "Your email",
     "description": "A short description of the project.",
     "[Help] app_version - Application version (expects X.Y.Z (Major.Minor.Patch))": "Enter to continue...",
-    "app_version": "0.0.0",
+    "app_version": "0.0.1",
     "[Help] open_source_license - Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses": "Enter to continue...",
     "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "No license file"],
     "python_interpreter": ["python3", "python"],
