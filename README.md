@@ -26,7 +26,7 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/vykozlov/cookiecutter-data-science
+    cookiecutter https://github.com/deephdc/cookiecutter-data-science
 
 
 ### The resulting directory structure
@@ -41,8 +41,6 @@ The directory structure of your new project looks like this:
 │   └── raw                <- The original, immutable data dump.
 │
 ├── docs                   <- A default Sphinx project; see sphinx-doc.org for details
-│
-├── docker                 <- Directory for Dockerfile(s)
 │
 ├── models                 <- Trained and serialized models, model predictions, or model summaries
 │
