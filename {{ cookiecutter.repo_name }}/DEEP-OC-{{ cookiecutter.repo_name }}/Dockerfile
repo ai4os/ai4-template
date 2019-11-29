@@ -79,7 +79,7 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        'deepaas>=0.5.0' \
+        'deepaas==0.5.1' \
         flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
