@@ -6,8 +6,7 @@
 
 [![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master)
 
-This is a container that will simply run the DEEP as a Service API component
-with {{ cookiecutter.repo_name }} (src: [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }})).
+This is a container that will run [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }})) application leveraging the DEEP as a Service API component ([DEEPaaS](https://github.com/indigo-dc/DEEPaaS)).
 
     
 ## Running the container
@@ -23,6 +22,9 @@ $ docker run -ti -p 5000:5000 -p 6006:6006 {{ cookiecutter.dockerhub_user }}/dee
 
 This command will pull the Docker container from the Docker Hub
 [{{ cookiecutter.dockerhub_user }}](https://hub.docker.com/u/{{ cookiecutter.dockerhub_user }}/) repository and start the default command (deepaas-run --listen-ip=0.0.0.0).
+
+**N.B.** For either CPU-based or GPU-based images you can also use [udocker](https://github.com/indigo-dc/udocker).
+
 
 ### Running via docker-compose
 

@@ -1,6 +1,6 @@
 # Dockerfile may have following Arguments:
-# tag - tag for the Base image, (e.g. 1.10.0-py3 for tensorflow)
-# pyVer - python versions as 'python' or 'python3' (default: {{ cookiecutter.python_interpreter }})
+# tag - tag for the Base image, (e.g. 1.12.0-py3 for tensorflow)
+# pyVer - python versions as 'python' or 'python3' (default: python3)
 # branch - user repository branch to clone (default: master, another option: test)
 # jlab - if to insall JupyterLab (true) or not (false, default)
 #
@@ -22,8 +22,9 @@ LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'
 # {{ cookiecutter.description.replace('\'', '') }}
 
-# python version
-ARG pyVer={{ cookiecutter.python_interpreter }}
+# python version. Now fixed to python3. 
+# DEEP API V2 only works with python 3.6 [!]
+ARG pyVer=python3
 
 # What user branch to clone (!)
 ARG branch=master
@@ -79,7 +80,7 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        'deepaas==0.5.1' \
+        'deepaas>=1.0.0' \
         flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*

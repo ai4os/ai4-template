@@ -1,5 +1,5 @@
 {
-    "title": "DEEP OC {{ cookiecutter.repo_name }}",
+    "title": "{{ cookiecutter.repo_name }}",
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
 		"This is {{ cookiecutter.repo_name }} application using DEEPaaS API",
@@ -8,7 +8,8 @@
            ""
 	],
     "keywords": [
-        "docker"
+        "docker",
+        "api-v2"
     ],
     "license": "{{ cookiecutter.open_source_license }}",
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
