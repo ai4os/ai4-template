@@ -7,6 +7,7 @@ import argparse
 import pkg_resources
 # import project's config.py
 import {{ cookiecutter.repo_name }}.config as cfg
+from aiohttp.web import HTTPBadRequest
 
 ## Authorization
 from flaat import Flaat
@@ -29,11 +30,16 @@ def get_metadata():
     :return:
     """
 
-    print_meta = False
     module = __name__.split('.', 1)
-    
+
     try:
         pkg = pkg_resources.get_distribution(module[0])
+    except pkg_resources.RequirementParseError:
+        # if called from CLI, try to get pkg from the path
+        distros = list(pkg_resources.find_distributions(cfg.BASE_DIR, 
+                                                        only=True))
+        if len(distros) == 1:
+            pkg = distros[0]
     except Exception as e:
         raise HTTPBadRequest(reason=e)
 
@@ -81,9 +87,6 @@ def predict(**kwargs):
     :return:
     """
 
-    if debug:
-        print("predict(**kwargs) - kwargs: %s" % (kwargs))
-
     if (not any([kwargs['urls'], kwargs['files']]) or
             all([kwargs['urls'], kwargs['files']])):
         raise Exception("You must provide either 'url' or 'data' in the payload")
@@ -125,8 +128,6 @@ def get_train_args():
 # Comment this line, if you open training for everybody
 # More info: see https://github.com/indigo-dc/flaat
 ###
-
-@_catch_error
 @flaat.login_required() # Allows only authorized people to train
 def train(**kwargs):
     """
@@ -171,7 +172,8 @@ def main():
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Model parameters')
+    parser = argparse.ArgumentParser(description='Model parameters', 
+                                     add_help=False)
 
     cmd_parser = argparse.ArgumentParser()
     subparsers = cmd_parser.add_subparsers(

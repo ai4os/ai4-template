@@ -88,9 +88,6 @@ RUN pip install --no-cache-dir \
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
-# Install DEEP debug_log scripts:
-RUN git clone https://github.com/deephdc/deep-debug_log /srv/.debug_log
-
 # Install JupyterLab
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
 # Necessary for the Jupyter Lab terminal

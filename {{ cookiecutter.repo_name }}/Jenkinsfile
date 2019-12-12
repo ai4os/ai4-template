@@ -29,6 +29,8 @@ pipeline {
             }
             post {
                 always {
+                    // TODO: migrate to new "warnings-ng-plugin"
+                    // [!] "warnings" reached end-of-life
                     warnings canComputeNew: false,
                              canResolveRelativePaths: false,
                              defaultEncoding: '',

@@ -41,9 +41,9 @@ Project Organization
     │   ├── features           <- Scripts to turn raw data into features for modeling
     │   │   └── build_features.py
     │   │
-    │   ├── models             <- Scripts to train models and then use trained models to make
-    │   │   │                     predictions
-    │   │   └── deepaas_api.py
+    │   ├── models             <- Scripts to train models and make predictions
+    │   │   │
+    │   │   └── deep_api.py    <- Main script for the integration with DEEP API
     │   │
     │   └── tests              <- Scripts to perfrom code testing
     │   │
