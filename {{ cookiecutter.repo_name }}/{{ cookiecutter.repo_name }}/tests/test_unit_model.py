@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import unittest
-import {{ cookiecutter.repo_name }}.models.deepaas_api as deepaas_api
+import {{ cookiecutter.repo_name }}.models.deep_api as deep_api
 
 class TestModelMethods(unittest.TestCase):
     
     def setUp(self):
-        self.meta = deepaas_api.get_metadata()
+        self.meta = deep_api.get_metadata()
         
     def test_model_metadata_type(self):
         """

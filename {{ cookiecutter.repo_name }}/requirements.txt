@@ -2,9 +2,7 @@
 Sphinx
 python-dotenv>=0.5.1
 
-{% if cookiecutter.python_interpreter != 'python3' %}
-## backwards compatibility
-pathlib2
-{% endif %}
-
-deepaas==0.5.1
+webargs>=5.5.2
+marshmallow
+deepaas>=1.0.0
+flaat>=0.5.1
