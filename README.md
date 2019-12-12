@@ -34,7 +34,8 @@ $ conda install cookiecutter
 Once you answer all the questions, two directories will be created:
  - DEEP-OC-<your_project>
  - <your_project>
-each directory is a git repository and has two branches `master` and `test`.
+
+each directory is a git repository and has two branches: `master` and `test`.
 
 #### The directory structure of <your_project> looks like this: 
 ------------
@@ -73,11 +74,10 @@ each directory is a git repository and has two branches `master` and `test`.
 │   ├── features           <- Scripts to turn raw data into features for modeling
 │   │   └── build_features.py
 │   │
-│   ├── models             <- Scripts to train models and then use trained models to make
-│   │   │                     predictions
-│   │   └── deepaas_api.py
+│   ├── models             <- Scripts to train models and make predictions
+│   │   └── deep_api.py    <- Main script for the integration with DEEP API
 │   │
-│   └── tests              <- Scripts to perfrom code testing + pylint script
+│   ├── tests              <- Scripts to perfrom code testing
 │   │
 │   └── visualization      <- Scripts to create exploratory and results oriented visualizations
 │       └── visualize.py
@@ -96,8 +96,6 @@ each directory is a git repository and has two branches `master` and `test`.
 ├─ LICENSE                License file
 │
 ├─ README.md              README for developers and users.
-│
-├─ check_docker_start.sh  Bash script used during Jenkins CI/CD for a final Docker image functionality
 │
 ├─ docker-compose.yml     Allows running the application with various configurations via docker-compose
 │

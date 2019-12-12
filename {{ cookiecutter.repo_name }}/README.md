@@ -42,7 +42,6 @@ Project Organization
     │   │   └── build_features.py
     │   │
     │   ├── models             <- Scripts to train models and make predictions
-    │   │   │
     │   │   └── deep_api.py    <- Main script for the integration with DEEP API
     │   │
     │   └── tests              <- Scripts to perfrom code testing
