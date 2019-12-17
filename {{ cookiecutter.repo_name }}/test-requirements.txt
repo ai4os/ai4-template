@@ -11,3 +11,5 @@ testtools>=1.4.0
 pytest
 pytest-cov
 
+## TODO: [delete], once deepaas is released:
+aiohttp

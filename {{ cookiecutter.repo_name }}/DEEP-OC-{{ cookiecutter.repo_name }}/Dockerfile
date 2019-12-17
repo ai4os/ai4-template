@@ -80,13 +80,24 @@ ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        'deepaas>=1.0.0' \
+        ## TODO: [uncomment], once deepaas is released:
+        #'deepaas>=1.0.0' \
         flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+
+## TODO: [delete], once deepaas is released:
+# Temporarily install DEEPaaS from github
+RUN git clone https://github.com/indigo-dc/deepaas && \
+    cd deepaas && \
+    pip install --no-cache-dir -e . && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/* && \
+    cd ..
+## [delete]
 
 # Install JupyterLab
 ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
