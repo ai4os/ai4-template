@@ -17,13 +17,13 @@ class TestModelMethods(unittest.TestCase):
         """
         Test that get_metadata() returns right values (subset)
         """
-        self.assertEqual(self.meta['name'].replace('-','_'),
+        self.assertEqual(self.meta['name'].lower().replace('-','_'),
                         '{{ cookiecutter.repo_name }}'.lower().replace('-','_'))
-        self.assertEqual(self.meta['author'],
+        self.assertEqual(self.meta['author'].lower(),
                          '{{ cookiecutter.author_name }}'.lower())
-        self.assertEqual(self.meta['author-email'],
+        self.assertEqual(self.meta['author-email'].lower(),
                          '{{ cookiecutter.author_email }}'.lower())
-        self.assertEqual(self.meta['license'], 
+        self.assertEqual(self.meta['license'].lower(), 
                          '{{ cookiecutter.open_source_license }}'.lower())
 
 
