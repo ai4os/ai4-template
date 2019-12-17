@@ -1,5 +1,5 @@
 # Dockerfile may have following Arguments:
-# tag - tag for the Base image, (e.g. 1.12.0-py3 for tensorflow)
+# tag - tag for the Base image, (e.g. 1.14.0-py3 for tensorflow)
 # pyVer - python versions as 'python' or 'python3' (default: python3)
 # branch - user repository branch to clone (default: master, another option: test)
 # jlab - if to insall JupyterLab (true) or not (false, default)
@@ -15,7 +15,7 @@
 
 ARG tag={{ cookiecutter.baseimage_cpu_tag }}
 
-# Base image, e.g. tensorflow/tensorflow:1.12.0-py3
+# Base image, e.g. tensorflow/tensorflow:1.14.0-py3
 FROM {{ cookiecutter.docker_baseimage }}:${tag}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'

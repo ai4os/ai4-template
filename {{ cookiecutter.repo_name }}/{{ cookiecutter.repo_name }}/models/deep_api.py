@@ -3,6 +3,7 @@
 Integrate a model with the DEEP API
 """
 
+import json
 import argparse
 import pkg_resources
 # import project's config.py
