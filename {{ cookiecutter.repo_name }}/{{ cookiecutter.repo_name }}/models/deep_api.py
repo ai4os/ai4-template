@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Model description
+Integrate a model with the DEEP API
 """
 
 import argparse
@@ -23,10 +23,39 @@ def _catch_error(f):
     return wrap
 
 
+def _fields_to_dict(fields_in):
+    """
+    Example function to convert mashmallow fields to dict()
+    """
+    dict_out = {}
+    
+    for key, val in fields_in.items():
+        param = {}
+        param['default'] = val.missing
+        param['type'] = type(val.missing)
+        if key == 'files' or key == 'urls':
+            param['type'] = str
+
+        val_help = val.metadata['description']
+        if 'enum' in val.metadata.keys():
+            val_help = "{}. Choices: {}".format(val_help, 
+                                                val.metadata['enum'])
+        param['help'] = val_help
+
+        try:
+            val_req = val.required
+        except:
+            val_req = False
+        param['required'] = val_req
+
+        dict_out[key] = param
+    return dict_out
+
+
 def get_metadata():
     """
     Function to read metadata
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_metadata
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_metadata
     :return:
     """
 
@@ -43,14 +72,28 @@ def get_metadata():
     except Exception as e:
         raise HTTPBadRequest(reason=e)
 
+    ### One can include arguments for train() in the metadata
+    train_args = _fields_to_dict(get_train_args())
+    # make 'type' JSON serializable
+    for key, val in train_args.items():
+        train_args[key]['type'] = str(val['type'])
+
+    ### One can include arguments for predict() in the metadata
+    predict_args = _fields_to_dict(get_predict_args())
+    # make 'type' JSON serializable
+    for key, val in predict_args.items():
+        predict_args[key]['type'] = str(val['type'])
+
     meta = {
-        'Name': None,
-        'Version': None,
-        'Summary': None,
-        'Home-page': None,
-        'Author': None,
-        'Author-email': None,
-        'License': None,
+        'name': None,
+        'version': None,
+        'summary': None,
+        'home-page': None,
+        'author': None,
+        'author-email': None,
+        'license': None,
+        'help-train' : train_args,
+        'help-predict' : predict_args
     }
 
     for line in pkg.get_metadata_lines("PKG-INFO"):
@@ -65,7 +108,7 @@ def get_metadata():
 
 def warm():
     """
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.warm
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.warm
     :return:
     """
     # e.g. prepare the data
@@ -73,16 +116,17 @@ def warm():
 
 def get_predict_args():
     """
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_predict_args
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_predict_args
     :return:
     """
     return cfg.PredictArgsSchema().fields
+
 
 @_catch_error
 def predict(**kwargs):
     """
     Function to execute prediction
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.predict
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.predict
     :param kwargs:
     :return:
     """
@@ -98,25 +142,28 @@ def predict(**kwargs):
         kwargs['urls'] = [kwargs['urls']]  # patch until list is available
         return _predict_url(kwargs)
 
+
 def _predict_data(*args):
     """
     (Optional) Helper function to make prediction on an uploaded file
     """
-    message = 'Not implemented in the model (predict_data)'
+    message = 'Not implemented (predict_data())'
+    message = {"Error": message}
     return message
 
 
 def _predict_url(*args):
     """
-    (Optional) Helper function to make prediction on a URL
+    (Optional) Helper function to make prediction on an URL
     """
-    message = 'Not implemented in the model (predict_url)'
+    message = 'Not implemented (predict_url())'
+    message = {"Error": message}
     return message
 
 
 def get_train_args():
     """
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_train_args
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.get_train_args
     :param kwargs:
     :return:
     """
@@ -132,13 +179,12 @@ def get_train_args():
 def train(**kwargs):
     """
     Train network
-    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/wip-api_v2/user/v2-api.html#deepaas.model.v2.base.BaseModel.train
+    https://docs.deep-hybrid-datacloud.eu/projects/deepaas/en/latest/user/v2-api.html#deepaas.model.v2.base.BaseModel.train
     :param kwargs:
     :return:
     """
 
     message = { "status": "ok",
-                "sys_info": [],
                 "training": [],
               }
 
@@ -150,6 +196,9 @@ def train(**kwargs):
     # 1. implement your training here
     # 2. update "message"
     
+    train_results = { "Error": "No model implemented for training (train())" }
+    message["training"].append(train_results)
+
     return message
 
 
@@ -157,18 +206,23 @@ def train(**kwargs):
 # to check your code from CLI (command line interface)
 def main():
     """
-    Runs above-described functions depending on input parameters
+    Runs above-described methods from CLI
     (see below an example)
     """
 
     if args.method == 'get_metadata':
-        get_metadata()       
+        meta = get_metadata()
+        print(json.dumps(meta))
+        return meta      
     elif args.method == 'predict':
-        predict(**vars(args))
+        # [!] you may need to take special care in the case of args.files [!]
+        results = predict(**vars(args))
+        print(json.dumps(results))
+        return results
     elif args.method == 'train':
-        train(**vars(args))
-    else:
-        get_metadata()
+        results = train(**vars(args))
+        print(json.dumps(results))
+        return results
 
 
 if __name__ == '__main__':
@@ -180,22 +234,39 @@ if __name__ == '__main__':
                             help='methods. Use \"deep_api.py method --help\" to get more info', 
                             dest='method')
 
+    ## configure parser to call get_metadata()
     get_metadata_parser = subparsers.add_parser('get_metadata', 
                                          help='get_metadata method',
                                          parents=[parser])                                      
-    # add arguments for get_metadata() here. Normally none is provided.
+    # normally there are no arguments to configure for get_metadata()
 
+    ## configure arguments for predict()
     predict_parser = subparsers.add_parser('predict', 
                                            help='commands for prediction',
-                                           parents=[parser])
-    # add arguments for predict() here. 
-    # One supposes to convert get_predict_args() to predict_parser
+                                           parents=[parser]) 
+    # one should convert get_predict_args() to add them in predict_parser
+    # For example:
+    predict_args = _fields_to_dict(get_predict_args())
+    for key, val in predict_args.items():
+        predict_parser.add_argument('--%s' % key,
+                               default=val['default'],
+                               type=val['type'],
+                               help=val['help'],
+                               required=val['required'])
 
+    ## configure arguments for train()
     train_parser = subparsers.add_parser('train', 
                                          help='commands for training',
-                                         parents=[parser])
-    # add arguments for train() here. 
-    # One supposes to convert get_train_args() to train_parser
+                                         parents=[parser]) 
+    # one should convert get_train_args() to add them in train_parser
+    # For example:
+    train_args = _fields_to_dict(get_train_args())
+    for key, val in train_args.items():
+        train_parser.add_argument('--%s' % key,
+                               default=val['default'],
+                               type=val['type'],
+                               help=val['help'],
+                               required=val['required'])
 
     args = cmd_parser.parse_args()
     

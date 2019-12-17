@@ -11,20 +11,7 @@ from marshmallow import Schema, INCLUDE
 BASE_DIR = path.dirname(path.normpath(path.dirname(__file__)))
 
 
-# Input parameters for train() and predict() (deepaas>=1.0.0)
-class TrainArgsSchema(Schema):
-    class Meta:
-        unknown = INCLUDE  # support 'full_paths' parameter
-
-    # available fields are e.g. fields.Integer(), fields.Str(), fields.Boolean()
-    # full list of fields: https://marshmallow.readthedocs.io/en/stable/api_reference.html
-    arg1 = fields.Integer(
-        required=False,
-        missing=1,
-        description="Input argument 1 for training"
-    )
-
-
+# Input parameters for predict() (deepaas>=1.0.0)
 class PredictArgsSchema(Schema):
     class Meta:
         unknown = INCLUDE  # support 'full_paths' parameter
@@ -37,19 +24,32 @@ class PredictArgsSchema(Schema):
         type="file",
         data_key="data",
         location="form",
-        description="Select the image you want to classify."
+        description="Select a file for the prediction"
     )
 
     # to be able to provide an URL for prediction
     urls = fields.Url(
         required=False,
         missing=None,
-        description="Select an URL of the image you want to classify."
+        description="Provide an URL with the data for the prediction"
     )
     
     # an input parameter for prediction
     arg1 = fields.Integer(
         required=False,
         missing=1,
-        description="Input argument 1 for prediction"
+        description="Input argument 1 for the prediction"
+    )
+
+# Input parameters for train() (deepaas>=1.0.0)
+class TrainArgsSchema(Schema):
+    class Meta:
+        unknown = INCLUDE  # support 'full_paths' parameter
+
+    # available fields are e.g. fields.Integer(), fields.Str(), fields.Boolean()
+    # full list of fields: https://marshmallow.readthedocs.io/en/stable/api_reference.html
+    arg1 = fields.Integer(
+        required=False,
+        missing=1,
+        description="Input argument 1 for training"
     )
