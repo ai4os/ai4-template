@@ -1,6 +1,5 @@
 # Dockerfile may have following Arguments:
 # tag - tag for the Base image, (e.g. 1.14.0-py3 for tensorflow)
-# pyVer - python versions as 'python' or 'python3' (default: python3)
 # branch - user repository branch to clone (default: master, another option: test)
 # jlab - if to insall JupyterLab (true) or not (false, default)
 #
@@ -22,11 +21,7 @@ LABEL maintainer='{{ cookiecutter.author_name }}'
 LABEL version='{{ cookiecutter.app_version }}'
 # {{ cookiecutter.description.replace('\'', '') }}
 
-# python version. Now fixed to python3. 
-# DEEP API V2 only works with python 3.6 [!]
-ARG pyVer=python3
-
-# What user branch to clone (!)
+# What user branch to clone [!]
 ARG branch=master
 
 # If to install JupyterLab
@@ -34,25 +29,24 @@ ARG jlab=false
 
 # Install ubuntu updates and python related stuff
 # link python3 to python, pip3 to pip, if needed
+# Remember: DEEP API V2 only works with python 3.6 [!]
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
          git \
          curl \
          wget \
-         $pyVer-setuptools \
-         $pyVer-pip \
-         $pyVer-wheel && \ 
+         python3-setuptools \
+         python3-pip \
+         python3-wheel && \ 
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/* && \
-    if [ "$pyVer" = "python3" ] ; then \
-       if [ ! -e /usr/bin/pip ]; then \
-          ln -s /usr/bin/pip3 /usr/bin/pip; \
-       fi; \
-       if [ ! -e /usr/bin/python ]; then \
-          ln -s /usr/bin/python3 /usr/bin/python; \
-       fi; \
+    if [ ! -e /usr/bin/pip ]; then \
+       ln -s /usr/bin/pip3 /usr/bin/pip; \
+    fi; \
+    if [ ! -e /usr/bin/python ]; then \
+       ln -s /usr/bin/python3 /usr/bin/python; \
     fi && \
     python --version && \
     pip --version

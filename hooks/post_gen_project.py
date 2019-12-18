@@ -54,8 +54,11 @@ def git_ini(repo):
         # switch back to master
         subp.call(["git", "checkout", "master"])
     except OSError as os_error:
-        sys.stdout.write('Creating git repository failed for ' + repo + " !")
-        sys.stdout.write('Error! {} '.format(os_error))
+        sys.stdout.write('[Error] Creating git repository failed for ' + repo + " !")
+        sys.stdout.write('[Error] {} '.format(os_error))
+        return "Error"
+    else:
+        return gitrepo
 
 
 try:
@@ -63,8 +66,17 @@ try:
     shutil.move(src, deep_oc_dir)
 
     # initialized both git repositories
-    git_ini(repo_name)
-    git_ini(deep_oc)
+    git_user_app = git_ini(repo_name)
+    git_deep_oc = git_ini(deep_oc)
+    
+    if "Error" not in git_user_app and "Error" not in git_deep_oc:
+        print("[Info] {} was created successfully,".format(repo_name))
+        print("       Don't forget to create corresponding remote repository: {}".format(git_user_app))
+        print("       then you can do 'git push origin --all'")
+        print()
+        print("[Info] {} was created successfully,".format(deep_oc))
+        print("       Don't forget to create corresponding remote repository: {}".format(git_deep_oc))
+        print("       then you can do 'git push origin --all'")
 
     sys.exit(0)
 except OSError as os_error:
