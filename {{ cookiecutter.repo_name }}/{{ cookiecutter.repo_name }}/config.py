@@ -31,7 +31,7 @@ class PredictArgsSchema(Schema):
     urls = fields.Url(
         required=False,
         missing=None,
-        description="Provide an URL with the data for the prediction"
+        description="Provide an URL of the data for the prediction"
     )
     
     # an input parameter for prediction

@@ -59,7 +59,8 @@ Building the container:
     $ docker build -t {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }} .
     ```
 
-3. Run the container (if you enable JupyterLab during the build, --build-arg jlab=true, you should also add port 8888, i.e. "-p 8888:8888"):
+3. Run the container (if you enable JupyterLab during the build, `--build-arg jlab=true`, 
+you should also add port 8888, i.e. `-p 8888:8888`):
 
     ```bash
     $ docker run -ti -p 5000:5000 -p 6006:6006 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}

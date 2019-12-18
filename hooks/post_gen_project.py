@@ -70,6 +70,7 @@ try:
     git_deep_oc = git_ini(deep_oc)
     
     if "Error" not in git_user_app and "Error" not in git_deep_oc:
+        print()
         print("[Info] {} was created successfully,".format(repo_name))
         print("       Don't forget to create corresponding remote repository: {}".format(git_user_app))
         print("       then you can do 'git push origin --all'")
