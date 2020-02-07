@@ -3,13 +3,25 @@
    Module to define CONSTANTS used across the project
 """
 
-from os import path
+import os
 from webargs import fields
 from marshmallow import Schema, INCLUDE
 
 # identify basedir for the package
-BASE_DIR = path.dirname(path.normpath(path.dirname(__file__)))
+BASE_DIR = os.path.dirname(os.path.normpath(os.path.dirname(__file__)))
 
+# default locations for 'data' and 'models' are either set 
+# as relative to the application path
+# or via environment settings
+if 'APP_LOCAL_DATA' in os.environ and len(os.environ['APP_LOCAL_DATA']) > 1:
+    DATA_PATH = os.environ['APP_LOCAL_DATA']
+else:
+    DATA_PATH = os.path.join(BASE_DIR, 'data')
+
+if 'APP_LOCAL_MODELS' in os.environ and len(os.environ['APP_LOCAL_MODELS']) > 1:
+    MODELS_PATH = os.environ['APP_LOCAL_MODELS']
+else:
+    MODELS_PATH = os.path.join(BASE_DIR, 'models')
 
 # Input parameters for predict() (deepaas>=1.0.0)
 class PredictArgsSchema(Schema):

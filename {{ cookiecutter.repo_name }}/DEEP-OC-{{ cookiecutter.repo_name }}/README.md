@@ -6,7 +6,7 @@
 
 [![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master)
 
-This is a container that will run [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS](https://github.com/indigo-dc/DEEPaaS)).
+This is a container that will run [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS API V2](https://github.com/indigo-dc/DEEPaaS)).
 
     
 ## Running the container
