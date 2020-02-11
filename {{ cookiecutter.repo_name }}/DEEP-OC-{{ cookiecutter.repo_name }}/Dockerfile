@@ -71,25 +71,37 @@ RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
 
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
+# INSTALL oneclient for ONEDATA
+RUN curl -sS  http://get.onedata.org/oneclient-1902.sh | bash && \
+    apt-get clean && \
+    mkdir -p /mnt/onedata && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
+
 # Install DEEPaaS from PyPi
 # Install FLAAT (FLAsk support for handling Access Tokens)
 RUN pip install --no-cache-dir \
-        'deepaas>=1.0.0' \
-        flaat && \
+    'deepaas>=1.0.1' \
+    flaat && \
     rm -rf /root/.cache/pip/* && \
     rm -rf /tmp/*
 
 # Disable FLAAT authentication by default
 ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
 
+# EXPERIMENTAL: install deep-start script
+# N.B.: This repository also contains run_jupyter.sh
+RUN git clone https://github.com/deephdc/deep-start /srv/.deep-start && \
+    ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start && \
+    ln -s /srv/.deep-start/run_jupyter.sh /usr/local/bin/run_jupyter
+
 # Install JupyterLab
-ENV JUPYTER_CONFIG_DIR /srv/.jupyter/
+ENV JUPYTER_CONFIG_DIR /srv/.deep-start/
 # Necessary for the Jupyter Lab terminal
 ENV SHELL /bin/bash
 RUN if [ "$jlab" = true ]; then \
        # by default has to work (1.2.0 wrongly required nodejs and npm)
        pip install --no-cache-dir jupyterlab ; \
-       git clone https://github.com/deephdc/deep-jupyter /srv/.jupyter ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Install user app:
