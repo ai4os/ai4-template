@@ -10,12 +10,17 @@ import pkg_resources
 import {{ cookiecutter.repo_name }}.config as cfg
 from aiohttp.web import HTTPBadRequest
 
+from functools import wraps
+
 ## Authorization
 from flaat import Flaat
 flaat = Flaat()
 
 
 def _catch_error(f):
+    """Decorate function to return an error as HTTPBadRequest, in case
+    """
+    @wraps(f)
     def wrap(*args, **kwargs):
         try:
             return f(*args, **kwargs)
