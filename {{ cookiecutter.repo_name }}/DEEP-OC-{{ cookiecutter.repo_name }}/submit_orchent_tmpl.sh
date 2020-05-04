@@ -7,7 +7,7 @@
 # Bash script example for submitting jobs to DEEP Testbeds
 # with the orchent tool (https://github.com/indigo-dc/orchent)
 
-topology_file="deep-oc-mesos-webdav.yml"
+topology_file="deep-oc-marathon.yml"
 
 USAGEMESSAGE="[Usage]: $0 [topology yaml file, default=$topology_file]"
 
@@ -31,21 +31,17 @@ fi
 # "num_gpus": "0",
 # ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0",
-# "run_command": "/srv/.debug_log/debug_log.sh --deepaas_port=5000 --remote_dir=rshare:/Logs/",
-# "run_command": "/srv/.jupyter/run_jupyter.sh --allow-root",
+# "run_command": "deep-start -j"
 ###
 # For GPU:
 # "docker_image": "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}:gpu",
 # "num_gpus": "1",
 # ## run_command options: ##
 # "run_command": "deepaas-run --listen-port=0.0.0.0 --listen-port=$PORT0",
-# "run_command": "/srv/.debug_log/debug_log.sh --deepaas_port=$PORT0 --remote_dir=rshare:/Logs/",
-# "run_command": "jupyterPORT=$PORT2 /srv/.jupyter/run_jupyter.sh --allow-root",
+# "run_command": "deep-start -j"
 ###
 # For Jupyter add jupyter_password!:
 # "jupyter_password": "my_s3cret",
-# You may load jupyter's config from an external URL:
-# "jupyter_config_url": "rshare:/Datasets/jupyter"
 ###
 
 ### MAIN CALL FOR THE DEPLOYMENT

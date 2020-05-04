@@ -219,7 +219,7 @@ def main():
     if args.method == 'get_metadata':
         meta = get_metadata()
         print(json.dumps(meta))
-        return meta      
+        return meta
     elif args.method == 'predict':
         # [!] you may need to take special care in the case of args.files [!]
         results = predict(**vars(args))
@@ -243,7 +243,7 @@ if __name__ == '__main__':
     ## configure parser to call get_metadata()
     get_metadata_parser = subparsers.add_parser('get_metadata', 
                                          help='get_metadata method',
-                                         parents=[parser])                                      
+                                         parents=[parser])
     # normally there are no arguments to configure for get_metadata()
 
     ## configure arguments for predict()
