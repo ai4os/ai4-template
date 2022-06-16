@@ -12,7 +12,7 @@ deepaas-run --listen-ip 0.0.0.0
 ```
 The associated Docker container for this module can be found in {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}.
 
-**Project structure:**
+## Project structure
 ```
 ├── LICENSE                <- License file
 │

@@ -40,7 +40,7 @@ These three steps will download the repository from GitHub and will build the Do
 Once the container is up and running, browse to http://0.0.0.0:5000/ui to get the [OpenAPI (Swagger)](https://www.openapis.org/) documentation page.
 
 
-**Project structure:**
+## Project structure
 ```
 ├─ Dockerfile             <- Describes main steps on integration of DEEPaaS API and
 │                            <your_project> application in one Docker image
