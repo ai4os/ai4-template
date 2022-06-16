@@ -3,7 +3,6 @@
 </div>
 
 # DEEP-OC-{{ cookiecutter.repo_name }}
-
 [![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master)
 
 This is a container that will run the [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS API V2](https://github.com/indigo-dc/DEEPaaS)).
@@ -53,4 +52,10 @@ Once the container is up and running, browse to http://0.0.0.0:5000/ui to get th
 ├─ README.md              <- README for developers and users.
 │
 └── metadata.json         <- Defines information propagated to the DEEP Marketplace
+```
+
+You can validate the `metadata.json` before making a git push using:
+```shell
+pip install git+https://github.com/deephdc/schema4apps
+deep-app-schema-validator metadata.json
 ```
