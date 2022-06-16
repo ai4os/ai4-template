@@ -3,9 +3,6 @@
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
 		"This is {{ cookiecutter.repo_name }} application using DEEPaaS API",
-           "",
-           "**References**\n",
-           ""
 	],
     "keywords": [
         "docker",

@@ -1,21 +1,19 @@
 # Dockerfile may have following Arguments:
-# tag - tag for the Base image, (e.g. 1.14.0-py3 for tensorflow)
+# tag - tag for the Base image, (e.g. 2.9.1 for tensorflow)
 # branch - user repository branch to clone (default: master, another option: test)
 # jlab - if to insall JupyterLab (true) or not (false)
-# oneclient_ver - version of oneclient to install (e.g. 19.02.0.rc2-1~bionic)
 #
 # To build the image:
 # $ docker build -t <dockerhub_user>/<dockerhub_repo> --build-arg arg=value .
 # or using default args:
 # $ docker build -t <dockerhub_user>/<dockerhub_repo> .
 #
-# Be Aware! For the Jenkins CI/CD pipeline, 
-# input args are defined inside the Jenkinsfile, not here!
-#
+# [!] Note: For the Jenkins CI/CD pipeline, input args are defined inside the
+# Jenkinsfile, not here!
 
 ARG tag={{ cookiecutter.baseimage_cpu_tag }}
 
-# Base image, e.g. tensorflow/tensorflow:1.14.0-py3
+# Base image, e.g. tensorflow/tensorflow:2.9.1
 FROM {{ cookiecutter.docker_baseimage }}:${tag}
 
 LABEL maintainer='{{ cookiecutter.author_name }}'
@@ -28,33 +26,26 @@ ARG branch=master
 # If to install JupyterLab
 ARG jlab=true
 
-# Oneclient version, has to match OneData Provider and Linux version
-ARG oneclient_ver=19.02.0.rc2-1~bionic
-
-# Install ubuntu updates and python related stuff
-# link python3 to python, pip3 to pip, if needed
-# Remember: DEEP API V2 only works with python 3.6 [!]
+# Install Ubuntu packages
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --no-install-recommends \
-         git \
-         curl \
-         wget \
-         python3-setuptools \
-         python3-pip \
-         python3-wheel && \ 
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/* && \
-    if [ ! -e /usr/bin/pip ]; then \
+        git \
+        wget
+
+# Link python3-->python, pip3-->pip (if needed) and update pip
+#  [!] Remember: DEEP API V2 only works with python>=3.6
+RUN if [ ! -e /usr/bin/pip ]; then \
        ln -s /usr/bin/pip3 /usr/bin/pip; \
     fi; \
     if [ ! -e /usr/bin/python ]; then \
        ln -s /usr/bin/python3 /usr/bin/python; \
     fi && \
     python --version && \
-    pip --version
+    pip --version && \
+    pip install --upgrade pip "setuptools<60.0.0" wheel
 
+# TODO: remove setuptools version requirement when [1] is fixed
+# [1]: https://github.com/pypa/setuptools/issues/3301
 
 # Set LANG environment
 ENV LANG C.UTF-8
@@ -62,66 +53,46 @@ ENV LANG C.UTF-8
 # Set the working directory
 WORKDIR /srv
 
-# Install rclone
+# Install rclone (needed if syncing with NextCloud for training; otherwise remove)
 RUN wget https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
     dpkg -i rclone-current-linux-amd64.deb && \
     apt install -f && \
-    mkdir /srv/.rclone/ && touch /srv/.rclone/rclone.conf && \
-    rm rclone-current-linux-amd64.deb && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
+    mkdir /srv/.rclone/ && \
+    touch /srv/.rclone/rclone.conf && \
+    rm rclone-current-linux-amd64.deb
 
 ENV RCLONE_CONFIG=/srv/.rclone/rclone.conf
 
-# INSTALL oneclient for ONEDATA
-RUN curl -sS  http://get.onedata.org/oneclient-1902.sh  | bash -s -- oneclient="$oneclient_ver" && \
-    apt-get clean && \
-    mkdir -p /mnt/onedata && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/* 
-
 # Install DEEPaaS from PyPi
-# Install FLAAT (FLAsk support for handling Access Tokens)
-RUN pip install --no-cache-dir \
-    'deepaas>=1.3.0' \
-    flaat && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/*
+RUN pip install deepaas
 
-# Disable FLAAT authentication by default
-ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
-
-# EXPERIMENTAL: install deep-start script
-# N.B.: This repository also contains run_jupyter.sh
+# Initialization scripts
 RUN git clone https://github.com/deephdc/deep-start /srv/.deep-start && \
     ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start && \
     ln -s /srv/.deep-start/run_jupyter.sh /usr/local/bin/run_jupyter
 
 # Install JupyterLab
 ENV JUPYTER_CONFIG_DIR /srv/.deep-start/
-# Necessary for the Jupyter Lab terminal
 ENV SHELL /bin/bash
 RUN if [ "$jlab" = true ]; then \
        # by default has to work (1.2.0 wrongly required nodejs and npm)
        pip install --no-cache-dir jupyterlab ; \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 
-# Install user app:
+# Install user app
 RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
-    pip install --no-cache-dir -e . && \
-    rm -rf /root/.cache/pip/* && \
-    rm -rf /tmp/* && \
+    pip install -e . && \
     cd ..
 
+# Cleaning up
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /root/.cache/pip/* && \
+    rm -rf /tmp/*
 
-# Open DEEPaaS port
-EXPOSE 5000
+# Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)
+EXPOSE 5000 6006 8888
 
-# Open Monitoring and Jupyter ports
-EXPOSE 6006  8888
-
-# Account for OpenWisk functionality (deepaas >=0.4.0) + proper docker stop
-CMD ["deepaas-run", "--openwhisk-detect", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
+# Launch deepaas
+CMD ["deepaas-run", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]

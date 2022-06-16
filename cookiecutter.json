@@ -19,8 +19,10 @@
     "dockerhub_user": "deephdc",
     "[Info] docker_baseimage - Docker image your Dockerfile starts from (FROM <docker_baseimage>). Don't provide the tag, yet": "Press Enter and configure",
     "docker_baseimage": "tensorflow/tensorflow",
-    "[Info] baseimage_cpu_tag - CPU tag for the baseimage, e.g. 1.14.0-py3. Has to match python3!": "Press Enter and configure",
-    "baseimage_cpu_tag": "1.14.0-py3",
-    "[Info] baseimage_gpu_tag - GPU tag for the baseimage, e.g. 1.14.0-gpu-py3. Has to match python3!": "Press Enter and configure",
-    "baseimage_gpu_tag": "1.14.0-gpu-py3"
+    "[Info] baseimage_cpu_tag - CPU tag for the baseimage, e.g. 2.9.1. Has to match python3!": "Press Enter and configure",
+    "baseimage_cpu_tag": "2.9.1",
+    "[Info] baseimage_gpu_tag - GPU tag for the baseimage, e.g. 2.9.1-gpu. Has to match python3!": "Press Enter and configure",
+    "baseimage_gpu_tag": "2.9.1-gpu",
+    "[Info] failure_notify - Receive an email if module build fails [no/yes]": "Press Enter and configure",
+    "failure_notify": ["no", "yes"]
 }
