@@ -29,10 +29,7 @@ pipeline {
                 }
             }
             steps{
-                dir('check_oc_artifact'){
-                    // clone checking scripts
-                    git url: 'https://github.com/deephdc/deep-check_oc_artifact'
-                }
+
                 dir('deep-oc-user_app'){
                     checkout scm
                     script {
@@ -45,9 +42,6 @@ pipeline {
                                             tag: ['latest', 'cpu'],
                                             build_args: ["tag=${env.base_cpu_tag}",
                                                          "branch=master"])
-
-                           // Check that the image starts and get_metadata responses correctly
-                           sh "bash ../check_oc_artifact/check_artifact.sh ${env.dockerhub_repo}"
 
                            // GPU
                            id_gpu = DockerBuild(id,
@@ -62,9 +56,6 @@ pipeline {
                                             tag: ['test', 'cpu-test'],
                                             build_args: ["tag=${env.base_cpu_tag}",
                                                          "branch=test"])
-
-                           // Check that the image starts and get_metadata responses correctly
-                           sh "bash ../check_oc_artifact/check_artifact.sh ${env.dockerhub_repo}:test"
 
                            // GPU
                            id_gpu = DockerBuild(id,
