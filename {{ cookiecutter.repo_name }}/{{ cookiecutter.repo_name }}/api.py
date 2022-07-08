@@ -22,8 +22,13 @@ To start populating this file, take a look at the docs [1] and at a canonical ex
 """
 
 from functools import wraps
+from pathlib import Path
+import pkg_resources
 
 from aiohttp.web import HTTPBadRequest
+
+
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 
 def _catch_error(f):
@@ -40,10 +45,31 @@ def _catch_error(f):
     return wrap
 
 
-# def get_metadata():
-#     return {}
-#
-#
+@_catch_error
+def get_metadata():
+    """
+    DO NOT REMOVE - All modules should have a get_metadata() function
+    with appropriate keys.
+    """
+    distros = list(pkg_resources.find_distributions(str(BASE_DIR),
+                                                    only=True))
+    if len(distros) == 0:
+        raise Exception('No package found.')
+    pkg = distros[0]  # if several select first
+
+    meta_fields = {'name', 'version', 'summary', 'home-page', 'author',
+                   'author-email', 'license'}
+    meta = {}
+    for line in pkg.get_metadata_lines("PKG-INFO"):
+        line_low = line.lower()  # to avoid inconsistency due to letter cases
+        for k in meta_fields:
+            if line_low.startswith(k + ":"):
+                _, value = line.split(": ", 1)
+                meta[k] = value
+
+    return meta
+
+
 # def warm():
 #     pass
 #
@@ -69,12 +95,6 @@ def _catch_error(f):
 # Some functions that are not mandatory but that can be useful #
 # (you can remove this if you don't need them)                 #
 ################################################################
-
-# import pkg_resources
-# import os
-
-
-# BASE_DIR = os.path.dirname(os.path.normpath(os.path.dirname(__file__)))
 
 
 # def _fields_to_dict(fields_in):
@@ -104,55 +124,3 @@ def _catch_error(f):
 #
 #         dict_out[key] = param
 #     return dict_out
-#
-#
-# def get_metadata():
-#     """
-#     Predefined get_metadata() that renders your module package configuration.
-#     """
-#
-#     module = __name__.split('.', 1)
-#
-#     try:
-#         pkg = pkg_resources.get_distribution(module[0])
-#     except pkg_resources.RequirementParseError:
-#         # if called from CLI, try to get pkg from the path
-#         distros = list(pkg_resources.find_distributions(BASE_DIR,
-#                                                         only=True))
-#         if len(distros) == 1:
-#             pkg = distros[0]
-#     except Exception as e:
-#         raise HTTPBadRequest(reason=e)
-#
-#     ### One can include arguments for train() in the metadata
-#     train_args = _fields_to_dict(get_train_args())
-#     # make 'type' JSON serializable
-#     for key, val in train_args.items():
-#         train_args[key]['type'] = str(val['type'])
-#
-#     ### One can include arguments for predict() in the metadata
-#     predict_args = _fields_to_dict(get_predict_args())
-#     # make 'type' JSON serializable
-#     for key, val in predict_args.items():
-#         predict_args[key]['type'] = str(val['type'])
-#
-#     meta = {
-#         'name': None,
-#         'version': None,
-#         'summary': None,
-#         'home-page': None,
-#         'author': None,
-#         'author-email': None,
-#         'license': None,
-#         'help-train': train_args,
-#         'help-predict': predict_args
-#     }
-#
-#     for line in pkg.get_metadata_lines("PKG-INFO"):
-#         line_low = line.lower()  # to avoid inconsistency due to letter cases
-#         for par in meta:
-#             if line_low.startswith(par.lower() + ":"):
-#                 _, value = line.split(": ", 1)
-#                 meta[par] = value
-#
-#     return meta
