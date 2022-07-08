@@ -23,6 +23,17 @@ pipeline {
             }
         }
 
+        stage('Style analysis: PEP8') {
+            steps {
+                ToxEnvRun('pep8')
+            }
+            post {
+                always {
+                    recordIssues(tools: [flake8(pattern: 'flake8.log')])
+                }
+            }
+        }
+
         stage("Re-build Docker images") {
             when {
                 anyOf {
