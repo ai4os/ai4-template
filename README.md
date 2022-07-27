@@ -40,7 +40,9 @@ This is what the folder structures look like:
 │   │
 │   ├── __init__.py        <- Makes {{cookiecutter.repo_name}} a Python module
 │   │
-│   └── api.py             <- Main script for the integration with DEEP API
+│   ├── api.py             <- Main script for the integration with DEEP API
+│   │
+│   └── misc.py            <- Misc functions that were helpful accross projects
 │
 └── Jenkinsfile            <- Describes basic Jenkins CI/CD pipeline
 

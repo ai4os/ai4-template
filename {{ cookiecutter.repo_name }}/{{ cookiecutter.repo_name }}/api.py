@@ -7,11 +7,11 @@ That is, if you need to write the predict() function in api.py, you would import
 function and call it from here (with some processing/postprocessing in between if needed).
 For example:
 
-    import utils
+    import mycustomfile
 
     def predict(**kwargs):
         args = preprocess(kwargs)
-        resp = utils.predict(args)
+        resp = mycustomfile.predict(args)
         resp = postprocess(resp)
         return resp
 
@@ -21,28 +21,13 @@ To start populating this file, take a look at the docs [1] and at a canonical ex
 [2]: https://github.com/deephdc/demo_app
 """
 
-from functools import wraps
 from pathlib import Path
 import pkg_resources
 
-from aiohttp.web import HTTPBadRequest
+from misc import _catch_error
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-
-
-def _catch_error(f):
-    """
-    Decorate function to return an error as HTTPBadRequest,
-    in case it fails.
-    """
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        try:
-            return f(*args, **kwargs)
-        except Exception as e:
-            raise HTTPBadRequest(reason=e)
-    return wrap
 
 
 @_catch_error
@@ -54,11 +39,18 @@ def get_metadata():
     distros = list(pkg_resources.find_distributions(str(BASE_DIR),
                                                     only=True))
     if len(distros) == 0:
-        raise Exception('No package found.')
+        raise Exception("No package found.")
     pkg = distros[0]  # if several select first
 
-    meta_fields = {'name', 'version', 'summary', 'home-page', 'author',
-                   'author-email', 'license'}
+    meta_fields = {
+        "name": None,
+        "version": None,
+        "summary": None,
+        "home-page": None,
+        "author": None,
+        "author-email": None,
+        "license": None,
+    }
     meta = {}
     for line in pkg.get_metadata_lines("PKG-INFO"):
         line_low = line.lower()  # to avoid inconsistency due to letter cases
@@ -89,38 +81,3 @@ def get_metadata():
 #
 # def train(**kwargs):
 #     return None
-
-
-################################################################
-# Some functions that are not mandatory but that can be useful #
-# (you can remove this if you don't need them)                 #
-################################################################
-
-
-# def _fields_to_dict(fields_in):
-#     """
-#     Function to convert mashmallow fields to dict()
-#     """
-#     dict_out = {}
-#
-#     for key, val in fields_in.items():
-#         param = {}
-#         param['default'] = val.missing
-#         param['type'] = type(val.missing)
-#         if key == 'files' or key == 'urls':
-#             param['type'] = str
-#
-#         val_help = val.metadata['description']
-#         if 'enum' in val.metadata.keys():
-#             val_help = "{}. Choices: {}".format(val_help,
-#                                                 val.metadata['enum'])
-#         param['help'] = val_help
-#
-#         try:
-#             val_req = val.required
-#         except:
-#             val_req = False
-#         param['required'] = val_req
-#
-#         dict_out[key] = param
-#     return dict_out
