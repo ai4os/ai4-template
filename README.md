@@ -8,7 +8,7 @@ This is the template for developing new modules in the DEEP Platform. It uses [C
 
 There are two versions of this template:
 * [master](https://github.com/deephdc/cookiecutter-deep/tree/master): this is what 99% of users are probably looking for. Simple, minimal template, with the minimum requirements to integrate your code in DEEP.
-* [advanced](https://github.com/deephdc/cookiecutter-deep/tree/advanced): this is a more advanced template. It makes more assumptions on how to structure projects and adds more files than those strictly needed for integration. It also comes with additional files to implement tests (coverage, code quality, ...) on your module. Unless you are looking for one of these features, you are probably safer using master. This is the template that was used [originally](https://github.com/indigo-dc/cookiecutter-data-science) in the project.
+* [advanced](https://github.com/deephdc/cookiecutter-deep/tree/advanced): this is a more advanced template. It makes more assumptions on how to structure projects and adds more files than those strictly needed for integration. Unless you are looking for some specific feature, you are probably safer using master.
 
 To create a new template of your project, install cookiecutter and run it with this template: 
 ``` bash
