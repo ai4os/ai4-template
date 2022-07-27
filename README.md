@@ -42,7 +42,9 @@ This is what the folder structures look like:
 │   │
 │   ├── api.py             <- Main script for the integration with DEEP API
 │   │
-│   └── misc.py            <- Misc functions that were helpful accross projects
+│   ├── misc.py            <- Misc functions that were helpful accross projects
+│   │
+│   └── tests              <- Scripts to perfrom code testing
 │
 └── Jenkinsfile            <- Describes basic Jenkins CI/CD pipeline
 
