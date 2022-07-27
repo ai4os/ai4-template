@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        dockerhub_repo = "{{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}"
+        dockerhub_repo = "deephdc/deep-oc-{{ cookiecutter.repo_name }}"
         base_cpu_tag = "{{ cookiecutter.baseimage_cpu_tag }}"
         base_gpu_tag = "{{ cookiecutter.baseimage_gpu_tag }}"
     }

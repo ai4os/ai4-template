@@ -15,8 +15,6 @@
     "app_version": "0.0.1",
     "[Info] open_source_license - Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses": "Press Enter and configure",
     "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "No license file"],
-    "[Info] dockerhub_user - User account at hub.docker.com, e.g. 'deephdc' in https://hub.docker.com/u/deephdc": "Press Enter and configure",
-    "dockerhub_user": "deephdc",
     "[Info] docker_baseimage - Docker image your Dockerfile starts from (FROM <docker_baseimage>). Don't provide the tag, yet": "Press Enter and configure",
     "docker_baseimage": "tensorflow/tensorflow",
     "[Info] baseimage_cpu_tag - CPU tag for the baseimage, e.g. 2.9.1. Has to match python3!": "Press Enter and configure",

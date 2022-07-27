@@ -15,10 +15,10 @@ This is a container that will run the [{{ cookiecutter.repo_name }}]({{ cookiecu
 To run the Docker container directly from Docker Hub and start using the API simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
+$ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-{{ cookiecutter.repo_name }}
 ```
 
-This command will pull the Docker container from the Docker Hub [{{ cookiecutter.dockerhub_user }}](https://hub.docker.com/u/{{ cookiecutter.dockerhub_user }}/) repository and start the default command (`deepaas-run --listen-ip=0.0.0.0`).
+This command will pull the Docker container from the Docker Hub [deephdc](https://hub.docker.com/u/deephdc/) repository and start the default command (`deepaas-run --listen-ip=0.0.0.0`).
 
 **N.B.** For either CPU-based or GPU-based images you can also use [udocker](https://github.com/indigo-dc/udocker).
 
@@ -28,8 +28,8 @@ If you want to build the container directly in your machine (because you want to
 ```bash
 git clone {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}
 cd DEEP-OC-{{ cookiecutter.repo_name }}
-docker build -t {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }} .
-docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 {{ cookiecutter.dockerhub_user }}/deep-oc-{{ cookiecutter.repo_name }}
+docker build -t deephdc/deep-oc-{{ cookiecutter.repo_name }} .
+docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-{{ cookiecutter.repo_name }}
 ```
 
 These three steps will download the repository from GitHub and will build the Docker container locally on your machine. You can inspect and modify the `Dockerfile` in order to check what is going on. For instance, you can pass the `--debug=True` flag to the `deepaas-run` command, in order to enable the debug mode.
