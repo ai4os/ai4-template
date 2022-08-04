@@ -11,11 +11,11 @@ you make to the code.
 """
 
 import unittest
+
 import {{cookiecutter.repo_name}}.api as api
 
 
 class TestModelMethods(unittest.TestCase):
-
     def setUp(self):
         self.meta = api.get_metadata()
 
@@ -29,13 +29,18 @@ class TestModelMethods(unittest.TestCase):
         """
         Test that get_metadata() returns right values (subset)
         """
-        self.assertEqual(self.meta['name'].lower().replace('-', '_'),
-                         '{{ cookiecutter.repo_name }}'.lower().replace('-', '_'))
-        self.assertEqual(self.meta['author'].lower(),
-                         '{{ cookiecutter.author_name }}'.lower())
-        self.assertEqual(self.meta['license'].lower(),
-                         '{{ cookiecutter.open_source_license }}'.lower())
+        self.assertEqual(
+            self.meta["name"].lower().replace("-", "_"),
+            "{{ cookiecutter.repo_name }}".lower().replace("-", "_"),
+        )
+        self.assertEqual(
+            self.meta["author"].lower(), "{{ cookiecutter.author_name }}".lower()
+        )
+        self.assertEqual(
+            self.meta["license"].lower(),
+            "{{ cookiecutter.open_source_license }}".lower(),
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

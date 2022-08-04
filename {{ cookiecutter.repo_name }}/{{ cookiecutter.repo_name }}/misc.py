@@ -16,12 +16,14 @@ def _catch_error(f):
     Decorate API functions to return an error as HTTPBadRequest,
     in case it fails.
     """
+
     @wraps(f)
     def wrap(*args, **kwargs):
         try:
             return f(*args, **kwargs)
         except Exception as e:
             raise HTTPBadRequest(reason=e)
+
     return wrap
 
 
@@ -53,7 +55,7 @@ def mount_nextcloud(frompath, topath):
     Example of usage:
         mount_nextcloud('rshare:/data/images', 'my_local_image_path')
     """
-    command = (["rclone", "copy", frompath, topath])
+    command = ["rclone", "copy", frompath, topath]
     result = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, error = result.communicate()
     if error:
