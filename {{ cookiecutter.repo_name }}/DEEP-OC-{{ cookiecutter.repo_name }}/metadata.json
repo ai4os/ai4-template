@@ -12,12 +12,12 @@
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
     "sources": {
 		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}",
-		"docker_registry_repo": "deephdc/deep-oc-{{ cookiecutter.repo_name }}",
+		"docker_registry_repo": "deephdc/{{ cookiecutter.__deephdc_docker.lower() }}",
 		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}"
 	},
     "continuous_integration": {
-        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master",
-        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master"
+        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/master",
+        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.__deephdc_docker }}/job/master"
     },
     "tosca": [
         {

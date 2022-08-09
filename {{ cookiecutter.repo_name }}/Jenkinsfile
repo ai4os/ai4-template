@@ -13,7 +13,7 @@ pipeline {
         author_name = "{{ cookiecutter.author_name }}"
         author_email = "{{ cookiecutter.author_email }}"
         app_name = "{{ cookiecutter.repo_name }}"
-        job_location = "Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/${env.BRANCH_NAME}"
+        job_location = "Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/${env.BRANCH_NAME}"
     }
 
     stages {
@@ -125,7 +125,7 @@ DEEP Jenkins CI service"""
                 EmailSend(subject, body, "${author_email}")
             }
         }
-{% endif %}
+{% endif -%}
 
     }
 }

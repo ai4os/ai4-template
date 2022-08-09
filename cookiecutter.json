@@ -22,5 +22,9 @@
     "[Info] baseimage_gpu_tag - GPU tag for the baseimage, e.g. 2.9.1-gpu. Has to match python3!": "Press Enter and configure",
     "baseimage_gpu_tag": "2.9.1-gpu",
     "[Info] failure_notify - Receive an email if module build fails [no/yes]": "Press Enter and configure",
-    "failure_notify": ["no", "yes"]
+    "failure_notify": ["no", "yes"],
+
+    "__deephdc_code": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}{{ cookiecutter.repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-{{ cookiecutter.repo_name }}{% endif %}",
+    "__deephdc_docker": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}DEEP-OC-{{ cookiecutter.repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-DEEP-OC-{{ cookiecutter.repo_name }}{% endif %}"
+
 }

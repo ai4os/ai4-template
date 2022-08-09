@@ -3,7 +3,7 @@
 </div>
 
 # DEEP-OC-{{ cookiecutter.repo_name }}
-[![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/DEEP-OC-{{ cookiecutter.repo_name }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/DEEP-OC-{{ cookiecutter.repo_name }}/job/master)
+[![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.__deephdc_docker }}/job/master)
 
 This is a container that will run the [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS API V2](https://github.com/indigo-dc/DEEPaaS)).
 
@@ -15,7 +15,7 @@ This is a container that will run the [{{ cookiecutter.repo_name }}]({{ cookiecu
 To run the Docker container directly from Docker Hub and start using the API simply run the following command:
 
 ```bash
-$ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-{{ cookiecutter.repo_name }}
+$ docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/{{ cookiecutter.__deephdc_docker.lower() }}
 ```
 
 This command will pull the Docker container from the Docker Hub [deephdc](https://hub.docker.com/u/deephdc/) repository and start the default command (`deepaas-run --listen-ip=0.0.0.0`).
@@ -28,8 +28,8 @@ If you want to build the container directly in your machine (because you want to
 ```bash
 git clone {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}
 cd DEEP-OC-{{ cookiecutter.repo_name }}
-docker build -t deephdc/deep-oc-{{ cookiecutter.repo_name }} .
-docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/deep-oc-{{ cookiecutter.repo_name }}
+docker build -t deephdc/{{ cookiecutter.__deephdc_docker.lower() }} .
+docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/{{ cookiecutter.__deephdc_docker.lower() }}
 ```
 
 These three steps will download the repository from GitHub and will build the Docker container locally on your machine. You can inspect and modify the `Dockerfile` in order to check what is going on. For instance, you can pass the `--debug=True` flag to the `deepaas-run` command, in order to enable the debug mode.
