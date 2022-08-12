@@ -26,7 +26,7 @@ module [2].
 from pathlib import Path
 import pkg_resources
 
-from misc import _catch_error
+from {{cookiecutter.repo_name}}.misc import _catch_error
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
