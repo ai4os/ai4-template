@@ -2,8 +2,10 @@
     "title": "{{ cookiecutter.repo_name }}",
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
-		"This is {{ cookiecutter.repo_name }} application using DEEPaaS API",
-	],
+		"{{ cookiecutter.repo_name }} is an application using the DEEPaaS API.\n",
+        "Write additional information for your users (how to predict, how to retrain,",
+        "dataset description, training description, etc)."
+    ],
     "keywords": [
         "docker",
         "api-v2"
