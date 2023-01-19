@@ -80,7 +80,7 @@ RUN if [ "$jlab" = true ]; then \
 # Install user app
 RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }} && \
     cd  {{ cookiecutter.repo_name }} && \
-    pip3 install --no-cache-dir  -e . && \
+    pip3 install --no-cache-dir -e . && \
     cd ..
 
 # Open ports: DEEPaaS (5000), Monitoring (6006), Jupyter (8888)

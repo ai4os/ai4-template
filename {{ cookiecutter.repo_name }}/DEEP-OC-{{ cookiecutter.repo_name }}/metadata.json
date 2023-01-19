@@ -2,7 +2,7 @@
     "title": "{{ cookiecutter.repo_name }}",
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
-		"{{ cookiecutter.repo_name }} is an application using the DEEPaaS API.\n",
+        "{{ cookiecutter.repo_name }} is an application using the DEEPaaS API.\n",
         "Write additional information for your users (how to predict, how to retrain,",
         "dataset description, training description, etc)."
     ],
