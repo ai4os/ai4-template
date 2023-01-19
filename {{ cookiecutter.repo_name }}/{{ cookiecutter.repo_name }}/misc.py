@@ -94,4 +94,3 @@ def launch_tensorboard(logdir, port=6006):
     )
     p = Process(target=launch_cmd, args=(logdir, port), daemon=True)
     p.start()
-
