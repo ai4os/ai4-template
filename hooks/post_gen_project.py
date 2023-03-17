@@ -7,7 +7,7 @@
 
 """ 
     Post-hook script
-    Moves DEEP-OC-{{ cookiecutter.repo_name }} directory one level up.
+    Moves DEEP-OC-{{ cookiecutter.__repo_name }} directory one level up.
     Initialized Git repositories
     Creates 'test' branch
     Switches back to 'master'
@@ -20,8 +20,8 @@ import sys
 
 REPO_REGEX = r'^[a-z][_a-z0-9]+$'
 
-repo_name = '{{ cookiecutter.repo_name }}'
-deep_oc = 'DEEP-OC-{{ cookiecutter.repo_name }}'
+repo_name = '{{ cookiecutter.__repo_name }}'
+deep_oc = 'DEEP-OC-{{ cookiecutter.__repo_name }}'
 deep_oc_dir = os.path.join("../", deep_oc)
 src = os.path.join("../", repo_name, deep_oc)
 
@@ -74,7 +74,7 @@ def git_ini(repo):
 
 
 try:
-    # move DEEP-OC-{{ cookiecutter.repo_name }} one level up
+    # move DEEP-OC-{{ cookiecutter.__repo_name }} one level up
     shutil.move(src, deep_oc_dir)
 
     # initialized both git repositories

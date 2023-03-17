@@ -3,8 +3,6 @@
     "git_base_url": "https://github.com/deephdc",
     "[Info] project_name - Short name of your project": "Press Enter and configure",
     "project_name": "",
-    "[Info] repo_name - Name of your new repository, to be added after \"git_base_url\" (see above)\n       Also used for the package name, i.e. only low case and no dashes (\"-\")!": "Press Enter and configure",
-    "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-','_') }}",
     "[Info] author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma": "Press Enter and configure",
     "author_name": "",
     "[Info] author_email - E-Mail(s) of main author(s). If many, separate by comma": "Press Enter and configure",
@@ -24,7 +22,7 @@
     "[Info] failure_notify - Receive an email if module build fails [no/yes]": "Press Enter and configure",
     "failure_notify": ["no", "yes"],
 
-    "__deephdc_code": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}{{ cookiecutter.repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-{{ cookiecutter.repo_name }}{% endif %}",
-    "__deephdc_docker": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}DEEP-OC-{{ cookiecutter.repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-DEEP-OC-{{ cookiecutter.repo_name }}{% endif %}"
-
+    "__repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-','_') }}",
+    "__deephdc_code": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}{{ cookiecutter.__repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-{{ cookiecutter.__repo_name }}{% endif %}",
+    "__deephdc_docker": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}DEEP-OC-{{ cookiecutter.__repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-DEEP-OC-{{ cookiecutter.__repo_name }}{% endif %}"
 }

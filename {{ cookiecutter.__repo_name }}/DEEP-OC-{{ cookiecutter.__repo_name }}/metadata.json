@@ -1,8 +1,8 @@
 {
-    "title": "{{ cookiecutter.repo_name }}",
+    "title": "{{ cookiecutter.__repo_name }}",
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
-        "{{ cookiecutter.repo_name }} is an application using the DEEPaaS API.\n",
+        "{{ cookiecutter.__repo_name }} is an application using the DEEPaaS API.\n",
         "Write additional information for your users (how to predict, how to retrain,",
         "dataset description, training description, etc)."
     ],
@@ -13,9 +13,9 @@
     "license": "{{ cookiecutter.open_source_license }}",
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
     "sources": {
-		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}",
+		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.__repo_name }}",
 		"docker_registry_repo": "deephdc/{{ cookiecutter.__deephdc_docker.lower() }}",
-		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}"
+		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}"
 	},
     "continuous_integration": {
         "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/master",

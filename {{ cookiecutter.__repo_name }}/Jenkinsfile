@@ -12,7 +12,7 @@ pipeline {
     environment {
         author_name = "{{ cookiecutter.author_name }}"
         author_email = "{{ cookiecutter.author_email }}"
-        app_name = "{{ cookiecutter.repo_name }}"
+        app_name = "{{ cookiecutter.__repo_name }}"
         job_location = "Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/${env.BRANCH_NAME}"
     }
 

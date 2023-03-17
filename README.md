@@ -35,11 +35,11 @@ This is what the folder structures look like:
 │                             generated with `pip freeze > requirements.txt`
 │
 ├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-│                             {{cookiecutter.repo_name}} can be imported
+│                             {{cookiecutter.__repo_name}} can be imported
 │
-├── {{cookiecutter.repo_name}}    <- Source code for use in this project.
+├── {{cookiecutter.__repo_name}}    <- Source code for use in this project.
 │   │
-│   ├── __init__.py        <- Makes {{cookiecutter.repo_name}} a Python module
+│   ├── __init__.py        <- Makes {{cookiecutter.__repo_name}} a Python module
 │   │
 │   ├── api.py             <- Main script for the integration with DEEP API
 │   │

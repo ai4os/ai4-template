@@ -2,10 +2,10 @@
 <img src="https://marketplace.deep-hybrid-datacloud.eu/images/logo-deep.png" alt="logo" width="300"/>
 </div>
 
-# DEEP-OC-{{ cookiecutter.repo_name }}
+# DEEP-OC-{{ cookiecutter.__repo_name }}
 [![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.__deephdc_docker }}/job/master)
 
-This is a container that will run the [{{ cookiecutter.repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS API V2](https://github.com/indigo-dc/DEEPaaS)).
+This is a container that will run the [{{ cookiecutter.__repo_name }}]({{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}) application leveraging the DEEP as a Service API component ([DEEPaaS API V2](https://github.com/indigo-dc/DEEPaaS)).
 
     
 ## Running the container
@@ -26,8 +26,8 @@ This command will pull the Docker container from the Docker Hub [deephdc](https:
 
 If you want to build the container directly in your machine (because you want to modify the `Dockerfile` for instance) follow the following instructions:
 ```bash
-git clone {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.repo_name }}
-cd DEEP-OC-{{ cookiecutter.repo_name }}
+git clone {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.__repo_name }}
+cd DEEP-OC-{{ cookiecutter.__repo_name }}
 docker build -t deephdc/{{ cookiecutter.__deephdc_docker.lower() }} .
 docker run -ti -p 5000:5000 -p 6006:6006 -p 8888:8888 deephdc/{{ cookiecutter.__deephdc_docker.lower() }}
 ```

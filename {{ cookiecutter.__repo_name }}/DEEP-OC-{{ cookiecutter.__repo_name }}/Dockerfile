@@ -76,8 +76,8 @@ RUN if [ "$jlab" = true ]; then \
     else echo "[INFO] Skip JupyterLab installation!"; fi
 
 # Install user app
-RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.repo_name }} && \
-    cd  {{ cookiecutter.repo_name }} && \
+RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }} && \
+    cd  {{ cookiecutter.__repo_name }} && \
     pip3 install --no-cache-dir -e . && \
     cd ..
 
