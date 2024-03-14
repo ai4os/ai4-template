@@ -46,12 +46,16 @@ This is what the folder structures look like:
 │
 ├── {{cookiecutter.__repo_name}}    <- Source code for use in this project.
 │   │
-│   ├── __init__.py        <- Makes {{cookiecutter.__repo_name}} a Python module
+│   ├── __init__.py        <- Makes {{cookiecutter.__app_name}} a Python module
 │   │
 │   ├── api.py             <- Main script for the integration with DEEP API
 │   │
 │   └── misc.py            <- Misc functions that were helpful accross projects
-│   
+│
+├── data/                  <- Folder to store the data
+│
+├── models/                <- Folder to store models
+│
 ├── tests/                 <- Scripts to perfrom code testing
 |
 ├── metadata.json          <- Defines information propagated to the AI4OS Hub
@@ -61,7 +65,7 @@ This is what the folder structures look like:
 ├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
 │
 ├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-│                             {{cookiecutter.__repo_name}} can be imported
+│                             {{cookiecutter.__app_name}} can be imported
 
 ```
 

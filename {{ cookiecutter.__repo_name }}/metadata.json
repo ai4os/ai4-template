@@ -2,9 +2,8 @@
     "title": "{{ cookiecutter.__repo_name }}",
     "summary": "{{ cookiecutter.description.replace('\'', '') }}",
     "description": [
-        "{{ cookiecutter.__repo_name }} is an application using the DEEPaaS API.\n",
-        "Write additional information for your users (how to predict, how to retrain,",
-        "dataset description, training description, etc)."
+        "{{ cookiecutter.__app_name }} is an application using the DEEPaaS API.\n",
+        "{{ cookiecutter.description.replace('\'', '') }}"
     ],
     "keywords": [
         "docker",
@@ -13,13 +12,13 @@
     "license": "{{ cookiecutter.open_source_license }}",
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
     "sources": {
-		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.__repo_name }}",
-		"docker_registry_repo": "deephdc/{{ cookiecutter.__deephdc_docker.lower() }}",
+		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
+		"docker_registry_repo": "ai4oshub/{{ cookiecutter.__repo_name }}",
 		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}"
 	},
     "continuous_integration": {
-        "build_status_badge": "https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_docker }}/master",
-        "build_status_url": "https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.__deephdc_docker }}/job/master"
+        "build_status_badge": "https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/{{ cookiecutter.__repo_name }}/main",
+        "build_status_url": "https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/{{ cookiecutter.__repo_name }}/job/main/"
     },
     "tosca": [
         {

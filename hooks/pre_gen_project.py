@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2018 - 2023 Karlsruhe Institute of Technology - Steinbuch Centre for Computing
+# Copyright (c) 2018 - 2023 Karlsruhe Institute of Technology - Scientific Computing Center
 # This code is distributed under the MIT License
 # Please, see the LICENSE file
 
@@ -44,6 +44,17 @@ repo_name = '{{ cookiecutter.__repo_name }}'
 if (not re.match(MODULE_REGEX, repo_name) or
     len(repo_name) < 2):
     message = ("'{}' is not a valid Python module name! ".format(repo_name) +
+               "Please, check the 'project_name' input")
+    print("[ERROR]: " + message)
+    error = True
+    error_messages.append(message)
+
+# check {{ cookiecutter.__app_name }}
+MODULE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
+app_name = '{{ cookiecutter.__app_name }}'
+if (not re.match(MODULE_REGEX, app_name) or
+    len(app_name) < 2):
+    message = ("'{}' is not a valid Python module name! ".format(app_name) +
                "Please, check the 'project_name' input")
     print("[ERROR]: " + message)
     error = True

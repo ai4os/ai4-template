@@ -1,5 +1,5 @@
 # {{cookiecutter.project_name}}
-[![Build Status](https://jenkins.indigo-datacloud.eu/buildStatus/icon?job=Pipeline-as-code/DEEP-OC-org/{{ cookiecutter.__deephdc_code }}/master)](https://jenkins.indigo-datacloud.eu/job/Pipeline-as-code/job/DEEP-OC-org/job/{{ cookiecutter.__deephdc_code }}/job/master)
+[![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/{{ cookiecutter.__repo_name }}/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/{{ cookiecutter.__repo_name }}/job/main/)
 
 {{cookiecutter.description}}
 
@@ -13,21 +13,38 @@ deepaas-run --listen-ip 0.0.0.0
 
 ## Project structure
 ```
+│
+├── Dockerfile             <- Describes main steps on integration of DEEPaaS API and
+│                             <your_project> application in one Docker image
+│
+├── Jenkinsfile            <- Describes basic Jenkins CI/CD pipeline (see .sqa/)
+│
 ├── LICENSE                <- License file
 │
 ├── README.md              <- The top-level README for developers using this project.
 │
-├── requirements.txt       <- The requirements file for reproducing the analysis environment, e.g.
-│                             generated with `pip freeze > requirements.txt`
-│
-├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-│                             {{cookiecutter.__repo_name}} can be imported
+├── .sqa/                  <- CI/CD configuration files
 │
 ├── {{cookiecutter.__repo_name}}    <- Source code for use in this project.
 │   │
-│   ├── __init__.py        <- Makes {{cookiecutter.__repo_name}} a Python module
+│   ├── __init__.py        <- Makes {{cookiecutter.__app_name}} a Python module
 │   │
-│   └── api.py             <- Main script for the integration with DEEP API
+│   ├── api.py             <- Main script for the integration with DEEPaaS API
+│   │
+│   └── misc.py            <- Misc functions that were helpful accross projects
 │
-└── Jenkinsfile            <- Describes basic Jenkins CI/CD pipeline
+├── data/                  <- Folder to store the data
+│
+├── models/                <- Folder to store models
+│   
+├── tests/                 <- Scripts to perfrom code testing
+|
+├── metadata.json          <- Defines information propagated to the AI4OS Hub
+│
+├── requirements.txt       <- The requirements file for reproducing the analysis environment, e.g.
+│                             generated with `pip freeze > requirements.txt`
+├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
+│
+├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
+│                             {{cookiecutter.__app_name}} can be imported
 ```
