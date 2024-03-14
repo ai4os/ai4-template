@@ -17,13 +17,14 @@ import shutil
 import subprocess as subp
 import sys
 
-REPO_REGEX = r'^[a-z][_a-z0-9]+$'
+APP_REGEX = r'^[a-z][_a-z0-9]+$'
 
 repo_name = '{{ cookiecutter.__repo_name }}'
 
-if not re.match(REPO_REGEX, repo_name):
+app_name = '{{ cookiecutter.__app_name }}'
+if not re.match(APP_REGEX, app_name):
     print("")
-    print("[ERROR]: %s is not a valid Python package name!" % repo_name)
+    print("[ERROR]: %s is not a valid Python package name!" % app_name)
     print("         Please, use low case and no dashes!")
 
     # exits with status 1 to indicate failure
@@ -70,7 +71,7 @@ def git_ini(repo):
 
 
 try:
-    # initialize both git repositories
+    # initialize git repository
     git_user_app = git_ini(repo_name)
 
     if "Error" not in git_user_app:

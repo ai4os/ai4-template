@@ -38,17 +38,6 @@ if (not check_url(git_base_url)):
     error = True
     error_messages.append(message)
 
-# check {{ cookiecutter.__repo_name }}
-MODULE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
-repo_name = '{{ cookiecutter.__repo_name }}'
-if (not re.match(MODULE_REGEX, repo_name) or
-    len(repo_name) < 2):
-    message = ("'{}' is not a valid Python module name! ".format(repo_name) +
-               "Please, check the 'project_name' input")
-    print("[ERROR]: " + message)
-    error = True
-    error_messages.append(message)
-
 # check {{ cookiecutter.__app_name }}
 MODULE_REGEX = r'^[_a-zA-Z][_a-zA-Z0-9]+$'
 app_name = '{{ cookiecutter.__app_name }}'
