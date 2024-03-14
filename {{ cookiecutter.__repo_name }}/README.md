@@ -3,14 +3,13 @@
 
 {{cookiecutter.description}}
 
-To launch it, first install the package then run [deepaas](https://github.com/indigo-dc/DEEPaaS):
+To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
 ```bash
 git clone {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
 cd {{ cookiecutter.__repo_name }}
 pip install -e .
 deepaas-run --listen-ip 0.0.0.0
 ```
-The associated Docker container for this module can be found in {{ cookiecutter.git_base_url }}/DEEP-OC-{{ cookiecutter.__repo_name }}.
 
 ## Project structure
 ```

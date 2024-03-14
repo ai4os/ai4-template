@@ -19,14 +19,14 @@ For example:
 To start populating this file, take a look at the docs [1] and at a canonical exemplar
 module [2].
 
-[1]: https://docs.deep-hybrid-datacloud.eu/
-[2]: https://github.com/deephdc/demo_app
+[1]: https://docs.ai4os.eu/
+[2]: https://github.com/ai4os-hub/ai4os-demo_app
 """
 
 from pathlib import Path
 import pkg_resources
 
-from {{cookiecutter.__repo_name}}.misc import _catch_error
+from {{cookiecutter.__app_name}}.misc import _catch_error
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]

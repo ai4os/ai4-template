@@ -1,28 +1,32 @@
 {
-    "[Info] git_base_url - Remote URL to host your new repositories (git), e.g.\n       https://github.com/deephdc (i.e. at github)\n       https://git.scc.kit.edu/deep (or somewhere else)": "Press Enter and configure",
-    "git_base_url": "https://github.com/deephdc",
-    "[Info] project_name - Short name of your project": "Press Enter and configure",
+    "git_base_url": "https://github.com/ai4os-hub",
     "project_name": "",
-    "[Info] author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma": "Press Enter and configure",
     "author_name": "",
-    "[Info] author_email - E-Mail(s) of main author(s). If many, separate by comma": "Press Enter and configure",
     "author_email": "",
-    "[Info] description - A short description of the project": "Press Enter and configure",
     "description": "",
-    "[Info] app_version - Application version (expects X.Y.Z (Major.Minor.Patch))": "Press Enter and configure",
     "app_version": "0.0.1",
-    "[Info] open_source_license - Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses": "Press Enter and configure",
     "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "No license file"],
-    "[Info] docker_baseimage - Docker image your Dockerfile starts from (FROM <docker_baseimage>). Don't provide the tag, yet": "Press Enter and configure",
     "docker_baseimage": "tensorflow/tensorflow",
-    "[Info] baseimage_cpu_tag - CPU tag for the baseimage, e.g. 2.9.1. Has to match python3!": "Press Enter and configure",
     "baseimage_cpu_tag": "2.9.1",
-    "[Info] baseimage_gpu_tag - GPU tag for the baseimage, e.g. 2.9.1-gpu. Has to match python3!": "Press Enter and configure",
     "baseimage_gpu_tag": "2.9.1-gpu",
-    "[Info] failure_notify - Receive an email if module build fails [no/yes]": "Press Enter and configure",
     "failure_notify": ["no", "yes"],
 
-    "__repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-','_') }}",
-    "__deephdc_code": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}{{ cookiecutter.__repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-{{ cookiecutter.__repo_name }}{% endif %}",
-    "__deephdc_docker": "{% if cookiecutter.git_base_url == 'https://github.com/deephdc' %}DEEP-OC-{{ cookiecutter.__repo_name }}{% else -%}UC-{{ cookiecutter.git_base_url.split('/')[-1] }}-DEEP-OC-{{ cookiecutter.__repo_name }}{% endif %}"
+    "__repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "__app_name": "{{ cookiecutter.__repo_name.replace('-','_') }}",
+    "__ai4os_code": "{{ cookiecutter.__repo_name }}",
+    "__ai4os_docker": "{{ cookiecutter.__repo_name }}"
+
+    "__prompts__": {
+        "git_base_url": "git_base_url - Remote URL to host your new repositories (git), e.g.\n       https://github.com/ai4os-hub (i.e. at github)",
+        "project_name": "project_name - Short name of your project",
+        "author_name": "author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma",
+        "author_email": "author_email - E-Mail(s) of main author(s). If many, separate by comma",
+        "description": "description - A short description of the project",
+        "app_version": "app_version - Application version (expects X.Y.Z (Major.Minor.Patch))",
+        "open_source_license": "open_source_license - Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses",
+        "docker_baseimage": "docker_baseimage - Docker image your Dockerfile starts from (FROM <docker_baseimage>). Don't provide the tag, yet",
+        "baseimage_cpu_tag": "baseimage_cpu_tag - CPU tag for the baseimage, e.g. 2.9.1. Has to match python3!",
+        "baseimage_gpu_tag": "baseimage_gpu_tag - GPU tag for the baseimage, e.g. 2.9.1-gpu. Has to match python3!",
+        "failure_notify": "failure_notify - Receive an email if module build fails"
+    }
 }

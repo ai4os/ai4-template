@@ -12,7 +12,7 @@ you make to the code.
 
 import unittest
 
-import {{cookiecutter.__repo_name}}.api as api
+import {{cookiecutter.__app_name}}.api as api
 
 
 class TestModelMethods(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestModelMethods(unittest.TestCase):
         """
         self.assertEqual(
             self.meta["name"].lower().replace("-", "_"),
-            "{{ cookiecutter.__repo_name }}".lower().replace("-", "_"),
+            "{{ cookiecutter.__app_name }}".lower().replace("-", "_"),
         )
         self.assertEqual(
             self.meta["author"].lower(), "{{ cookiecutter.author_name }}".lower()
