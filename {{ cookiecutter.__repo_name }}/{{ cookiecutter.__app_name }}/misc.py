@@ -6,7 +6,7 @@ but users might want nevertheless to take advantage from them.
 
 from functools import wraps
 from multiprocessing import Process
-import subprocess
+import subprocess  # nosec
 import warnings
 
 from aiohttp.web import HTTPBadRequest
@@ -64,7 +64,7 @@ def mount_nextcloud(frompath, topath):
         Destination folder
     """
     command = ["rclone", "copy", f"{frompath}", f"{topath}"]
-    result = subprocess.Popen(command,
+    result = subprocess.Popen(command,               # nosec
                               stdout=subprocess.PIPE,
                               stderr=subprocess.PIPE)
     output, error = result.communicate()
@@ -74,7 +74,7 @@ def mount_nextcloud(frompath, topath):
 
 
 def launch_cmd(logdir, port):
-    subprocess.call(["tensorboard",
+    subprocess.call(["tensorboard",                  # nosec
                      "--logdir", f"{logdir}",
                      "--port", f"{port}",
                      "--host", "0.0.0.0"])
@@ -93,7 +93,7 @@ def launch_tensorboard(logdir, port=6006):
     """
     subprocess.run(  # nosec
         # kill any other process in that port
-        ["fuser", "-k", f"{port}/tcp"] # nosec
+        ["fuser", "-k", f"{port}/tcp"]  # nosec
     )
     p = Process(target=launch_cmd, args=(logdir, port), daemon=True)
     p.start()

@@ -6,6 +6,9 @@ services:
     container_name: "${BUILD_TAG}"
     hostname: "${BUILD_TAG}"
     working_dir: /srv
+    command: >
+      sh -c "git config --global --add safe.directory /srv &&
+             /usr/sbin/sshd -D"
     volumes:
       - type: bind
         source: ./
