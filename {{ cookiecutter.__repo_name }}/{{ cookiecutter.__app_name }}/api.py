@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 Functions to integrate your model with the DEEPaaS API.
-It's usually good practice to keep this file minimal, only performing 
-the interfacing tasks. In this way you don't mix your true code with 
-DEEPaaS code and everything is more modular. That is, if you need to write 
-the predict() function in api.py, you would import your true predict function 
-and call it from here (with some processing / postprocessing in between 
+It's usually good practice to keep this file minimal, only performing
+the interfacing tasks. In this way you don't mix your true code with
+DEEPaaS code and everything is more modular. That is, if you need to write
+the predict() function in api.py, you would import your true predict function
+and call it from here (with some processing / postprocessing in between
 if needed).
 For example:
 
@@ -17,7 +17,7 @@ For example:
         resp = postprocess(resp)
         return resp
 
-To start populating this file, take a look at the docs [1] and at 
+To start populating this file, take a look at the docs [1] and at
 an exemplar module [2].
 
 [1]: https://docs.ai4os.eu/
