@@ -25,7 +25,7 @@ deepaas-run --listen-ip 0.0.0.0
 │
 ├── .sqa/                  <- CI/CD configuration files
 │
-├── {{cookiecutter.__repo_name}}    <- Source code for use in this project.
+├── {{cookiecutter.__app_name}}    <- Source code for use in this project.
 │   │
 │   ├── __init__.py        <- Makes {{cookiecutter.__app_name}} a Python module
 │   │

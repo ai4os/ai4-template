@@ -2,7 +2,7 @@ version: "3.6"
 
 services:
   thisrepo-testing:
-    image: "indigodatacloud/ci-images:python3.10"
+    image: "indigodatacloud/ci-images:python3.8"
     container_name: "${BUILD_TAG}"
     hostname: "${BUILD_TAG}"
     working_dir: /srv
