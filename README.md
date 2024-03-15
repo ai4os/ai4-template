@@ -12,9 +12,9 @@ This repository provides a minimal version of the AI4OS Hub template: Simple, mi
 
 There are other versions of the template:
 
-* [advanced](https://github.com/ai4os/ai4-cookiecutter-adv): this is a more advanced template. It makes more assumptions on how to structure projects and adds more files. If you want to integrate an already existing AI code, which you still want to keep in a separate repository, this template is for you.
+* [advanced](https://github.com/ai4os/ai4-template-adv): this is a more advanced template. It makes more assumptions on how to structure projects and adds more files. If you want to integrate an already existing AI code, which you still want to keep in a separate repository, this template is for you.
 
-* [child-module](https://github.com/ai4os/ai4-cookiecutter-childe): this template specifically tailors to users performing a retraining of an existing at AI4OS-Hub module. It only creates a Docker repo whose container is based on an existing module's Docker image.
+* [child-module](https://github.com/ai4os/ai4-template-child): this template specifically tailors to users performing a retraining of an existing at AI4OS-Hub module. It only creates a Docker repo whose container is based on an existing module's Docker image.
 
 
 To create a new template of your project, either
