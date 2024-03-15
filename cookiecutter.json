@@ -11,7 +11,7 @@
     "baseimage_gpu_tag": "2.9.1-gpu",
     "failure_notify": ["no", "yes"],
 
-    "__repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "__repo_name": "{{ ' '.join(cookiecutter.project_name.split()).lower().replace(' ', '-') }}",
     "__app_name": "{{ cookiecutter.__repo_name.replace('-','_') }}",
 
     "__prompts__": {
