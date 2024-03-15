@@ -64,7 +64,9 @@ def mount_nextcloud(frompath, topath):
         Destination folder
     """
     command = ["rclone", "copy", f"{frompath}", f"{topath}"]
-    result = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.Popen(command,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE)
     output, error = result.communicate()
     if error:
         warnings.warn(f"Error while mounting NextCloud: {error}")
@@ -90,7 +92,7 @@ def launch_tensorboard(logdir, port=6006):
         Port to use for the monitoring webserver.
     """
     subprocess.run(
-        ["fuser", "-k", f"{port}/tcp"]  # kill any previous process in that port
+        ["fuser", "-k", f"{port}/tcp"]  #kill any previous process in that port
     )
     p = Process(target=launch_cmd, args=(logdir, port), daemon=True)
     p.start()

@@ -20,6 +20,7 @@ import sys
 APP_REGEX = r'^[a-z][_a-z0-9]+$'
 
 repo_name = '{{ cookiecutter.__repo_name }}'
+defaultbranch = 'main'
 
 app_name = '{{ cookiecutter.__app_name }}'
 if not re.match(APP_REGEX, app_name):
@@ -39,7 +40,7 @@ def git_ini(repo):
                 + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
-        subp.call(["git", "init"])
+        subp.call(["git", "init", "-b", defaultbranch])
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", gitrepo])
