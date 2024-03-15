@@ -22,7 +22,7 @@ To create a new template of your project, either
 * install cookiecutter and run it with this template: 
 ``` bash
 pip install cookiecutter
-cookiecutter https://github.com/ai4os/ai4-cookiecutter.git
+cookiecutter https://github.com/ai4os/ai4-template.git
 ```
 
 * OR visit our Templates Hub service: https://templates.cloud.ai4eosc.eu/ and select the template
