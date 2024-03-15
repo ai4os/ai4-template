@@ -91,8 +91,9 @@ def launch_tensorboard(logdir, port=6006):
     * port: int
         Port to use for the monitoring webserver.
     """
-    subprocess.run(
-        ["fuser", "-k", f"{port}/tcp"]  # kill any other process in that port
+    subprocess.run(  # nosec
+        # kill any other process in that port
+        ["fuser", "-k", f"{port}/tcp"] # nosec
     )
     p = Process(target=launch_cmd, args=(logdir, port), daemon=True)
     p.start()
