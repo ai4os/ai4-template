@@ -4,7 +4,9 @@
 
 # AI4OS Hub Modules Template (minimal)
 
-This is the template for developing new modules in the AI4OS Platform. It uses [Cookiecutter](https://cookiecutter.readthedocs.io) to generate the templates. This template is based on the  [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/) template.
+## For users
+
+This is a minimal template for developing new modules in the AI4OS Platform. It uses [Cookiecutter](https://cookiecutter.readthedocs.io) to generate the templates. This template is based on the  [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/) template.
 
 This repository provides a minimal version of the AI4OS Hub template: Simple, minimal template, with the minimum requirements to integrate your AI model in AI4OS Hub.
 
@@ -64,9 +66,25 @@ This is what the folder structures look like:
 │                             generated with `pip freeze > requirements.txt`
 ├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
 │
-├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-│                             {{cookiecutter.__app_name}} can be imported
+└── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
+                              {{cookiecutter.__app_name}} can be imported
 
 ```
 
 More extended documentation can be found [here](http://docs.ai4os.eu/en/latest/user/overview/cookiecutter-template.html). If you want to look at a minimal app using this template structure check [demo_app](https://github.com/ai4os-hub/ai4os-demo_app).
+
+## For developers
+
+Once you update the template, please, update this `README.md`, and **especially** `cookiecutter.json` file and `"__ai4_template"` entry with the corresponging, incremented version. The convention for the `"__ai4_template"` entry is to provide the template repository name, slash '/' closest version of the template, following [SymVer](https://semver.org/) specs, e.g.
+
+```
+"__ai4_template": "ai4-template/2.1.0"
+```
+OR
+```
+"__ai4_template": "ai4-template-adv/2.1.0"
+```
+OR
+```
+"__ai4_template": "ai4-template-child/2.1.0"
+```

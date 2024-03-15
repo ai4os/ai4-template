@@ -8,7 +8,7 @@
 """
     Pre-hook script
     1. Check that {{ cookiecutter.git_base_url}} is a valid URL
-    2. Check that {{ cookiecutter.__repo_name }}:
+    2. Check that {{ cookiecutter.__app_name }}:
       a. is not too short (has to be more than one character)
       b. has characters valid for python
 """

@@ -13,10 +13,11 @@
 
     "__repo_name": "{{ ' '.join(cookiecutter.project_name.split()).lower().replace(' ', '-') }}",
     "__app_name": "{{ cookiecutter.__repo_name.replace('-','_') }}",
+    "__ai4_template": "ai4-template/2.0.0"
 
     "__prompts__": {
         "git_base_url": "git_base_url - Remote URL to host your new repositories (git), e.g.\n       https://github.com/ai4os-hub (i.e. at github)",
-        "project_name": "project_name - Short name of your project (max 3 words)",
+        "project_name": "project_name - Short name of your project (max 4 words)",
         "author_name": "author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma",
         "author_email": "author_email - E-Mail(s) of main author(s). If many, separate by comma",
         "description": "description - A short description of the project",

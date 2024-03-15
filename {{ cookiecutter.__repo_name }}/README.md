@@ -15,7 +15,7 @@ deepaas-run --listen-ip 0.0.0.0
 ```
 │
 ├── Dockerfile             <- Describes main steps on integration of DEEPaaS API and
-│                             <your_project> application in one Docker image
+│                             {{cookiecutter.__app_name}} application in one Docker image
 │
 ├── Jenkinsfile            <- Describes basic Jenkins CI/CD pipeline (see .sqa/)
 │
@@ -45,6 +45,6 @@ deepaas-run --listen-ip 0.0.0.0
 │                             generated with `pip freeze > requirements.txt`
 ├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
 │
-├── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-│                             {{cookiecutter.__app_name}} can be imported
+└── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
+                              {{cookiecutter.__app_name}} can be imported
 ```
