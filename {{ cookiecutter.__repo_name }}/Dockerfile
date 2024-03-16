@@ -10,7 +10,7 @@
 # Be Aware! For the Jenkins CI/CD pipeline, 
 # input args are defined inside the JenkinsConstants.groovy, not here!
 
-ARG tag={{ cookiecutter.baseimage_cpu_tag }}
+ARG tag={{ cookiecutter.baseimage_tag }}
 
 # Base image, e.g. tensorflow/tensorflow:2.9.1
 FROM {{ cookiecutter.docker_baseimage }}:${tag}
