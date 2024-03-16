@@ -7,7 +7,7 @@
     "app_version": "0.0.1",
     "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "No license file"],
     "docker_baseimage": "tensorflow/tensorflow",
-    "baseimage_cpu_tag": "2.9.1",
+    "baseimage_tag": "2.9.1",
     "baseimage_gpu_tag": "2.9.1-gpu",
 
     "__repo_name": "{{ ' '.join(cookiecutter.project_name.split()).lower().replace(' ', '-') }}",
@@ -20,7 +20,7 @@
         "author_name": "author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma",
         "author_email": "author_email - E-Mail(s) of main author(s). If many, separate by comma",
         "description": "description - A short description of the project",
-        "app_version": "app_version - Application version (expects X.Y.Z (Major.Minor.Patch))",
+        "app_version": "app_version - Application version (expects X.Y.Z (Major.Minor.Patch), in accordance with https://semver.org/ )",
         "open_source_license": {
             "__prompt__": "Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses",
             "MIT": "MIT",
@@ -29,7 +29,7 @@
             "No license file": "No license file"
          },
         "docker_baseimage": "docker_baseimage - Docker image your Dockerfile starts from (FROM <docker_baseimage>). Don't provide the tag, yet",
-        "baseimage_cpu_tag": "baseimage_cpu_tag - CPU tag for the baseimage, e.g. 2.9.1. Has to match python3!",
-        "baseimage_gpu_tag": "baseimage_gpu_tag - GPU tag for the baseimage, e.g. 2.9.1-gpu. Has to match python3!"
+        "baseimage_tag": "baseimage_tag - Default tag for <docker_baseimage> (for Tensorflow: CPU version, e.g. 2.9.1)",
+        "baseimage_gpu_tag": "baseimage_gpu_tag - If <docker_baseimage> has a separate GPU version (like Tensorflow images, e.g. 2.9.1-gpu), please, provide here, otherwise leave empty"
     }
 }
