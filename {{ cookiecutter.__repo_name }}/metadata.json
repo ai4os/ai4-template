@@ -14,9 +14,9 @@
     "sources": {
 		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
 		"docker_registry_repo": "ai4oshub/{{ cookiecutter.__repo_name }}",
-		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}"
-        "ai4_template": "{{ cookiecutter.__ai4_template }}"
-	},
+		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
+		"ai4_template": "{{ cookiecutter.__ai4_template }}"
+    },
     "continuous_integration": {
         "build_status_badge": "https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/{{ cookiecutter.__repo_name }}/main",
         "build_status_url": "https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/{{ cookiecutter.__repo_name }}/job/main/"
