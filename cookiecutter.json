@@ -5,14 +5,14 @@
     "author_email": "",
     "description": "",
     "app_version": "0.0.1",
-    "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "No license file"],
+    "open_source_license": ["MIT", "Apache 2.0", "BSD-3-Clause", "AGPL-3.0-only", "No license file"],
     "docker_baseimage": "tensorflow/tensorflow",
     "baseimage_tag": "2.9.1",
     "baseimage_gpu_tag": "",
 
     "__repo_name": "{{ ' '.join(cookiecutter.project_name.split()).lower().replace(' ', '-') }}",
     "__app_name": "{{ cookiecutter.__repo_name.replace('-','_') }}",
-    "__ai4_template": "ai4-template/2.0.0",
+    "__ai4_template": "ai4-template/2.0.1",
 
     "__prompts__": {
         "git_base_url": "git_base_url - Remote URL to host your new repositories (git), e.g.\n       https://github.com/ai4os-hub (i.e. at github)",
@@ -26,6 +26,7 @@
             "MIT": "MIT",
             "Apache 2.0":  "Apache 2.0",
             "BSD-3-Clause": "BSD-3-Clause",
+            "AGPL-3.0-only": "AGPL-3.0-only",
             "No license file": "No license file"
          },
         "docker_baseimage": "docker_baseimage - Docker image your Dockerfile starts from (FROM docker_baseimage). Don't provide the tag, yet",
