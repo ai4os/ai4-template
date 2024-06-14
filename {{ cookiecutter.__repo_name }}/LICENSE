@@ -237,7 +237,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-{% if cookiecutter.open_source_license == 'AGPL-3.0-only' %}
+{% elif cookiecutter.open_source_license == 'AGPL-3.0-only' %}
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
