@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2018 - 2024 Karlsruhe Institute of Technology - Steinbuch Centre for Computing
+# Copyright (c) 2018 - 2024 Karlsruhe Institute of Technology - Scientific Computing Center
 # This code is distributed under the MIT License
 # Please, see the LICENSE file
 
@@ -21,7 +21,6 @@ APP_REGEX = r'^[a-z][_a-z0-9]+$'
 
 repo_name = '{{ cookiecutter.__repo_name }}'
 default_branch = 'main'
-metadata_file = 'metadata.json'
 readme_file = 'README.md'
 
 app_name = '{{ cookiecutter.__app_name }}'
@@ -46,22 +45,7 @@ def git_ini(repo):
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", gitrepo])
-
-        # read cookiecutter template version
-        with open('../VERSION', 'r') as c_version_file:
-            c_version = c_version_file.read().strip()
-
-        # replace cookiecutter template version in the metadata.json file
-        metadata_content = []
-        with open(metadata_file) as f_old:
-            for line in f_old:
-                if '\"ai4_template\":' in line:
-                    line = f"\"ai4_template\": \"ai4-template/{c_version}\""
-                metadata_content.append(line)
-        with open(metadata_file, "w") as f_new:
-            for line in metadata_content:
-                f_new.write(line)
-        
+      
         # create test branch automatically
         subp.call(["git", "checkout", "-b", "test"])
         # adjust [Build Status] for the test branch
