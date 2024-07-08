@@ -20,7 +20,9 @@ import sys
 APP_REGEX = r'^[a-z][_a-z0-9]+$'
 
 repo_name = '{{ cookiecutter.__repo_name }}'
-defaultbranch = 'main'
+default_branch = 'main'
+metadata_file = 'metadata.json'
+readme_file = 'README.md'
 
 app_name = '{{ cookiecutter.__app_name }}'
 if not re.match(APP_REGEX, app_name):
@@ -40,22 +42,37 @@ def git_ini(repo):
                 + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
-        subp.call(["git", "init", "-b", defaultbranch])
+        subp.call(["git", "init", "-b", default_branch])
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", gitrepo])
 
+        # read cookiecutter template version
+        with open('../VERSION', 'r') as c_version_file:
+            c_version = c_version_file.read().strip()
+
+        # replace cookiecutter template version in the metadata.json file
+        metadata_content = []
+        with open(metadata_file) as f_old:
+            for line in f_old:
+                if '\"ai4_template\":' in line:
+                    line = f"\"ai4_template\": \"ai4-template/{c_version}\""
+                metadata_content.append(line)
+        with open(metadata_file, "w") as f_new:
+            for line in metadata_content:
+                f_new.write(line)
+        
         # create test branch automatically
         subp.call(["git", "checkout", "-b", "test"])
         # adjust [Build Status] for the test branch
         readme_content=[]
-        with open("README.md") as f_old:
+        with open(readme_file) as f_old:
             for line in f_old:
                 if "[![Build Status]" in line:
                     line = re.sub("/main*", "/test", line)
                 readme_content.append(line)
 
-        with open("README.md", "w") as f_new:
+        with open(readme_file, "w") as f_new:
             for line in readme_content:
                 f_new.write(line)
 
