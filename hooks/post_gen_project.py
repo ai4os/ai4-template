@@ -52,7 +52,7 @@ def git_ini(repo):
         with open("README.md") as f_old:
             for line in f_old:
                 if "[![Build Status]" in line:
-                    line = line.replace("/main)", "/test)")
+                    line = re.sub("/main*", "/test", line)
                 readme_content.append(line)
 
         with open("README.md", "w") as f_new:
