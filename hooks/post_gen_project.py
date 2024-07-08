@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2018 - 2024 Karlsruhe Institute of Technology - Steinbuch Centre for Computing
+# Copyright (c) 2018 - 2024 Karlsruhe Institute of Technology - Scientific Computing Center
 # This code is distributed under the MIT License
 # Please, see the LICENSE file
 
@@ -20,7 +20,8 @@ import sys
 APP_REGEX = r'^[a-z][_a-z0-9]+$'
 
 repo_name = '{{ cookiecutter.__repo_name }}'
-defaultbranch = 'main'
+default_branch = 'main'
+readme_file = 'README.md'
 
 app_name = '{{ cookiecutter.__app_name }}'
 if not re.match(APP_REGEX, app_name):
@@ -40,22 +41,22 @@ def git_ini(repo):
                 + "/" +  repo + '.git')
     try:
         os.chdir("../" + repo)
-        subp.call(["git", "init", "-b", defaultbranch])
+        subp.call(["git", "init", "-b", default_branch])
         subp.call(["git", "add", "."])
         subp.call(["git", "commit", "-m", "initial commit"])
         subp.call(["git", "remote", "add", "origin", gitrepo])
-
+      
         # create test branch automatically
         subp.call(["git", "checkout", "-b", "test"])
         # adjust [Build Status] for the test branch
         readme_content=[]
-        with open("README.md") as f_old:
+        with open(readme_file) as f_old:
             for line in f_old:
                 if "[![Build Status]" in line:
-                    line = line.replace("/main)", "/test)")
+                    line = re.sub("/main*", "/test", line)
                 readme_content.append(line)
 
-        with open("README.md", "w") as f_new:
+        with open(readme_file, "w") as f_new:
             for line in readme_content:
                 f_new.write(line)
 

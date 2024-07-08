@@ -25,43 +25,44 @@ an exemplar module [2].
 """
 
 from pathlib import Path
-import pkg_resources
+import logging
 
+from {{cookiecutter.__app_name}} import config
 from {{cookiecutter.__app_name}}.misc import _catch_error
 
+# set up logging
+logger = logging.getLogger(__name__)
+logger.setLevel(config.LOG_LEVEL)
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
 
 @_catch_error
 def get_metadata():
-    """
-    DO NOT REMOVE - All modules should have a get_metadata() function
-    with appropriate keys.
-    """
-    distros = list(pkg_resources.find_distributions(str(BASE_DIR), only=True))
-    if len(distros) == 0:
-        raise Exception("No package found.")
-    pkg = distros[0]  # if several select first
+    """Returns a dictionary containing metadata information about the module.
+       DO NOT REMOVE - All modules should have a get_metadata() function
 
-    meta_fields = {
-        "name": None,
-        "version": None,
-        "summary": None,
-        "home-page": None,
-        "author": None,
-        "author-email": None,
-        "license": None,
-    }
-    meta = {}
-    for line in pkg.get_metadata_lines("PKG-INFO"):
-        line_low = line.lower()  # to avoid inconsistency due to letter cases
-        for k in meta_fields:
-            if line_low.startswith(k + ":"):
-                _, value = line.split(": ", 1)
-                meta[k] = value
+    Raises:
+        HTTPException: Unexpected errors aim to return 50X
 
-    return meta
+    Returns:
+        A dictionary containing metadata information required by DEEPaaS.
+    """
+    try:  # Call your AI model metadata() method
+        logger.info("Collecting metadata from: %s", config.API_NAME)
+        metadata = {
+            "name": config.API_METADATA.get("name"),
+            "author": config.API_METADATA.get("authors"),
+            "author-email": config.API_METADATA.get("author-emails"),
+            "description": config.API_METADATA.get("summary"),
+            "license": config.API_METADATA.get("license"),
+            "version": config.API_METADATA.get("version"),
+        }
+        logger.debug("Package model metadata: %s", metadata)
+        return metadata
+    except Exception as err:
+        logger.error("Error collecting metadata: %s", err, exc_info=True)
+        raise  # Reraise the exception after log
 
 
 # def warm():
