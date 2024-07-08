@@ -36,11 +36,11 @@ logger.setLevel(config.LOG_LEVEL)
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
-# DO NOT REMOVE - All modules should have a get_metadata() function
-# with appropriate keys.
+
 @_catch_error
 def get_metadata():
     """Returns a dictionary containing metadata information about the module.
+       DO NOT REMOVE - All modules should have a get_metadata() function
 
     Raises:
         HTTPException: Unexpected errors aim to return 50X
@@ -51,6 +51,7 @@ def get_metadata():
     try:  # Call your AI model metadata() method
         logger.info("Collecting metadata from: %s", config.API_NAME)
         metadata = {
+            "name": config.API_METADATA.get("name"),
             "author": config.API_METADATA.get("authors"),
             "author-email": config.API_METADATA.get("author-emails"),
             "description": config.API_METADATA.get("summary"),

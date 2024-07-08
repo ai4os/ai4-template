@@ -5,6 +5,7 @@ Do not misuse this module to define variables that are not CONSTANTS.
 
 By convention, the CONSTANTS defined in this module are in UPPER_CASE.
 """
+
 import logging
 import os
 from importlib import metadata
@@ -19,7 +20,7 @@ _EMAILS = map(lambda s: s[:-1].split(" <"), _EMAILS)
 API_METADATA["Author-emails"] = dict(_EMAILS)
 
 # Fix metadata for authors from pyproject parsing
-_AUTHORS = API_METADATA.get("Author", "").split(", ")
+_AUTHORS = API_METADATA.get("Author", "").replace(", ", ",").split(",")
 _AUTHORS = [] if _AUTHORS == [""] else _AUTHORS
 _AUTHORS += API_METADATA["Author-emails"].keys()
 API_METADATA["Authors"] = sorted(_AUTHORS)
