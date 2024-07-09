@@ -1,0 +1,32 @@
+name: version-update
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'VERSION'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+    - name: Commit files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        export VERSION=$(cat VERSION |tr -d "\n\r")
+        echo "Found ${VERSION} version"
+        sed -i "s/\"__ai4_template\":.*/\"__ai4_template\": \"ai4-template\/${VERSION}\",/I" cookiecutter.json
+        git commit -a -m "Update ai4-template version in the cookiecutter.json for ${VERSION}"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
+        branch: ${{ github.head_ref }}
