@@ -24,7 +24,7 @@ jobs:
         export VERSION=$(cat VERSION |tr -d "\n\r")
         echo "Found ${VERSION} version"
         sed -i "s/\"__ai4_template\":.*/\"__ai4_template\": \"ai4-template\/${VERSION}\",/I" cookiecutter.json
-        git commit -a -m "Update ai4-template version in the cookiecutter.json for ${VERSION}"
+        git commit -a -m "chore: Update cookiecutter.json with ai4-template/${VERSION}"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
