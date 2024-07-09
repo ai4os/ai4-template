@@ -27,12 +27,12 @@ cookiecutter https://github.com/ai4os/ai4-template.git
 
 * OR visit our Templates Hub service: https://templates.cloud.ai4eosc.eu/ and select the template
 
-Once you answer all the questions, your repository `<your_project>` will be created.
+Once you answer all the questions, your repository `<your-project>` with the python package `<your_project>` will be created.
 
 This is what the folder structures look like:
 
 ```
-<your_project>
+<your-project>
 ##############
 │
 ├── Dockerfile             <- Describes main steps on integration of DEEPaaS API and
@@ -44,30 +44,37 @@ This is what the folder structures look like:
 │
 ├── README.md              <- The top-level README for developers using this project.
 │
+├── VERSION                <- <your_project> version file
+│
 ├── .sqa/                  <- CI/CD configuration files
 │
-├── {{cookiecutter.__app_name}}    <- Source code for use in this project.
+├── <your_project>         <- Source code for use in this project.
 │   │
-│   ├── __init__.py        <- Makes {{cookiecutter.__app_name}} a Python module
+│   ├── __init__.py        <- Makes <your_project> a Python module
 │   │
-│   ├── api.py             <- Main script for the integration with DEEP API
+│   ├── api.py             <- Main script for the integration with DEEPaaS API
+│   |
+│   ├── config.py          <- Configuration file to define Constants used across <your_project>
 │   │
 │   └── misc.py            <- Misc functions that were helpful accross projects
 │
 ├── data/                  <- Folder to store the data
 │
 ├── models/                <- Folder to store models
-│
+│   
 ├── tests/                 <- Scripts to perfrom code testing
 |
-├── metadata.json          <- Defines information propagated to the AI4OS Hub
+├── metadata.json          <- Metadata information propagated to the AI4OS Hub
 │
-├── requirements.txt       <- The requirements file for reproducing the analysis environment, e.g.
-│                             generated with `pip freeze > requirements.txt`
+├── pyproject.toml         <- a configuration file used by packaging tools, so <your_project>
+│                             can be imported or installed with  `pip install -e .`                             
+│
+├── requirements.txt       <- The requirements file for reproducing the analysis environment, i.e.
+│                             contains a list of packages needed to make <your_project> work
+│
 ├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
 │
-└── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-                              {{cookiecutter.__app_name}} can be imported
+└── tox.ini                <- Configuration file for the tox tool used for testing (see .sqa/)
 
 ```
 

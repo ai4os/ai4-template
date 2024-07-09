@@ -23,6 +23,8 @@ deepaas-run --listen-ip 0.0.0.0
 │
 ├── README.md              <- The top-level README for developers using this project.
 │
+├── VERSION                <- {{cookiecutter.__app_name}} version file
+│
 ├── .sqa/                  <- CI/CD configuration files
 │
 ├── {{cookiecutter.__app_name}}    <- Source code for use in this project.
@@ -30,6 +32,8 @@ deepaas-run --listen-ip 0.0.0.0
 │   ├── __init__.py        <- Makes {{cookiecutter.__app_name}} a Python module
 │   │
 │   ├── api.py             <- Main script for the integration with DEEPaaS API
+│   |
+│   ├── config.py          <- Configuration file to define Constants used across {{cookiecutter.__app_name}}
 │   │
 │   └── misc.py            <- Misc functions that were helpful accross projects
 │
@@ -39,12 +43,15 @@ deepaas-run --listen-ip 0.0.0.0
 │   
 ├── tests/                 <- Scripts to perfrom code testing
 |
-├── metadata.json          <- Defines information propagated to the AI4OS Hub
+├── metadata.json          <- Metadata information propagated to the AI4OS Hub
 │
-├── requirements.txt       <- The requirements file for reproducing the analysis environment, e.g.
-│                             generated with `pip freeze > requirements.txt`
+├── pyproject.toml         <- a configuration file used by packaging tools, so {{cookiecutter.__app_name}}
+│                             can be imported or installed with  `pip install -e .`                             
+│
+├── requirements.txt       <- The requirements file for reproducing the analysis environment, i.e.
+│                             contains a list of packages needed to make {{cookiecutter.__app_name}} work
+│
 ├── requirements-test.txt  <- The requirements file for running code tests (see tests/ directory)
 │
-└── setup.py, setup.cfg    <- makes project pip installable (pip install -e .) so
-                              {{cookiecutter.__app_name}} can be imported
+└── tox.ini                <- Configuration file for the tox tool used for testing (see .sqa/)
 ```
