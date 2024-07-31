@@ -11,6 +11,7 @@
     ],
     "license": "{{ cookiecutter.open_source_license }}",
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
+    "dataset_url": "",
     "sources": {
 		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
 		"docker_registry_repo": "ai4oshub/{{ cookiecutter.__repo_name }}",
