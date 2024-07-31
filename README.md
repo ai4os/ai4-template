@@ -82,7 +82,8 @@ More extended documentation can be found [here](http://docs.ai4os.eu/en/latest/u
 
 ## For developers
 
-Once you update the template, please, update this `README.md`, and **especially** `cookiecutter.json` file and `"__ai4_template"` entry with the corresponging, incremented version. The convention for the `"__ai4_template"` entry is to provide the template repository name, slash '/' closest version of the template, following [SymVer](https://semver.org/) specs, e.g.
+Once you update the template, please, update this `README.md` **and** `VERSION` file with the corresponging, incremented version following [SymVer](https://semver.org/) specs.
+Once commited, please, verify in the remote repository that the entry `"__ai4_template"` in the `cookiecutter.json` file was updated properly by the GitHub Action. The convention for the `"__ai4_template"` entry is to provide the template repository name, slash '/' closest version of the template, i.e. it should look like:
 
 ```
 "__ai4_template": "ai4-template/2.1.0"
