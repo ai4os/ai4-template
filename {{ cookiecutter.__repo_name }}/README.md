@@ -1,5 +1,6 @@
 # {{cookiecutter.project_name}}
 [![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/{{ cookiecutter.__repo_name }}/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/{{ cookiecutter.__repo_name }}/job/main/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 {{cookiecutter.description}}
 
@@ -9,6 +10,11 @@ git clone {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
 cd {{ cookiecutter.__repo_name }}
 pip install -e .
 deepaas-run --listen-ip 0.0.0.0
+```
+
+To format the code using [Black](https://github.com/psf/black), run:
+```bash
+black {{cookiecutter.__app_name}}
 ```
 
 ## Project structure
@@ -40,13 +46,13 @@ deepaas-run --listen-ip 0.0.0.0
 ├── data/                  <- Folder to store the data
 │
 ├── models/                <- Folder to store models
-│   
+│
 ├── tests/                 <- Scripts to perfrom code testing
 |
 ├── metadata.json          <- Metadata information propagated to the AI4OS Hub
 │
 ├── pyproject.toml         <- a configuration file used by packaging tools, so {{cookiecutter.__app_name}}
-│                             can be imported or installed with  `pip install -e .`                             
+│                             can be imported or installed with  `pip install -e .`
 │
 ├── requirements.txt       <- The requirements file for reproducing the analysis environment, i.e.
 │                             contains a list of packages needed to make {{cookiecutter.__app_name}} work
