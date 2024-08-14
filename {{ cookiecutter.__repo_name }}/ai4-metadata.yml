@@ -1,6 +1,6 @@
 metadata_version: 2.0.0
 title: {{ cookiecutter.project_name }}
-summary: {{ cookiecutter.description.replace('\'', '') }}
+summary: "{{ cookiecutter.description.replace('\'', '') }}"
 description: |-
   {{ cookiecutter.__app_name }} is an application using the DEEPaaS API.
   {{ cookiecutter.description.replace('\'', '') }}
