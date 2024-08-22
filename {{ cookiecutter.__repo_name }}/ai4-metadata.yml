@@ -8,16 +8,16 @@ dates:
   created: '{% now 'utc', '%Y-%m-%d' %}'
   updated: '{% now 'utc', '%Y-%m-%d' %}'
 links:
+  ai4_template: {{ cookiecutter.__ai4_template }}
   source_code: {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
   docker_image: ai4oshub/{{ cookiecutter.__repo_name }}
-  dataset: http://add-some-url-pointing-to-your-dataset.com
-  ai4_template: {{ cookiecutter.__ai4_template }}
+#  dataset: 
 tags:
   - deep learning
-tasks:
+#tasks:
 categories:
   - AI4 pre trained
   - AI4 trainable
   - AI4 inference
-libraries:
-data-type:
+#libraries:
+#data-type:
