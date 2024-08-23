@@ -1,23 +1,62 @@
 metadata_version: 2.0.0
 title: {{ cookiecutter.project_name }}
-summary: {{ cookiecutter.description.replace('\'', '') }}
+summary: "{{ cookiecutter.description.replace('\'', '') }}"
 description: |-
-  {{ cookiecutter.project_name }}
+  {{ cookiecutter.__app_name }} is an application using the DEEPaaS API.
   {{ cookiecutter.description.replace('\'', '') }}
+# doi: http://add-some-DOI-url.com
 dates:
-  created: '{% now 'utc', '%Y-%m-%d' %}'
-  updated: '{% now 'utc', '%Y-%m-%d' %}'
+  created: {% now 'utc', '%Y-%m-%d' %}
+  updated: {% now 'utc', '%Y-%m-%d' %}
 links:
   ai4_template: {{ cookiecutter.__ai4_template }}
   source_code: {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
   docker_image: ai4oshub/{{ cookiecutter.__repo_name }}
-#  dataset: 
-tags:
-  - deep learning
-#tasks:
-categories:
-  - AI4 pre trained
-  - AI4 trainable
-  - AI4 inference
-#libraries:
-#data-type:
+  # documentation: http://add-some-documentation.com
+  # dataset: http://add-some-url-pointing-to-your-dataset.com
+  # weights: http://add-some-weights-url.com
+  # citation: http://add-some-DOI-url.com
+  # base_model: http://add-some-link-to-another-model.com
+#tags:        # required property, add user-defined tags that you consider relevant
+  # - deep learning
+#tasks:       # required property, uncomment together with relevant items
+  # - Computer Vision
+  # - Natural Language Processing
+  # - Time Series
+  # - Recommender Systems
+  # - Anomaly Detection
+  # - Regression
+  # - Classification
+  # - Clustering
+  # - Dimensionality Reduction
+  # - Generative Models
+  # - Graph Neural Networks
+  # - Optimization
+  # - Reinforcement Learning
+  # - Transfer Learning
+  # - Uncertainty Estimation
+  # - Other
+#categories:  # required property, uncomment together with relevant items
+  # - AI4 trainable
+  # - AI4 pre trained
+  # - AI4 inference
+  # - AI4 tools
+#libraries:   # required property, uncomment together with relevant items
+  # - TensorFlow
+  # - PyTorch
+  # - Keras
+  # - Scikit-learn
+  # - XGBoost
+  # - LightGBM
+  # - CatBoost
+  # - Other
+#data-type:   # optional, uncomment together with relevant items
+  # - Image
+  # - Text
+  # - Time Series
+  # - Tabular
+  # - Graph
+  # - Audio
+  # - Video
+  # - Other
+  
