@@ -9,17 +9,17 @@ dates:
   created: {% now 'utc', '%Y-%m-%d' %}
   updated: {% now 'utc', '%Y-%m-%d' %}
 links:
+  ai4_template: {{ cookiecutter.__ai4_template }}
   source_code: {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
   docker_image: ai4oshub/{{ cookiecutter.__repo_name }}
-  ai4_template: {{ cookiecutter.__ai4_template }}
   # documentation: http://add-some-documentation.com
   # dataset: http://add-some-url-pointing-to-your-dataset.com
   # weights: http://add-some-weights-url.com
   # citation: http://add-some-DOI-url.com
   # base_model: http://add-some-link-to-another-model.com
-tags: []  # free field, add tags that you consider relevant
+#tags:        # required property, add user-defined tags that you consider relevant
   # - deep learning
-tasks: []  # uncomment tags accordingly
+#tasks:       # required property, uncomment together with relevant items
   # - Computer Vision
   # - Natural Language Processing
   # - Time Series
@@ -36,12 +36,12 @@ tasks: []  # uncomment tags accordingly
   # - Transfer Learning
   # - Uncertainty Estimation
   # - Other
-categories: []  # uncomment tags accordingly
+#categories:  # required property, uncomment together with relevant items
   # - AI4 trainable
   # - AI4 pre trained
   # - AI4 inference
   # - AI4 tools
-libraries: [] # uncomment tags accordingly
+#libraries:   # required property, uncomment together with relevant items
   # - TensorFlow
   # - PyTorch
   # - Keras
@@ -50,7 +50,7 @@ libraries: [] # uncomment tags accordingly
   # - LightGBM
   # - CatBoost
   # - Other
-data-type: []  # uncomment tags accordingly
+#data-type:   # optional, uncomment together with relevant items
   # - Image
   # - Text
   # - Time Series
