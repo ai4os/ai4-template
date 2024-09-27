@@ -30,7 +30,7 @@ PROJECT_METADATA["Authors"] = sorted(_AUTHORS)
 
 # Get ai4-metadata.yaml metadata
 AI4_METADATA_DIR = os.getenv(
-    "AI4_METADATA_DIR",
+    f"{API_NAME.capitalize()}_AI4_METADATA_DIR",
     default=f"{os.getcwd()}/../{API_NAME}",
 )
 with open(f"{AI4_METADATA_DIR}/ai4-metadata.yml", "r", encoding="utf-8") as stream:
