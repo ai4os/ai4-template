@@ -50,14 +50,8 @@ def get_metadata():
     """
     try:  # Call your AI model metadata() method
         logger.info("Collecting metadata from: %s", config.API_NAME)
-        metadata = {
-            "name": config.API_METADATA.get("name"),
-            "author": config.API_METADATA.get("authors"),
-            "author-email": config.API_METADATA.get("author-emails"),
-            "description": config.API_METADATA.get("summary"),
-            "license": config.API_METADATA.get("license"),
-            "version": config.API_METADATA.get("version"),
-        }
+        metadata = config.API_METADATA
+        # TODO: Add dynamic metadata collection here
         logger.debug("Package model metadata: %s", metadata)
         return metadata
     except Exception as err:
