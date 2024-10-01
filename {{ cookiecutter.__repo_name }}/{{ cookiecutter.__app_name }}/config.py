@@ -17,27 +17,18 @@ import yaml
 API_NAME = "{{ cookiecutter.__app_name }}"
 PROJECT_METADATA = metadata.metadata(API_NAME)  # .json
 
-# Fix metadata for emails from pyproject parsing
-_EMAILS = PROJECT_METADATA["Author-email"].split(", ")
-_EMAILS = map(lambda s: s[:-1].split(" <"), _EMAILS)
-PROJECT_METADATA["Author-emails"] = dict(_EMAILS)
-
-# Fix metadata for authors from pyproject parsing
-_AUTHORS = PROJECT_METADATA.get("Author", "").replace(", ", ",").split(",")
-_AUTHORS = [] if _AUTHORS == [""] else _AUTHORS
-_AUTHORS += PROJECT_METADATA["Author-emails"].keys()
-PROJECT_METADATA["Authors"] = sorted(_AUTHORS)
-
 # Get ai4-metadata.yaml metadata
-AI4_METADATA_DIR = os.getenv(
-    f"{API_NAME.capitalize()}_AI4_METADATA_DIR",
-    default=f"{os.getcwd()}/../{API_NAME}",
-)
+CWD = os.getcwd()
+AI4_METADATA_DIR = os.getenv(f"{API_NAME.capitalize()}_AI4_METADATA_DIR")
+if AI4_METADATA_DIR is None:
+    if "ai4-metadata.yml" in os.listdir(f"{CWD}/{API_NAME}"):
+        AI4_METADATA_DIR = f"{CWD}/{API_NAME}"
+    elif "ai4-metadata.yml" in os.listdir(f"{CWD}/../{API_NAME}"):
+        AI4_METADATA_DIR = f"{CWD}/../{API_NAME}"
+
+# Open ai4-metadata.yml
 with open(f"{AI4_METADATA_DIR}/ai4-metadata.yml", "r", encoding="utf-8") as stream:
     AI4_METADATA = yaml.safe_load(stream)
-
-# Merge metadata from pyproject.toml and ai4-metadata.yml
-API_METADATA = {**PROJECT_METADATA, **AI4_METADATA}
 
 # logging level across API modules can be setup via API_LOG_LEVEL,
 # options: DEBUG, INFO(default), WARNING, ERROR, CRITICAL

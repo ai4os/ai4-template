@@ -50,7 +50,7 @@ def get_metadata():
     """
     try:  # Call your AI model metadata() method
         logger.info("Collecting metadata from: %s", config.API_NAME)
-        metadata = config.API_METADATA
+        metadata = config.AI4_METADATA
         # TODO: Add dynamic metadata collection here
         logger.debug("Package model metadata: %s", metadata)
         return metadata
