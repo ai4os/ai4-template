@@ -15,7 +15,7 @@
     "__ai4_template": "ai4-template/2.1.5",
 
     "__prompts__": {
-        "project_name": "project_name - Short name of your project (max 4 words)",
+        "project_name": "project_name - Short name of your project and python package/module (max 4 words)",
         "author_name": "author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma",
         "author_email": "author_email - E-Mail(s) of main author(s). If many, separate by comma",
         "description": "description - A short description of the project",
