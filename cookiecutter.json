@@ -29,7 +29,7 @@
             "No license file": "No license file"
         },
         "docker_baseimage": "\nDocker image your Dockerfile starts from (FROM <docker_baseimage>).\n\tDo not provide the tag, yet\n",
-        "baseimage_tag": "baseimage_tag - Default tag for docker_baseimage (for Tensorflow: CPU version, e.g. 2.9.1)",
+        "baseimage_tag": "\nbaseimage_tag - Default tag for docker_baseimage (for Tensorflow: CPU version, e.g. 2.9.1)\n",
         "baseimage_gpu_tag": "\nGPU tag for the baseimage, e.g. 2.9.1-gpu.\n\tShould match and use python3\n"
     }
 }
