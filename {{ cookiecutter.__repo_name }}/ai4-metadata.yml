@@ -10,7 +10,7 @@ dates:
   updated: {% now 'utc', '%Y-%m-%d' %}
 links:
   ai4_template: {{ cookiecutter.__ai4_template }}
-  source_code: {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
+  source_code: {{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}
   docker_image: ai4oshub/{{ cookiecutter.__repo_name }}
   # documentation: http://add-some-documentation.com
   # dataset: http://add-some-url-pointing-to-your-dataset.com
