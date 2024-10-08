@@ -15,21 +15,21 @@
     "__ai4_template": "ai4-template/2.1.5",
 
     "__prompts__": {
-        "project_name": "project_name - Short name of your project and python package/module (max 4 words)",
-        "author_name": "author_name - Author name(s) (and/or your organization/company/team). If many, separate by comma",
-        "author_email": "author_email - E-Mail(s) of main author(s). If many, separate by comma",
-        "description": "description - A short description of the project",
-        "app_version": "app_version - Application version (expects X.Y.Z (Major.Minor.Patch), in accordance with https://semver.org/ )",
+        "project_name": "\nShort name of your project (max 4 words).\nThis is also the name of the module to be imported, e.g `import project_name as aimodel`.\n",
+        "author_name": "\nAuthor name(s) (and/or your organization/company/team).\n\tIf many, separate by comma\n",
+        "author_email": "\nE-Mail(s) of main author(s).\n\tIf many, separate by comma\n",
+        "description": "\nA short description of the project.\n",
+        "app_version": "\nApplication version (expects X.Y.Z (Major.Minor.Patch), in accordance with `https://semver.org/`).\n",
         "open_source_license": {
-            "__prompt__": "Select one of the licenses, default is MIT. For more info: https://opensource.org/licenses",
+            "__prompt__": "\nSelect one of the licenses, default is MIT. For more info: `https://opensource.org/licenses`.\n",
             "MIT": "MIT",
-            "Apache 2.0":  "Apache 2.0",
+            "Apache 2.0": "Apache 2.0",
             "BSD-3-Clause": "BSD-3-Clause",
             "AGPL-3.0-only": "AGPL-3.0-only",
             "No license file": "No license file"
-         },
-        "docker_baseimage": "docker_baseimage - Docker image your Dockerfile starts from (FROM docker_baseimage). Don't provide the tag, yet",
+        },
+        "docker_baseimage": "\nDocker image your Dockerfile starts from (FROM <docker_baseimage>).\n\tDo not provide the tag, yet\n",
         "baseimage_tag": "baseimage_tag - Default tag for docker_baseimage (for Tensorflow: CPU version, e.g. 2.9.1)",
-        "baseimage_gpu_tag": "baseimage_gpu_tag - If docker_baseimage has a *separate* GPU version (like Tensorflow images, e.g. 2.9.1-gpu), please, provide here, otherwise leave empty"
+        "baseimage_gpu_tag": "\nGPU tag for the baseimage, e.g. 2.9.1-gpu.\n\tShould match and use python3\n"
     }
 }
