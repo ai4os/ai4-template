@@ -24,8 +24,8 @@ classifiers = [
 dynamic = ["version", "dependencies"]
 
 [project.urls]
-"Homepage" = "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}"
-"Bug Tracker" = "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}/issues"
+"Homepage" = "{{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}"
+"Bug Tracker" = "{{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}/issues"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

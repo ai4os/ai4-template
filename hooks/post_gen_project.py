@@ -27,7 +27,7 @@ readme_file = 'README.md'
 def git_ini(repo):
     """ Function to initialize Git repository
     """
-    gitrepo = ('{{ cookiecutter.git_base_url }}'.rstrip('/')
+    gitrepo = ('{{ cookiecutter.__git_base_url }}'.rstrip('/')
                 + "/" +  repo + '.git')
 
     subp.call(["git", "init", "-b", default_branch])

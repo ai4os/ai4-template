@@ -5,7 +5,7 @@
 
 To launch it, first install the package then run [deepaas](https://github.com/ai4os/DEEPaaS):
 ```bash
-git clone {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}
+git clone {{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}
 cd {{ cookiecutter.__repo_name }}
 pip install -e .
 deepaas-run --listen-ip 0.0.0.0

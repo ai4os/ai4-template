@@ -7,7 +7,7 @@
 
 """
     Pre-hook script
-    1. Check that {{ cookiecutter.git_base_url}} is a valid URL
+    1. Check that {{ cookiecutter.__git_base_url}} is a valid URL
     2. Check that {{ cookiecutter.__app_name }}:
       a. is not too short (has to be more than one character)
       b. has characters valid for python
@@ -27,7 +27,7 @@ APP_VERSION_REGEX = r"^\d+\.\d+\.\d+$"
 # -----------------------------------------------------------------------------
 def validate_git_base_url():
     """Validate git_base_url"""
-    git_base_url = "{{ cookiecutter.git_base_url }}"
+    git_base_url = "{{ cookiecutter.__git_base_url }}"
     parsed_url = urlparse(url=git_base_url)
     if not bool(parsed_url.scheme and parsed_url.netloc):
         e_message = f"Invalid git_base_url ({git_base_url})"

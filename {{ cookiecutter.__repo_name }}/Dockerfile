@@ -69,7 +69,7 @@ RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
 ENV SHELL /bin/bash
 
 # Install user app
-RUN git clone -b $branch {{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }} && \
+RUN git clone -b $branch {{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }} && \
     cd  {{ cookiecutter.__repo_name }} && \
     pip3 install --no-cache-dir -e . && \
     cd ..

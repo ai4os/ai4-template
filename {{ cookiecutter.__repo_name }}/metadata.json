@@ -13,9 +13,9 @@
     "date_creation": "{% now 'utc', '%Y-%m-%d' %}",
     "dataset_url": "http://add-some-url-pointing-to-your-dataset.com",
     "sources": {
-		"dockerfile_repo": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
+		"dockerfile_repo": "{{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}",
 		"docker_registry_repo": "ai4oshub/{{ cookiecutter.__repo_name }}",
-		"code": "{{ cookiecutter.git_base_url }}/{{ cookiecutter.__repo_name }}",
+		"code": "{{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}",
 		"ai4_template": "{{ cookiecutter.__ai4_template }}"
     },
     "continuous_integration": {
