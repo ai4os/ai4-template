@@ -6,8 +6,8 @@ description: |-
   {{ cookiecutter.description.replace('\'', '') }}
 # doi: http://add-some-DOI-url.com
 dates:
-  created: {% now 'utc', '%Y-%m-%d' %}
-  updated: {% now 'utc', '%Y-%m-%d' %}
+  created: "{% now 'utc', '%Y-%m-%d' %}"
+  updated: "{% now 'utc', '%Y-%m-%d' %}"
 links:
   ai4_template: {{ cookiecutter.__ai4_template }}
   source_code: {{ cookiecutter.__git_base_url }}/{{ cookiecutter.__repo_name }}
