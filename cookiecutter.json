@@ -15,7 +15,7 @@
     "__ai4_template": "ai4-template/2.1.5",
 
     "__prompts__": {
-        "project_name": "\nShort name of your project (max 4 words).\nThis is also the name of the module to be imported, e.g `import project_name as aimodel`.\n",
+        "project_name": "\nShort name of your project (max 4 words).\nThe GitHub repository name and python module name are derived from the project_name.\n",
         "author_name": "\nAuthor name(s) (and/or your organization/company/team).\n\tIf many, separate by comma\n",
         "author_email": "\nE-Mail(s) of main author(s).\n\tIf many, separate by comma\n",
         "description": "\nA short description of the project.\n",
