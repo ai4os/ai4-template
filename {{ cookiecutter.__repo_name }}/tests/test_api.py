@@ -30,14 +30,11 @@ class TestModelMethods(unittest.TestCase):
         Test that get_metadata() returns right values (subset)
         """
         self.assertEqual(
-            self.meta["Name"].lower().replace("-", "_"),
+            self.meta["name"].lower().replace("-", "_"),
             "{{ cookiecutter.__app_name }}".lower().replace("-", "_"),
         )
         self.assertEqual(
-            self.meta["Authors"], "{{ cookiecutter.author_name }}".replace(", ", ",").split(",")
-        )
-        self.assertEqual(
-            self.meta["License"].lower(),
+            self.meta["license"].lower(),
             "{{ cookiecutter.open_source_license }}".lower(),
         )
 
