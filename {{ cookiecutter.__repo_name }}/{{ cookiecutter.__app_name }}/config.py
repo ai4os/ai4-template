@@ -35,15 +35,16 @@ PROJECT_METADATA = {
   "name": PACKAGE_METADATA["Name"],
   "description": AI4_METADATA["description"],
   "license": PACKAGE_METADATA["License"],
-  "author": PACKAGE_METADATA["Author-email"],
   "version":  PACKAGE_METADATA["Version"],
   "url":  PACKAGE_METADATA["Project-URL"],
 }
 
-# Fix metadata for emails from pyproject parsing
-_EMAILS = PACKAGE_METADATA["Author-email"].split(", ")
-_EMAILS = map(lambda s: s[:-1].split(" <"), _EMAILS)
-PROJECT_METADATA["author"] = dict(_EMAILS)
+# Fix metadata for authors and emails from pyproject parsing
+_EMAILS_LIST = PACKAGE_METADATA["Author-email"].split(", ")
+_EMAILS = dict(map(lambda s: s[:-1].split(" <"), _EMAILS_LIST))
+PROJECT_METADATA["author-email"] = _EMAILS
+_AUTHOR = ", ".join(PROJECT_METADATA["author-email"].keys())
+PROJECT_METADATA["author"] = _AUTHOR
 
 # logging level across API modules can be setup via API_LOG_LEVEL,
 # options: DEBUG, INFO(default), WARNING, ERROR, CRITICAL

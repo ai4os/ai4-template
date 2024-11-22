@@ -34,6 +34,10 @@ class TestModelMethods(unittest.TestCase):
             "{{ cookiecutter.__app_name }}".lower().replace("-", "_"),
         )
         self.assertEqual(
+            self.meta["author"],
+           "{{ cookiecutter.author_name }}",
+        )
+        self.assertEqual(
             self.meta["license"].lower(),
             "{{ cookiecutter.open_source_license }}".lower(),
         )
