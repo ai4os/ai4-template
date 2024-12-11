@@ -78,4 +78,4 @@ RUN git clone -b $branch {{ cookiecutter.__git_base_url }}/{{ cookiecutter.__rep
 EXPOSE 5000 6006 8888
 
 # Launch deepaas
-CMD ["deepaas-run", "--listen-ip", "0.0.0.0", "--listen-port", "5000"]
+CMD [ "deep-start", "--deepaas" ]

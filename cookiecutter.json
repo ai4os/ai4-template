@@ -12,7 +12,7 @@
     "__git_base_url": "https://github.com/ai4os-hub",
     "__repo_name": "{{ ' '.join(cookiecutter.project_name.split()).lower().replace(' ', '-') }}",
     "__app_name": "{{ cookiecutter.__repo_name.replace('-','_') }}",
-    "__ai4_template": "ai4-template/2.1.7",
+    "__ai4_template": "ai4-template/2.2.0",
 
     "__prompts__": {
         "project_name": "\nShort name of your project (max 4 words).\nThe GitHub repository name and python module name are derived from the project_name.\n",
