@@ -14,7 +14,7 @@ authors = [
 description = "{{ cookiecutter.description }}"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "{{ cookiecutter.open_source_license }}" }
+license = "{{ cookiecutter.open_source_license }}"
 classifiers = [
     "Intended Audience :: Information Technology",
     "Intended Audience :: AI/ML/DL Researchers",
