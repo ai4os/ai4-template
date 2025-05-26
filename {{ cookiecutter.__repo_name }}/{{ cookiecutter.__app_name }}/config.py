@@ -8,6 +8,7 @@ By convention, the CONSTANTS defined in this module are in UPPER_CASE.
 
 import logging
 import os
+from pathlib import Path
 from importlib import metadata
 
 import yaml
@@ -17,13 +18,15 @@ API_NAME = "{{ cookiecutter.__app_name }}"
 PACKAGE_METADATA = metadata.metadata(API_NAME)  # .json
 
 # Get ai4-metadata.yaml metadata
-CWD = os.getcwd()
+CWD = Path.cwd()
 AI4_METADATA_DIR = os.getenv(f"{API_NAME.capitalize()}_AI4_METADATA_DIR")
 if AI4_METADATA_DIR is None:
-    if "ai4-metadata.yml" in os.listdir(f"{CWD}/{API_NAME}"):
-        AI4_METADATA_DIR = f"{CWD}/{API_NAME}"
-    elif "ai4-metadata.yml" in os.listdir(f"{CWD}/../{API_NAME}"):
-        AI4_METADATA_DIR = f"{CWD}/../{API_NAME}"
+    if (CWD / API_NAME / "ai4-metadata.yml").exists():
+        AI4_METADATA_DIR = CWD / API_NAME
+    elif (CWD / ".." / API_NAME / "ai4-metadata.yml").exists():
+        AI4_METADATA_DIR = CWD / ".." / API_NAME
+    else:
+        AI4_METADATA_DIR = Path(__file__).resolve().parents[1]
 
 # Open ai4-metadata.yml
 _file = f"{AI4_METADATA_DIR}/ai4-metadata.yml"
