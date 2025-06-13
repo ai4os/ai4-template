@@ -62,7 +62,7 @@ In the Black _global_ settings, we also recommend setting `black-formatter.showN
 │
 ├── tests/                 <- Scripts to perfrom code testing
 |
-├── metadata.json          <- Metadata information propagated to the AI4OS Hub
+├── ai4-metadata.yml       <- Metadata information propagated to the AI4OS Hub
 │
 ├── pyproject.toml         <- a configuration file used by packaging tools, so {{cookiecutter.__app_name}}
 │                             can be imported or installed with  `pip install -e .`
